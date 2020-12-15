@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    mundo = new Mundo();
     ui->setupUi(this);
 }
 
@@ -13,3 +14,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::on_btnCrearPersonas_clicked(){
+    int num = ui->btnCrearPersonas->text().toInt();
+    mundo->crearPersonas(num);
+}

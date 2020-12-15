@@ -1,5 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+#include "mundo.h"
 
 #include <QMainWindow>
 
@@ -10,10 +11,15 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+    Mundo * mundo;
 
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+private slots:
+    void on_btnCrearPersonas_clicked();
+
 
 private:
     Ui::MainWindow *ui;

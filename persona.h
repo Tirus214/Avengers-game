@@ -1,6 +1,7 @@
 #ifndef PERSONA_H
 #define PERSONA_H
 #include <QApplication>
+#include <QDebug>
 
 
 struct Persona {
@@ -12,9 +13,16 @@ struct Persona {
     QString profesion;
     QString fechaNacimiento;
 
-    Persona(){
-
+    Persona(int _id){
+        id = _id;
     }
+
+    QString ranNombre();
+    QString ranApellido();
+    bool ranGenero();
+    QString ranCreencia();
+    QString ranProfesion();
+    QString ranFechaNacimiento();
 };
 
 #endif // PERSONA_H
