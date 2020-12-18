@@ -12,7 +12,7 @@ struct ListaPersonas{
 
     void insertarAlFinal(Persona * persona);
     bool isEmpty();
-    void toString();
+    void imprimir();
 };
 
 #endif // ListaPersonas_H

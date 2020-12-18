@@ -2,7 +2,6 @@
 
 
 void ListaPersonas::insertarAlFinal(Persona * persona){
-    if(persona != NULL){
         if(primerNodo == NULL){
             primerNodo = new NodoDoble(persona);
         }
@@ -16,7 +15,6 @@ void ListaPersonas::insertarAlFinal(Persona * persona){
             nuevo->anterior = primerNodo->anterior;
             primerNodo->anterior->siguiente = primerNodo->anterior = nuevo;
         }
-    }
 }
 
 
@@ -25,11 +23,11 @@ bool ListaPersonas::isEmpty(){
     return primerNodo == NULL;
 }
 
-void ListaPersonas::toString(){
+void ListaPersonas::imprimir(){
     if(!isEmpty()){
         NodoDoble * tmp = primerNodo;
         do{
-            qDebug() << tmp->persona;
+            qDebug() << tmp->persona->id;
             tmp = tmp->siguiente;
         } while(tmp != primerNodo);
     }

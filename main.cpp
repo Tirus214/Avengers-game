@@ -7,7 +7,8 @@ int main(int argc, char *argv[])
 {
     Mundo* m = new Mundo();
     m->crearPersonas(5);
-    m->lista->toString();
+    m->lista->imprimir();
+    qDebug() << m->lista->primerNodo->siguiente->siguiente;
 
     QApplication a(argc, argv);
     MainWindow w;
