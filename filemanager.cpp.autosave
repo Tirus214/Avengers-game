@@ -1,5 +1,0 @@
-#include "filemanager.h"
-
-QString FileManager::lectura(QString name){
-    ifstream archivo;
-}
