@@ -1,14 +1,12 @@
 #include "mainwindow.h"
-
-
 #include <QApplication>
+#include "filemanager.h"
+
 
 int main(int argc, char *argv[])
 {
-    Mundo* m = new Mundo();
-    m->crearPersonas(5);
-    m->lista->imprimir();
-    qDebug() << m->lista->primerNodo->siguiente->siguiente;
+    FileManager * f = new FileManager();
+    qDebug() << f->leer("Paises");
 
     QApplication a(argc, argv);
     MainWindow w;

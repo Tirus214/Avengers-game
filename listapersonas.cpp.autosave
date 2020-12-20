@@ -15,8 +15,8 @@ void ListaPersonas::insertarAlFinal(Persona * persona){
             nuevo->anterior = primerNodo->anterior;
             primerNodo->anterior->siguiente = primerNodo->anterior = nuevo;
         }
+        index++;
 }
-
 
 
 bool ListaPersonas::isEmpty(){
@@ -32,3 +32,25 @@ void ListaPersonas::imprimir(){
         } while(tmp != primerNodo);
     }
 }
+
+
+bool ListaPersonas::esta(int num){
+    if(!isEmpty()){
+        NodoDoble * tmp = primerNodo;
+        do{
+            if(tmp->persona->id == num)
+                return true;
+            tmp = tmp->siguiente;
+        } while(tmp != primerNodo);
+    }
+    return false;
+}
+
+
+int ListaPersonas::largo(){
+    return index;
+}
+
+
+
+

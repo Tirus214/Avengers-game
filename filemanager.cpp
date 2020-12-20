@@ -1,14 +1,23 @@
 #include "filemanager.h"
 
-QString FileManager::lectura(QString name){
-    QFile inputFile(name);
-    if (inputFile.open(QIODevice::ReadOnly))
-    {
-          QTextStream in(&inputFile);
-          while (!in.atEnd())
-          {
-             QString line = in.readLine();
-          }
-          inputFile.close();
+void FileManager::escribir(QString name){
+    QFile file("C:/Archivos/" + name + ".txt");
+    if (!file.open(QFile::ReadOnly | QFile::Text))
+        return;
+    QTextStream out(&file);
+    out << stringArray;
+    file.flush();
+    file.close();
+}
+
+
+void FileManager::leer(QString name){
+    QFile file("C:/Archivos/" + name + ".txt");
+    if (!file.open(QFile::ReadOnly | QFile::Text)){
+        qDebug() << "No se pudo abrir el archivo";
+        return;
     }
+    QTextStream in(&file);
+    QString text = in.readAll();
+    file.close();
 }

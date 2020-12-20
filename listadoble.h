@@ -3,16 +3,20 @@
 #include "nododoble.h"
 
 
-struct ListaPersonas{
+struct ListaDoble{
     NodoDoble * primerNodo;
+    int index;
 
-    ListaPersonas(){
+    ListaDoble(){
         primerNodo = NULL;
+        index = 0;
     }
 
     void insertarAlFinal(Persona * persona);
     bool isEmpty();
     void imprimir();
+    bool esta(int index);
+    int largo();
 };
 
 #endif // ListaPersonas_H

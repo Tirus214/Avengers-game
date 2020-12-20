@@ -10,7 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     filemanager.cpp \
-    listapersonas.cpp \
+    listadoble.cpp \
     main.cpp \
     mainwindow.cpp \
     mundo.cpp \
@@ -19,7 +19,7 @@ SOURCES += \
 
 HEADERS += \
     filemanager.h \
-    listapersonas.h \
+    listadoble.h \
     mainwindow.h \
     mundo.h \
     nododoble.h \
