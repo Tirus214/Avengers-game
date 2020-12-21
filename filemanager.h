@@ -8,14 +8,13 @@
 
 
 struct FileManager{
-    QString stringArray;
+    QStringList array;
 
     FileManager(){
-        stringArray = "";
     }
 
     void leer(QString name);
-    void escribir(QString name);
+    void escribir(QString name, QString arreglo[]);
 };
 
 #endif // FILEMANAGER_H

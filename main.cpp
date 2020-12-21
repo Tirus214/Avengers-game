@@ -5,8 +5,8 @@
 
 int main(int argc, char *argv[])
 {
-    FileManager * f = new FileManager();
-    qDebug() << f->leer("Paises");
+    Mundo * m = new Mundo();
+    m->imprimir();
 
     QApplication a(argc, argv);
     MainWindow w;
