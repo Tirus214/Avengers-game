@@ -19,8 +19,6 @@ struct Persona {
     QString estadoMarital;
     int salud;
     QStringList deportes;
-    ListaDoble * amigos;
-    ListaDoble * hijos;
     Persona * papa;
     Persona * mama;
     Persona * conyugue;

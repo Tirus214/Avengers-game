@@ -11,23 +11,26 @@
 }*/
 
 
-void FileManager::leer(QString name){
+void FileManager::leer(QString name, QString arreglo[]){
     QFile file("C:/Archivos/" + name + ".txt");
     if (!file.open(QFile::ReadOnly | QFile::Text)){
         qDebug() << "No se pudo abrir el archivo";
         return;
     }
-    array.clear();
     int index = 0;
     QTextStream in(&file);
     while(!in.atEnd()){
         QString line = in.readLine();
-        array[index] = line;
-        index++;
+        try {
+            arreglo[index] = line;
+            index++;
+        }  catch (FileManager) {
+            continue;
+        }
     }
     file.close();
 
-    for(int i=0; i<array.length(); i++){
-        qDebug() << array[i] + "\n";
+    for(int i=0; i<arreglo->length(); i++){
+        qDebug() << arreglo[i] + "\n";
     }
 }

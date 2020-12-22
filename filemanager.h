@@ -13,7 +13,7 @@ struct FileManager{
     FileManager(){
     }
 
-    void leer(QString name);
+    void leer(QString name, QString arreglo[]);
     void escribir(QString name, QString arreglo[]);
 };
 
