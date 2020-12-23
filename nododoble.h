@@ -3,7 +3,7 @@
 #include "persona.h"
 
 struct NodoDoble{
-      Persona * persona;
+    Persona * persona;
     NodoDoble * siguiente;
     NodoDoble * anterior;
 

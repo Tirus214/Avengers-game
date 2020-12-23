@@ -15,18 +15,46 @@ struct Mundo{
     QString listaPaises[100];
 
     int index;
+    ListaDoble * rangoInfantil;
+    ListaDoble * rangoPreescolar;
+    ListaDoble * rangoEscolar;
+    ListaDoble * rangoPubertad;
+    ListaDoble * rangoAdolecencia;
+    ListaDoble * rangoJoven;
+    ListaDoble * rangoAdultoJoven;
+    ListaDoble * rangoAdultoMaduro;
+    ListaDoble * rangoAdultoMayor;
 
     Mundo(){
         listaPersonas = new ListaDoble();
         index = 0;
         fileManager = new FileManager();
         obtenerArray("Apellidos", listaApellidos);
+        obtenerArray("NombresHombre", listaNombresHombre);
+        obtenerArray("NombresMujer", listaNombresMujer);
+        obtenerArray("Creencias", listaCreencias);
+        obtenerArray("Profesiones", listaProfesiones);
+        obtenerArray("Paises", listaPaises);
+
+        rangoInfantil = new ListaDoble();
+        rangoPreescolar = new ListaDoble();
+        rangoEscolar = new ListaDoble();
+        rangoPubertad = new ListaDoble();
+        rangoAdolecencia = new ListaDoble();
+        rangoJoven = new ListaDoble();
+        rangoAdultoJoven = new ListaDoble();
+        rangoAdultoMaduro = new ListaDoble();
+        rangoAdultoMayor = new ListaDoble();
     }
 
     void crearPersonas(int num);
-    int aleatorio(int min, int max);
-    void obtenerArray(QString nombre, QString array[]);
-    void makeStaticArray(QStringList arrayList, QString *arreglo);
+    int getId(int num); //retorna un id unico
+    int getNumPaises(); //retorna el numero de paises segun probabilidades
+    void getPaises(int num, QString paises[]);  //retorna lista de paises aleatorios segun la cantidad ingresada
+    bool ranGenero();   //obtiene un genero random
+    int aleatorio(int min, int max);  //crea un aleatorio
+    void obtenerArray(QString nombre, QString array[]); //obtiene un array de un archivo
+    void clasificarRango(); //clasifica a las personas por rango etario
     void imprimir();
 };
 

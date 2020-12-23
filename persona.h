@@ -2,7 +2,7 @@
 #define PERSONA_H
 #include <QApplication>
 #include <QDebug>
-#include "listadoble.h"
+#include "QRandomGenerator64"
 
 
 struct Persona {
@@ -12,34 +12,38 @@ struct Persona {
     bool genero;
     QString creencia;
     QString profesion;
-    QString fechaNacimiento[3];
+    int fechaNacimiento[3];
     int accionesBuenas[7];
     int accionesMalas[7];
     int longevidad;
     QString estadoMarital;
     int salud;
     QStringList deportes;
+    QStringList paises;
     Persona * papa;
     Persona * mama;
     Persona * conyugue;
 
-    Persona(int _id){
+    Persona(int _id, QString _nombre, QString _apellido, QString _creencia, QString _profesion, QString paises[]){
         id = _id;
-        nombre = "";
-        apellido = "";
-        creencia = "";
-        profesion = "";
-        longevidad = 0;
-
-
+        nombre = _nombre;
+        apellido = _apellido;
+        creencia = _creencia;
+        profesion = _profesion;
+        ranFechaNacimiento();
+        ranAccionesBuenas();
+        ranAccionesMalas();
+        setLongevidad();
+        setEstadoMarital();
     }
 
-    QString ranNombre();
-    QString ranApellido();
-    bool ranGenero();
-    QString ranCreencia();
-    QString ranProfesion();
-    QString ranFechaNacimiento();
+    void ranFechaNacimiento();
+    void ranAccionesBuenas();
+    void ranAccionesMalas();
+    void setLongevidad();
+    void setEstadoMarital();
+
+    int aleatorio(int min, int max);
 };
 
 #endif // PERSONA_H

@@ -5,9 +5,7 @@
 
 int main(int argc, char *argv[])
 {
-    QString ape[20];
-    FileManager * f = new FileManager();
-    f->leer("Apellidos", ape);
+    Mundo * m = new Mundo();
 
     QApplication a(argc, argv);
     MainWindow w;
