@@ -29,8 +29,4 @@ void FileManager::leer(QString name, QString arreglo[]){
         }
     }
     file.close();
-
-    for (int i=0; i<arreglo->length(); i++) {
-        qDebug() << arreglo[i];
-    }
 }

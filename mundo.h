@@ -13,6 +13,7 @@ struct Mundo{
     QString listaCreencias[10];
     QString listaProfesiones[50];
     QString listaPaises[100];
+    QString listaDeportes[7] = {"Futbol", "Tenis", "Natacion", "Beisbol", "Basketball", "Atletismo", "Karate"};
 
     int index;
     ListaDoble * rangoInfantil;
