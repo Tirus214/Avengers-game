@@ -4,8 +4,7 @@
 
 void Mundo::crearPersonas(int num){
     for(int i=0; i<num; i++) { 
-        int id = getId(num);
-
+        int id = getId();
         QString _nombre = "";
         if(ranGenero()){
             QString _gender = "Mujer";
@@ -22,7 +21,7 @@ void Mundo::crearPersonas(int num){
         int rand = getNumPaises();
         QString paises[rand];
         getPaises(rand, paises);
-
+        qDebug() << "hi";
         listaPersonas->insertarAlFinal(new Persona(id, _nombre, _apellido, _creencia, _profesion, paises));
     }
     index += num;
@@ -31,9 +30,9 @@ void Mundo::crearPersonas(int num){
 }
 
 
-int Mundo::getId(int num){
+int Mundo::getId(){
     int id = aleatorio(0,10000000);
-    while(listaPersonas->esta(num)){
+    while(listaPersonas->esta(id)){
         id = aleatorio(0,10000000);
     }
     return id;
@@ -54,7 +53,6 @@ int Mundo::getNumPaises(){
 void Mundo::getPaises(int num, QString paises[]){
     for(int i=0; i<num; i++){
         paises[i] = listaPaises[aleatorio(0, listaPaises->length())];
-        qDebug() << paises[i];
     }
 }
 

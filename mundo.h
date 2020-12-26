@@ -49,7 +49,7 @@ struct Mundo{
     }
 
     void crearPersonas(int num);
-    int getId(int num); //retorna un id unico
+    int getId(void); //retorna un id unico
     int getNumPaises(); //retorna el numero de paises segun probabilidades
     void getPaises(int num, QString paises[]);  //retorna lista de paises aleatorios segun la cantidad ingresada
     bool ranGenero();   //obtiene un genero random
