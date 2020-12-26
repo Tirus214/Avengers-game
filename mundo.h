@@ -56,6 +56,8 @@ struct Mundo{
     int aleatorio(int min, int max);  //crea un aleatorio
     void obtenerArray(QString nombre, QString array[]); //obtiene un array de un archivo
     void clasificarRango(); //clasifica a las personas por rango etario
+    void putHijos();
+    void insertHijos(int num, int id, ListaDoble * hijos, QString apellido);
     void imprimir();
 };
 

@@ -27,6 +27,7 @@ void Mundo::crearPersonas(int num){
     }
     index += num;
     clasificarRango();
+    putHijos();
 }
 
 
@@ -53,6 +54,7 @@ int Mundo::getNumPaises(){
 void Mundo::getPaises(int num, QString paises[]){
     for(int i=0; i<num; i++){
         paises[i] = listaPaises[aleatorio(0, listaPaises->length())];
+        qDebug() << paises[i];
     }
 }
 
@@ -91,3 +93,25 @@ void Mundo::clasificarRango(){
 }
 
 
+void Mundo::putHijos(){
+    if(!listaPersonas->isEmpty()){
+        NodoDoble * tmp = listaPersonas->primerNodo;
+        do{
+            int cantHijos = aleatorio(0,5);
+            insertHijos(cantHijos, tmp->persona->id, tmp->persona->hijos, tmp->persona->apellido);
+            tmp = tmp->siguiente;
+        } while(tmp != listaPersonas->primerNodo);
+    }
+}
+
+
+void Mundo::insertHijos(int num, int id, ListaDoble * hijos, QString apellido){
+    NodoDoble * tmp = listaPersonas->primerNodo;
+    do{
+        if(tmp->persona->apellido == apellido && tmp->persona->id != id){
+            hijos->insertarAlFinal(tmp->persona);
+            num--;
+        }
+        tmp = tmp->siguiente;
+    } while(tmp != listaPersonas->primerNodo || num < 0);
+}

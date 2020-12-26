@@ -13,17 +13,13 @@ SOURCES += \
     listadoble.cpp \
     main.cpp \
     mainwindow.cpp \
-    mundo.cpp \
-    nododoble.cpp \
-    persona.cpp
+    mundo.cpp
 
 HEADERS += \
     filemanager.h \
     listadoble.h \
     mainwindow.h \
-    mundo.h \
-    nododoble.h \
-    persona.h
+    mundo.h
 
 FORMS += \
     mainwindow.ui
