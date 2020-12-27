@@ -12,7 +12,7 @@ struct Arbol{
 
     void insertar (NodoDoble*);
     NodoArbol* insertar(NodoDoble*, NodoArbol*);
-    NodoArbol* buscar (int, NodoArbol*);
+    NodoDoble* buscar (int id, NodoArbol* nodoArbol);
     int obtenerNumeroElementos(NodoArbol*);
     int peso (NodoArbol*);
     int obtenerAltura(NodoArbol*);

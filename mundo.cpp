@@ -113,3 +113,15 @@ void Mundo::insertHijos(int num, int id, ListaDoble * hijos, QString apellido){
         tmp = tmp->siguiente;
     } while(tmp != listaPersonas->primerNodo || num < 0);
 }
+
+
+void Mundo::crearArbol(){
+
+}
+
+
+
+
+
+
+

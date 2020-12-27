@@ -46,30 +46,31 @@ int Arbol::contadorNodos(NodoArbol* NodoArbol)
 
 
 // BUSCA UN VALOR EN EL ARBOL ORDENADO
-NodoArbol* Arbol::buscar (int valor, NodoArbol* NodoArbol)
- {
+NodoDoble* Arbol::buscar(int id, NodoArbol* nodoArbol){
      // cuando el NodoArbol es nulo, quiere decir que allí debe
      // ubicar el valor, en un nuevo NodoArbol
-     if (NodoArbol == NULL)
+     if (nodoArbol == NULL)
      {
          return NULL;
      }
-     else if (NodoArbol->dato == valor)
+     else if (nodoArbol->nodoPersona->persona->id == id)
      {
-        return NodoArbol;
+        return nodoArbol->nodoPersona;
      }
      // si el valor es mayor, llama recursivamente a insertar en el hijo
      // derecho
-     else if (NodoArbol->dato < valor)
+     else if (nodoArbol->nodoPersona->persona->id < id)
      {
-        return buscar(valor, NodoArbol->hijoderecho);
+         return buscar(id, nodoArbol->hijoDerecho);
      }
      // en caso contrario, va al lado izquierdo
-     else //(NodoArbol.dato >= valor)
+     else if (nodoArbol->nodoPersona->persona->id > id)
      {
-        return buscar(valor, NodoArbol->hijoizquierdo);
+        return buscar(id, nodoArbol->hijoIzquierdo);
      }
  }
+
+
 
  // cantidad de elementos de un arbol binario
  int Arbol::obtenerNumeroElementos(NodoArbol* NodoArbol)

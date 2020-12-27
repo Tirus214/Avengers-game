@@ -58,6 +58,7 @@ struct Mundo{
     void clasificarRango(); //clasifica a las personas por rango etario
     void putHijos();
     void insertHijos(int num, int id, ListaDoble * hijos, QString apellido);
+    void crearArbol();
     void imprimir();
 };
 
