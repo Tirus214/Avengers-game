@@ -11,19 +11,23 @@ CONFIG += c++11
 SOURCES += \
     arbol.cpp \
     filemanager.cpp \
+    heap.cpp \
     listadoble.cpp \
     main.cpp \
     mainwindow.cpp \
     mundo.cpp \
-    nodoarbol.cpp
+    nodoarbol.cpp \
+    nodoheap.cpp
 
 HEADERS += \
     arbol.h \
     filemanager.h \
+    heap.h \
     listadoble.h \
     mainwindow.h \
     mundo.h \
-    nodoarbol.h
+    nodoarbol.h \
+    nodoheap.h
 
 FORMS += \
     mainwindow.ui

@@ -73,15 +73,15 @@ NodoDoble* Arbol::buscar(int id, NodoArbol* nodoArbol){
 
 
  // cantidad de elementos de un arbol binario
- int Arbol::obtenerNumeroElementos(NodoArbol* NodoArbol)
+ int Arbol::obtenerNumeroElementos(NodoArbol* nodoArbol)
  {
      int num_elems = 0;
 
-     if(NodoArbol != NULL)
+     if(nodoArbol != NULL)
      {
-        num_elems += obtenerNumeroElementos(NodoArbol->hijoizquierdo);
+        num_elems += obtenerNumeroElementos(nodoArbol->hijoIzquierdo);
         num_elems++; // contabilizar el NodoArbol visitado
-        num_elems += obtenerNumeroElementos(NodoArbol->hijoderecho);
+        num_elems += obtenerNumeroElementos(nodoArbol->hijoDerecho);
     }
     return num_elems;
  }
@@ -94,7 +94,7 @@ NodoDoble* Arbol::buscar(int id, NodoArbol* nodoArbol){
 //podemos hablar de altura de ramas; el máximo número de NodoArbols
 //que hay que recorrer para llegar de la raíz a una de las hojas.
 
-  int Arbol::obtenerAltura(NodoArbol* NodoArbol) {
+  int Arbol::obtenerAltura(NodoArbol* nodoArbol) {
 
       // resultado
     int altura    = 0;
@@ -108,13 +108,13 @@ NodoDoble* Arbol::buscar(int id, NodoArbol* nodoArbol){
     int altura_r_der = 0;
 
     //
-    if(NodoArbol != NULL) {
+    if(nodoArbol != NULL) {
         // incia en 1 para contar la raiz
         altura = 1;
 
         // inicialiaza las referencias
-        ref_h_izq = NodoArbol->hijoizquierdo;
-        ref_h_der = NodoArbol->hijoderecho;
+        ref_h_izq = nodoArbol->hijoIzquierdo;
+        ref_h_der = nodoArbol->hijoDerecho;
 
         // si ninguno de los hijos es nulo
         if( (ref_h_izq != NULL) && (ref_h_der != NULL) ) {
@@ -160,20 +160,20 @@ int maximo (int a, int b)
        else return b;
 }
 
-int Arbol::altura (NodoArbol* NodoArbol)
+int Arbol::altura (NodoArbol* nodoArbol)
 {
-    if (NodoArbol == NULL)
+    if (nodoArbol == NULL)
         return -1;
     else
-         return 1 + maximo(altura(NodoArbol->hijoizquierdo),altura(NodoArbol->hijoderecho));
+         return 1 + maximo(altura(nodoArbol->hijoIzquierdo),altura(nodoArbol->hijoDerecho));
 }
 
-int Arbol::cantNodoArbols2 (NodoArbol* NodoArbol)
+int Arbol::cantNodos2 (NodoArbol* nodoArbol)
 {
-    if (NodoArbol == NULL)
+    if (nodoArbol == NULL)
         return 0;
     else
-         return 1 + cantNodoArbols2(NodoArbol->hijoizquierdo)+cantNodoArbols2(NodoArbol->hijoderecho);
+         return 1 + cantNodos2(nodoArbol->hijoIzquierdo)+cantNodos2(nodoArbol->hijoDerecho);
 }
 
 
@@ -182,10 +182,10 @@ int Arbol::cantHojas(NodoArbol* raiz)
 {
     if (raiz == NULL)
        return 0;
-    else if (raiz->hijoderecho == NULL && raiz->hijoizquierdo==NULL)
+    else if (raiz->hijoDerecho == NULL && raiz->hijoIzquierdo==NULL)
          return 1;
     else
-        return cantHojas(raiz->hijoderecho)+cantHojas(raiz->hijoizquierdo);
+        return cantHojas(raiz->hijoDerecho)+cantHojas(raiz->hijoIzquierdo);
 
 }
 
@@ -199,10 +199,10 @@ int Arbol::cantHojas(NodoArbol* raiz)
   {
     if (arbol == NULL)
         return NULL;
-    else if (arbol->hijoderecho == NULL)
+    else if (arbol->hijoDerecho == NULL)
         return arbol;
     else
-        return mayor (arbol->hijoderecho);
+        return mayor (arbol->hijoDerecho);
   }
 
 
@@ -218,20 +218,20 @@ NodoArbol* Arbol::borrarElemento(int ele, NodoArbol* arbol)
         {
             return NULL;
         }
-        else if (ele < arbol->dato)
-            arbol->hijoizquierdo = borrarElemento(ele, arbol->hijoizquierdo);
-        else if (ele > arbol->dato)
-            arbol->hijoderecho = borrarElemento(ele, arbol->hijoderecho);
-        else if (arbol->hijoizquierdo == NULL && arbol->hijoderecho == NULL)
+        else if (ele < arbol->nodoPersona->persona->id)
+            arbol->hijoIzquierdo = borrarElemento(ele, arbol->hijoIzquierdo);
+        else if (ele > arbol->nodoPersona->persona->id)
+            arbol->hijoDerecho = borrarElemento(ele, arbol->hijoDerecho);
+        else if (arbol->hijoIzquierdo == NULL && arbol->hijoDerecho == NULL)
             arbol = NULL;
-        else if (arbol->hijoizquierdo == NULL)
-            arbol = arbol->hijoderecho;
-        else if (arbol->hijoderecho == NULL)
-            arbol = arbol->hijoizquierdo;
+        else if (arbol->hijoIzquierdo == NULL)
+            arbol = arbol->hijoDerecho;
+        else if (arbol->hijoDerecho == NULL)
+            arbol = arbol->hijoIzquierdo;
         else{
-            NodoArbol* max = mayor(arbol->hijoizquierdo); // mayor de los menores
-            arbol->hijoizquierdo = borrarElemento(max->dato, arbol->hijoizquierdo);
-            arbol->dato = max->dato;
+            NodoArbol* max = mayor(arbol->hijoIzquierdo); // mayor de los menores
+            arbol->hijoIzquierdo = borrarElemento(max->nodoPersona->persona->id, arbol->hijoIzquierdo);
+            arbol->nodoPersona->persona->id = max->nodoPersona->persona->id;
         }
         return arbol;
     }

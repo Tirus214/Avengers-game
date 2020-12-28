@@ -24,6 +24,7 @@ struct Arbol{
     int cantNodos2(NodoArbol*);
     void nodos_nivel (NodoArbol*, int, int);
     int contadorNodos(NodoArbol*);
+    NodoArbol* mayor (NodoArbol* arbol);
 };
 
 #endif // ARBOL_H

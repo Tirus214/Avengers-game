@@ -19,10 +19,12 @@ struct ListaDoble{
     }
 
     void insertarAlFinal(Persona * persona);
+    void insertarAlInicio(Persona * persona);
     bool isEmpty();
     void imprimir();
     bool esta(int index);
     int largo();
+    NodoDoble* buscarEnPosicion(int posicion);
 };
 
 
@@ -58,7 +60,7 @@ struct Persona {
     Persona * conyugue;
     ListaDoble * hijos;
 
-    Persona(int _id, QString _nombre, QString _apellido, QString _creencia, QString _profesion, QString _paises[]){
+    Persona(int _id, QString _nombre, QString _apellido, QString _creencia, QString _profesion, QString* _paises){
         id = _id;
         hijos = new ListaDoble();
         nombre = _nombre;
@@ -80,7 +82,7 @@ struct Persona {
     void setLongevidad();
     void setEstadoMarital();
     void setFrecuencia();
-    void setPaises(QString _paises[]);
+    void setPaises(QString* _paises);
 
     int aleatorio(int min, int max);
 };

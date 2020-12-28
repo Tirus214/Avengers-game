@@ -48,8 +48,9 @@ void Persona::setFrecuencia(){
 }
 
 
-void Persona::setPaises(QString _paises[]){
+void Persona::setPaises(QString* _paises){
     for(int i=0; i<_paises->length(); i++){
+        qDebug() << _paises[i];
         paises.append(_paises[i]);
     }
 }
@@ -74,6 +75,26 @@ void ListaDoble::insertarAlFinal(Persona * persona){
 }
 
 
+void ListaDoble::insertarAlInicio(Persona * persona){
+    if(primerNodo == NULL){
+        primerNodo = new NodoDoble(persona);
+    }
+    else if (primerNodo->siguiente == NULL){
+        primerNodo->anterior = primerNodo->siguiente = new NodoDoble(persona);
+        primerNodo->anterior->anterior = primerNodo->anterior->siguiente = primerNodo;
+        primerNodo = primerNodo->anterior;
+    }
+    else{
+        NodoDoble * nuevo = new NodoDoble(persona);
+        nuevo->siguiente = primerNodo;
+        nuevo->anterior = primerNodo->anterior;
+        primerNodo->anterior->siguiente = primerNodo->anterior = nuevo;
+        primerNodo = nuevo;
+    }
+    index++;
+}
+
+
 bool ListaDoble::isEmpty(){
     return primerNodo == NULL;
 }
@@ -90,11 +111,10 @@ void ListaDoble::imprimir(){
 
 
 bool ListaDoble::esta(int num){
-    if(!isEmpty()){
+    if(primerNodo != NULL){
         NodoDoble * tmp = primerNodo;
         do{
-            if(tmp->persona->id == num)
-                return true;
+            if(tmp->persona->id == num) return true;
             tmp = tmp->siguiente;
         } while(tmp != primerNodo);
     }
@@ -106,6 +126,18 @@ int ListaDoble::largo(){
     return index;
 }
 
+
+NodoDoble* ListaDoble::buscarEnPosicion(int posicion){
+    if (!isEmpty()){
+        NodoDoble* tmp = primerNodo;
+        int len = largo();
+        for(int i=0; i == posicion || i < len; i++) {
+            tmp = tmp->siguiente;
+        }
+        return tmp;
+    }
+    return NULL;
+}
 
 
 

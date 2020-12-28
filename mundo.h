@@ -1,7 +1,8 @@
 #ifndef MUNDO_H
 #define MUNDO_H
-#include "listadoble.h"
+#include "heap.h"
 #include "filemanager.h"
+#include "arbol.h"
 
 
 struct Mundo{
@@ -26,6 +27,8 @@ struct Mundo{
     ListaDoble * rangoAdultoMaduro;
     ListaDoble * rangoAdultoMayor;
 
+    Heap * arbolHeap;
+
     Mundo(){
         listaPersonas = new ListaDoble();
         index = 0;
@@ -46,6 +49,8 @@ struct Mundo{
         rangoAdultoJoven = new ListaDoble();
         rangoAdultoMaduro = new ListaDoble();
         rangoAdultoMayor = new ListaDoble();
+
+        arbolHeap = new Heap();
     }
 
     void crearPersonas(int num);
@@ -59,6 +64,7 @@ struct Mundo{
     void putHijos();
     void insertHijos(int num, int id, ListaDoble * hijos, QString apellido);
     void crearArbol();
+    int getCantNodosArbol();
     void imprimir();
 };
 

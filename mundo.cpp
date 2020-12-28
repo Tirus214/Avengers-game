@@ -27,13 +27,16 @@ void Mundo::crearPersonas(int num){
     index += num;
     clasificarRango();
     putHijos();
+    crearArbol();
 }
 
 
 int Mundo::getId(){
     int id = aleatorio(0,10000000);
-    while(listaPersonas->esta(id)){
-        id = aleatorio(0,10000000);
+    if(!listaPersonas->isEmpty()){
+        while(listaPersonas->esta(id)){
+            id = aleatorio(0,10000000);
+        }
     }
     return id;
 }
@@ -116,7 +119,23 @@ void Mundo::insertHijos(int num, int id, ListaDoble * hijos, QString apellido){
 
 
 void Mundo::crearArbol(){
+    int cantNodos = getCantNodosArbol();
+    int multiplo = (int) listaPersonas->largo() / cantNodos;
+    for(int i=0; i<cantNodos; i++) {
+        arbolHeap->insertarAlInicio(listaPersonas->buscarEnPosicion(multiplo*i));
+    }
+}
 
+
+int Mundo::getCantNodosArbol(){
+    int cantNodos = (int) listaPersonas->largo()/100;    //obtengo el 1%
+    int exponente = 0;
+    int index = 2;
+    while(cantNodos <= (int) pow(index,exponente)-1){
+        exponente++;
+    }
+    cantNodos = (int) pow(index,exponente-1);
+    return cantNodos;
 }
 
 
