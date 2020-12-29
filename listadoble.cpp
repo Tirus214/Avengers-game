@@ -52,6 +52,7 @@ void Persona::setFrecuencia(){
 void ListaDoble::insertarAlFinal(Persona * persona){
         if(primerNodo == NULL){
             primerNodo = new NodoDoble(persona);
+            primerNodo->siguiente = primerNodo->anterior = primerNodo;
         }
         else if (primerNodo->anterior == NULL){
             primerNodo->anterior = primerNodo->siguiente = new NodoDoble(persona);
@@ -59,9 +60,14 @@ void ListaDoble::insertarAlFinal(Persona * persona){
         }
         else{
             NodoDoble * nuevo = new NodoDoble(persona);
-            nuevo->siguiente = primerNodo;
+            primerNodo->anterior->siguiente = nuevo;
             nuevo->anterior = primerNodo->anterior;
-            primerNodo->anterior->siguiente = primerNodo->anterior = nuevo;
+            nuevo->siguiente = primerNodo;
+            primerNodo->anterior = nuevo;
+
+            //nuevo->siguiente = primerNodo;
+            //nuevo->anterior = primerNodo->anterior;
+            //primerNodo->anterior->siguiente = primerNodo->anterior = nuevo;
         }
         index++;
 }
@@ -95,7 +101,7 @@ void ListaDoble::imprimir(){
     if(!isEmpty()){
         NodoDoble * tmp = primerNodo;
         do{
-            qDebug() << tmp->persona->id;
+            qDebug() << tmp->persona->id << tmp->persona->nombre;
             tmp = tmp->siguiente;
         } while(tmp != primerNodo);
     }

@@ -26,7 +26,8 @@ void Mundo::crearPersonas(int num){
     index += num;
     clasificarRango();
     putHijos();
-    crearArbol();
+    //qDebug() << "hi";
+    //crearArbol();
 }
 
 
