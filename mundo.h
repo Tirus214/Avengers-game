@@ -17,16 +17,6 @@ struct Mundo{
     QString listaDeportes[7] = {"Futbol", "Tenis", "Natacion", "Beisbol", "Basketball", "Atletismo", "Karate"};
 
     int index;
-    ListaDoble * rangoInfantil;
-    ListaDoble * rangoPreescolar;
-    ListaDoble * rangoEscolar;
-    ListaDoble * rangoPubertad;
-    ListaDoble * rangoAdolecencia;
-    ListaDoble * rangoJoven;
-    ListaDoble * rangoAdultoJoven;
-    ListaDoble * rangoAdultoMaduro;
-    ListaDoble * rangoAdultoMayor;
-
     Heap * arbolHeap;
 
     Mundo(){
@@ -40,31 +30,22 @@ struct Mundo{
         obtenerArray("Profesiones", listaProfesiones);
         obtenerArray("Paises", listaPaises);
 
-        rangoInfantil = new ListaDoble();
-        rangoPreescolar = new ListaDoble();
-        rangoEscolar = new ListaDoble();
-        rangoPubertad = new ListaDoble();
-        rangoAdolecencia = new ListaDoble();
-        rangoJoven = new ListaDoble();
-        rangoAdultoJoven = new ListaDoble();
-        rangoAdultoMaduro = new ListaDoble();
-        rangoAdultoMayor = new ListaDoble();
-
         arbolHeap = new Heap();
     }
 
     void crearPersonas(int num);
     int getId(void); //retorna un id unico
     int getNumPaises(); //retorna el numero de paises segun probabilidades
-    void getPaises(int num, QString paises[]);  //retorna lista de paises aleatorios segun la cantidad ingresada
+    void getPaises(int num, QStringList paises);  //retorna lista de paises aleatorios segun la cantidad ingresada
     bool ranGenero();   //obtiene un genero random
     int aleatorio(int min, int max);  //crea un aleatorio
     void obtenerArray(QString nombre, QString array[]); //obtiene un array de un archivo
     void clasificarRango(); //clasifica a las personas por rango etario
-    void putHijos();
-    void insertHijos(int num, int id, ListaDoble * hijos, QString apellido);
+    void putHijos();    //coloca hijos segun apellido a todas las personas
+    void insertHijos(NodoDoble*, int);
     void crearArbol();
     int getCantNodosArbol();
+    void sumarAcciones();
     void imprimir();
 };
 

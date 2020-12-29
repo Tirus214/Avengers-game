@@ -48,14 +48,6 @@ void Persona::setFrecuencia(){
 }
 
 
-void Persona::setPaises(QString* _paises){
-    for(int i=0; i<_paises->length(); i++){
-        qDebug() << _paises[i];
-        paises.append(_paises[i]);
-    }
-}
-
-
 
 void ListaDoble::insertarAlFinal(Persona * persona){
         if(primerNodo == NULL){

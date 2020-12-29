@@ -59,8 +59,9 @@ struct Persona {
     Persona * mama;
     Persona * conyugue;
     ListaDoble * hijos;
+    int categoria;
 
-    Persona(int _id, QString _nombre, QString _apellido, QString _creencia, QString _profesion, QString* _paises){
+    Persona(int _id, QString _nombre, QString _apellido, QString _creencia, QString _profesion, QStringList _paises){
         id = _id;
         hijos = new ListaDoble();
         nombre = _nombre;
@@ -73,7 +74,8 @@ struct Persona {
         setLongevidad();
         setEstadoMarital();
         setFrecuencia();
-        setPaises(_paises);
+        paises = _paises;
+        categoria = 0;
     }
 
     void ranFechaNacimiento();
@@ -82,7 +84,6 @@ struct Persona {
     void setLongevidad();
     void setEstadoMarital();
     void setFrecuencia();
-    void setPaises(QString* _paises);
 
     int aleatorio(int min, int max);
 };

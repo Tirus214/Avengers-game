@@ -14,14 +14,13 @@ void Mundo::crearPersonas(int num){
             QString _gender = "Hombre";
             _nombre = listaNombresHombre[aleatorio(0, listaNombresHombre->length())];
         }
-        QString _apellido = listaApellidos[aleatorio(0,listaCreencias->length())];
+        QString _apellido = listaApellidos[aleatorio(0,listaApellidos->length())];
         QString _creencia = listaCreencias[aleatorio(0, listaCreencias->length())];
         QString _profesion = listaProfesiones[aleatorio(0,listaProfesiones->length())];
 
         int rand = getNumPaises();
-        QString paises[rand];
+        QStringList paises;
         getPaises(rand, paises);
-        qDebug() << "hi";
         listaPersonas->insertarAlFinal(new Persona(id, _nombre, _apellido, _creencia, _profesion, paises));
     }
     index += num;
@@ -53,9 +52,9 @@ int Mundo::getNumPaises(){
 }
 
 
-void Mundo::getPaises(int num, QString paises[]){
+void Mundo::getPaises(int num, QStringList paises){
     for(int i=0; i<num; i++){
-        paises[i] = listaPaises[aleatorio(0, listaPaises->length())];
+        paises.append(listaPaises[aleatorio(0, listaPaises->length())]);
     }
 }
 
@@ -80,15 +79,15 @@ void Mundo::obtenerArray(QString nombre, QString array[]){
 void Mundo::clasificarRango(){
     NodoDoble * tmp = listaPersonas->primerNodo;
     do{
-        if(tmp->persona->longevidad <= 1) rangoInfantil->insertarAlFinal(tmp->persona);
-        else if(tmp->persona->longevidad <= 4) rangoPreescolar->insertarAlFinal(tmp->persona);
-        else if(tmp->persona->longevidad <= 10) rangoEscolar->insertarAlFinal(tmp->persona);
-        else if(tmp->persona->longevidad <= 14) rangoPubertad->insertarAlFinal(tmp->persona);
-        else if(tmp->persona->longevidad <= 19) rangoAdolecencia->insertarAlFinal(tmp->persona);
-        else if(tmp->persona->longevidad <= 24) rangoJoven->insertarAlFinal(tmp->persona);
-        else if(tmp->persona->longevidad <= 34) rangoAdultoJoven->insertarAlFinal(tmp->persona);
-        else if(tmp->persona->longevidad <= 64) rangoAdultoMaduro->insertarAlFinal(tmp->persona);
-        else rangoAdultoMayor->insertarAlFinal(tmp->persona);
+        if(tmp->persona->longevidad <= 1) tmp->persona->categoria = 0;
+        else if(tmp->persona->longevidad <= 4) tmp->persona->categoria = 1;
+        else if(tmp->persona->longevidad <= 10) tmp->persona->categoria = 2;
+        else if(tmp->persona->longevidad <= 14) tmp->persona->categoria = 3;
+        else if(tmp->persona->longevidad <= 19) tmp->persona->categoria = 4;
+        else if(tmp->persona->longevidad <= 24) tmp->persona->categoria = 5;
+        else if(tmp->persona->longevidad <= 34) tmp->persona->categoria = 6;
+        else if(tmp->persona->longevidad <= 64) tmp->persona->categoria = 7;
+        else tmp->persona->categoria = 8;
         tmp = tmp->siguiente;
     }while(tmp != listaPersonas->primerNodo);
 }
@@ -99,19 +98,24 @@ void Mundo::putHijos(){
         NodoDoble * tmp = listaPersonas->primerNodo;
         do{
             int cantHijos = aleatorio(0,5);
-            insertHijos(cantHijos, tmp->persona->id, tmp->persona->hijos, tmp->persona->apellido);
+            insertHijos(tmp, cantHijos);
             tmp = tmp->siguiente;
         } while(tmp != listaPersonas->primerNodo);
     }
 }
 
 
-void Mundo::insertHijos(int num, int id, ListaDoble * hijos, QString apellido){
+void Mundo::insertHijos(NodoDoble* current, int num){
     NodoDoble * tmp = listaPersonas->primerNodo;
     do{
-        if(tmp->persona->apellido == apellido && tmp->persona->id != id){
-            hijos->insertarAlFinal(tmp->persona);
-            num--;
+        if(tmp->persona->apellido == current->persona->apellido && tmp->persona->id != current->persona->id){
+            if(current->persona->categoria == 5 & tmp->persona->categoria <= 1
+                    || current->persona->categoria == 6 & tmp->persona->categoria <= 3
+                    || current->persona->categoria == 7 & tmp->persona->categoria >= 4 & tmp->persona->categoria <= 6
+                    || current->persona->categoria == 8 & tmp->persona->categoria >= 6 & tmp->persona->categoria <= 7){
+                current->persona->hijos->insertarAlFinal(tmp->persona);
+                num--;
+            }
         }
         tmp = tmp->siguiente;
     } while(tmp != listaPersonas->primerNodo || num < 0);
@@ -139,6 +143,20 @@ int Mundo::getCantNodosArbol(){
 }
 
 
+void Mundo::sumarAcciones(){
+    if(!listaPersonas->isEmpty()){
+        NodoDoble * tmp = listaPersonas->primerNodo;
+        do{
+            for (int i=0; i<7; i++){
+                int num1 = aleatorio(0,100);
+                tmp->persona->accionesBuenas[i] = num1;
+                int num2 = aleatorio(0,100);
+                tmp->persona->accionesMalas[i] = num2;
+            }
+            tmp = tmp->siguiente;
+        } while(tmp != listaPersonas->primerNodo);
+    }
+}
 
 
 
