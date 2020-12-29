@@ -43,6 +43,7 @@ struct Mundo{
     void clasificarRango(); //clasifica a las personas por rango etario
     void putHijos();    //coloca hijos segun apellido a todas las personas
     void insertHijos(NodoDoble*, int);
+    bool validarHijo(Persona* papa, Persona* hijo);
     void crearArbol();
     int getCantNodosArbol();
     void sumarAcciones();

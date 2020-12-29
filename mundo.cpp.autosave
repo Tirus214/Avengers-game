@@ -17,15 +17,17 @@ void Mundo::crearPersonas(int num){
         QString _apellido = listaApellidos[aleatorio(0,listaApellidos->length())];
         QString _creencia = listaCreencias[aleatorio(0, listaCreencias->length())];
         QString _profesion = listaProfesiones[aleatorio(0,listaProfesiones->length())];
+        QString _pais = listaPaises[aleatorio(0, listaPaises->length())];
 
         int rand = getNumPaises();
-        QStringList paises;
-        getPaises(rand, paises);
-        listaPersonas->insertarAlFinal(new Persona(id, _nombre, _apellido, _creencia, _profesion, paises));
+        QStringList arrayPaises;
+        getPaises(rand, arrayPaises);
+        listaPersonas->insertarAlFinal(new Persona(id, _nombre, _apellido, _creencia, _profesion, _pais, arrayPaises));
     }
     index += num;
     clasificarRango();
     putHijos();
+    putConyugue();
     //crearArbol();
 }
 
@@ -110,12 +112,12 @@ void Mundo::putHijos(){
 void Mundo::insertHijos(NodoDoble* papa, int num){
     NodoDoble * hijo = listaPersonas->primerNodo;
     do{
-        if(hijo->persona->apellido == papa->persona->apellido && hijo->persona->id != papa->persona->id){
-            if(validarHijo(papa->persona, hijo->persona)){
-                papa->persona->hijos->insertarAlFinal(hijo->persona);
-                num--;
-            }
-        }
+        if(hijo->persona->apellido == papa->persona->apellido && hijo->persona->id != papa->persona->id)
+            if(hijo->persona->pais == papa->persona->pais)
+                if(validarHijo(papa->persona, hijo->persona)){
+                    papa->persona->hijos->insertarAlFinal(hijo->persona);
+                    num--;
+                }
         hijo = hijo->siguiente;
     } while(hijo != listaPersonas->primerNodo || num < 0);
 }

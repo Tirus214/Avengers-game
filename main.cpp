@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
     Mundo * m = new Mundo();
     m->crearPersonas(10);
-    m->listaPersonas->imprimir();
+    m->imprimir();
 
     QApplication a(argc, argv);
     MainWindow w;
