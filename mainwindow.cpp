@@ -15,6 +15,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::on_btnCrearPersonas_clicked(){
-    int num = ui->btnCrearPersonas->text().toInt();
+    int num = ui->txfCrearPersonas->text().toInt();
     mundo->crearPersonas(num);
+    mundo->imprimir();
 }

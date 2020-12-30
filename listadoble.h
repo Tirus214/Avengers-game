@@ -45,9 +45,10 @@ struct Persona {
     int id;
     QString nombre;
     QString apellido;
-    bool genero;
+    QString genero;
     QString creencia;
     QString profesion;
+    QString pais;
     int fechaNacimiento[3];
     int accionesBuenas[7];
     int accionesMalas[7];
@@ -61,13 +62,15 @@ struct Persona {
     ListaDoble * hijos;
     int categoria;
 
-    Persona(int _id, QString _nombre, QString _apellido, QString _creencia, QString _profesion, QStringList _paises){
+    Persona(int _id, QString _nombre, QString _apellido, QString _creencia, QString _profesion, QString _pais, QStringList _paises, QString gender){
         id = _id;
         hijos = new ListaDoble();
         nombre = _nombre;
         apellido = _apellido;
         creencia = _creencia;
         profesion = _profesion;
+        pais = _pais;
+        genero = gender;
         ranFechaNacimiento();
         ranAccionesBuenas();
         ranAccionesMalas();

@@ -17,9 +17,9 @@ int main(int argc, char *argv[])
     l->insertarAlFinal(new Persona(122,"juan", "perez", "cristiano", "profesor", paises));
     l->imprimir();*/
 
-    Mundo * m = new Mundo();
-    m->crearPersonas(10);
-    m->imprimir();
+    //Mundo * m = new Mundo();
+    //m->crearPersonas(10);
+    //m->imprimir();
 
     QApplication a(argc, argv);
     MainWindow w;

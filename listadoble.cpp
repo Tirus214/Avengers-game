@@ -9,8 +9,8 @@ int Persona::aleatorio(int min, int max){
 
 void Persona::ranFechaNacimiento(){
     fechaNacimiento[2] = aleatorio(1,28);
-    fechaNacimiento[1] = aleatorio(1,13);
-    fechaNacimiento[0] = aleatorio(1950,2021);
+    fechaNacimiento[1] = aleatorio(1,12);
+    fechaNacimiento[0] = aleatorio(1950,2020);
 }
 
 
@@ -43,7 +43,7 @@ void Persona::setEstadoMarital(){
 
 void Persona::setFrecuencia(){
     for(int i=0; i<7; i++){
-        salud[i] = aleatorio(0,8);
+        salud[i] = aleatorio(0,7);
     }
 }
 
@@ -130,11 +130,11 @@ int ListaDoble::largo(){
 NodoDoble* ListaDoble::buscarEnPosicion(int posicion){
     if (!isEmpty()){
         NodoDoble* tmp = primerNodo;
-        int len = largo();
-        for(int i=0; i == posicion || i < len; i++) {
+        do{
+            if(posicion == 0) return tmp;
+            posicion--;
             tmp = tmp->siguiente;
-        }
-        return tmp;
+        } while(tmp != primerNodo);
     }
     return NULL;
 }

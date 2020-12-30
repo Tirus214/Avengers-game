@@ -47,6 +47,13 @@ struct Mundo{
     void crearArbol();
     int getCantNodosArbol();
     void sumarAcciones();
+    void putConyugue();
+    void putPadres();
+    void randomPareja(Persona * actual, QString gender);
+    bool validarPadre(Persona* tmp, Persona* cuestionable);
+    bool isHijo(Persona* tmp, Persona* cuestionable);
+    void randomPadre(Persona* actual, QString gender);
+    bool validarConyugue(Persona* actual, Persona* tmp);
     void imprimir();
 };
 
