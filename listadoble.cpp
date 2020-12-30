@@ -106,7 +106,9 @@ bool ListaDoble::esta(int num){
     if(primerNodo != NULL){
         NodoDoble * tmp = primerNodo;
         do{
-            if(tmp->persona->id == num) return true;
+            if (tmp->persona->id == num) {
+                return true;
+            }
             tmp = tmp->siguiente;
         } while(tmp != primerNodo);
     }
