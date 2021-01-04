@@ -55,6 +55,7 @@ struct Mundo{
     void randomPadre(Persona* actual, QString gender);
     bool validarConyugue(Persona* actual, Persona* tmp);
     void imprimir();
+    void imprimirMasPecador();
 };
 
 #endif // MUNDO_H

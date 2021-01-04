@@ -245,7 +245,6 @@ bool Mundo::validarConyugue(Persona* actual, Persona* tmp){
 }
 
 
-
 void Mundo::imprimir(){
     if(!listaPersonas->isEmpty()){
         NodoDoble * tmp = listaPersonas->primerNodo;
@@ -260,10 +259,15 @@ void Mundo::imprimir(){
                 qDebug() << "    ID: " << hijo->persona->id;
                 qDebug() << "    Nombre: " << hijo->persona->nombre;
             }
+            // Imprimir los pecados (temporal)
+            for (int i = 0; i < 7; i++) {
+                qDebug() << "Pecado [" << i << "] = " << tmp->persona->accionesMalas[i];
+            }
+            // Imprimir nuevo atributo 'cantPecados'
+            qDebug() << "Cantidad de pecados : [ " << tmp->persona->cantPecados << " ]";
             qDebug() << "";
             tmp = tmp->siguiente;
         } while(tmp != listaPersonas->primerNodo);
     }
 }
-
 
