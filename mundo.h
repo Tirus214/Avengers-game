@@ -56,6 +56,8 @@ struct Mundo{
     bool validarConyugue(Persona* actual, Persona* tmp);
     void imprimir();
     void imprimirMasPecador();
+    // crear primer heap con las personas del mundo
+    void llenarHeap();
 };
 
 #endif // MUNDO_H

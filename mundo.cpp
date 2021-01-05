@@ -271,3 +271,13 @@ void Mundo::imprimir(){
     }
 }
 
+void Mundo::llenarHeap() {
+    if (!listaPersonas->isEmpty()) {
+        NodoDoble* tmp = listaPersonas->primerNodo;
+        do {
+            arbolHeap->insertar(tmp);
+            tmp = tmp->siguiente;
+        } while (tmp != listaPersonas->primerNodo);
+    }
+    return;
+}

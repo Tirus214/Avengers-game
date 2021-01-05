@@ -99,5 +99,6 @@
                 tmp = tmp->siguiente;
             }
             qDebug() << "\n";
+            return;
         }
     }

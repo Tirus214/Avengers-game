@@ -18,4 +18,6 @@ void MainWindow::on_btnCrearPersonas_clicked(){
     int num = ui->txfCrearPersonas->text().toInt();
     mundo->crearPersonas(num);
     mundo->imprimir();
+    mundo->llenarHeap();
+    mundo->arbolHeap->imprimir();
 }
