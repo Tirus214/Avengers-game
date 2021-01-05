@@ -5,7 +5,7 @@
 
 struct Heap{
     // contador , para averiguar nivel y cantidad de nodos (sacar indice, etc)
-    int contador;
+    int contador = 0;
 
     NodoHeap* primerNodo;
     NodoHeap* ultimoNodo;
