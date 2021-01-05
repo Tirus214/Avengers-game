@@ -4,6 +4,9 @@
 
 
 struct Heap{
+    // contador , para averiguar nivel y cantidad de nodos (sacar indice, etc)
+    int contador;
+
     NodoHeap* primerNodo;
     NodoHeap* ultimoNodo;
 
@@ -14,6 +17,13 @@ struct Heap{
     bool isEmpty();
     void insertarAlInicio (NodoDoble*);
     void insertarAlFinal (NodoDoble*);
+    // nuevos
+    void insertar(NodoDoble*);
+    bool paridad(int);
+    NodoHeap* buscarIndice(int);
+    void swap(NodoHeap* padre,NodoHeap* hijo);
+    void acomodar(NodoHeap* hijo,NodoHeap);
+    void imprimir();
 };
 
 #endif // HEAP_H

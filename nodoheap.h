@@ -7,7 +7,8 @@ struct NodoHeap{
     NodoDoble * nodoDoble;
     NodoHeap * siguiente;
     NodoHeap * anterior;
-
+    // indice para averiguar relacion padre/hijo
+    int indice;
     NodoHeap(NodoDoble * _nodo){
         nodoDoble = _nodo;
         siguiente = anterior = NULL;
