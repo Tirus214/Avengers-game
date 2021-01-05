@@ -47,20 +47,18 @@
         }
     }
 
-    // Esto lo comente porque me estaba dando error de undelared identifier
-
-//    void acomodar(NodoHeap* hijo) {
-//        NodoHeap* padre;
-//        if (paridad(hijo->indice)) {
-//            int k = hijo->indice / 2;
-//            padre = buscarIndice(k);
-//        } else {
-//            int k = (hijo->indice - 1) / 2;
-//            padre = buscarIndice(k);
-//        }
-//        // aqui hago el swap si valor de hijo > valor de padre
-//        // necesito primero arreglar swap
-//    }
+    void Heap::acomodar(NodoHeap* hijo) {
+        NodoHeap* padre;
+        if (paridad(hijo->indice)) {
+            int k = hijo->indice / 2;
+            padre = buscarIndice(k);
+        } else {
+            int k = (hijo->indice - 1) / 2;
+            padre = buscarIndice(k);
+        }
+        // aqui hago el swap si valor de hijo > valor de padre
+        // necesito primero arreglar swap
+    }
 
     bool Heap::paridad(int numero) {
         if (numero == 0) {
@@ -86,21 +84,20 @@
         return nullptr;
     }
 
-    void swap(NodoHeap* padre,NodoHeap* hijo) {
+    void Heap::swap(NodoHeap* padre,NodoHeap* hijo) {
         // necesito ayuda aca
     }
 
-//    void imprimir() {
-//            if (isEmpty()) {
-//                return;
-//            }
-//            else {
-//                NodoHeap* tmp = primerNodo;
-//                while (tmp != NULL) {
-//                    qDebug() << "[ #" << tmp->indice << " : " << tmp->nodoDoble->persona->id << " ] ->";
-//                    tmp = tmp->siguiente;
-//                }
-//                qDebug() << "\n";
-//            }
-//        }
-//    };
+    void Heap::imprimir() {
+        if (isEmpty()) {
+            return;
+        }
+        else {
+            NodoHeap* tmp = primerNodo;
+            while (tmp != NULL) {
+                qDebug() << "[ #" << tmp->indice << " : " << tmp->nodoDoble->persona->id << " ] ->";
+                tmp = tmp->siguiente;
+            }
+            qDebug() << "\n";
+        }
+    }

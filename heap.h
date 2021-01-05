@@ -22,7 +22,7 @@ struct Heap{
     bool paridad(int);
     NodoHeap* buscarIndice(int);
     void swap(NodoHeap* padre,NodoHeap* hijo);
-    void acomodar(NodoHeap* hijo,NodoHeap);
+    void acomodar(NodoHeap*);
     void imprimir();
 };
 
