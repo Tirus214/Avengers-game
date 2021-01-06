@@ -118,7 +118,8 @@
         anteriorHijoOrg->siguiente = NULL;
         // inserto el nuevo hijo
         copiaPadre.imprimir();
-
+        NodoHeap* ptoCopiaPadre = &copiaPadre;
+        ptoCopiaPadre->imprimir();
         return;
     }
 
