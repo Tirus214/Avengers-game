@@ -124,42 +124,84 @@
 //        return;
 //    }
 
-    void Heap::swap(NodoHeap* raiz,int indicePadre,int indiceHijo) {
-        if (indicePadre == indiceHijo) {
+//    void Heap::swap(NodoHeap* raiz,int indicePadre,int indiceHijo) {
+//        if (indicePadre == indiceHijo) {
+//            return;
+//        } else {
+//            if ( indicePadre <= contador && indiceHijo <= contador) {
+//                NodoHeap* tempPadre = raiz, *anteriorTempPadre = NULL;
+//                while (anteriorTempPadre && tempPadre->indice != indicePadre) {
+//                    anteriorTempPadre = tempPadre;
+//                    tempPadre = tempPadre->siguiente;
+//                }
+//                NodoHeap* tempHijo = raiz, *anteriorTempHijo = NULL;
+//                while (anteriorTempHijo && tempHijo->indice != indiceHijo) {
+//                    anteriorTempHijo = tempHijo;
+//                    tempHijo = tempHijo->siguiente;
+//                }
+//                if (tempHijo == NULL || tempPadre == NULL) {
+//                    return;
+//                } else {
+//                    if (anteriorTempPadre != NULL) {
+//                        anteriorTempPadre->siguiente = tempHijo;
+//                    } else {
+//                        raiz = tempHijo;
+//                    }
+//                    if (anteriorTempHijo != NULL) {
+//                        anteriorTempHijo->siguiente = tempPadre;
+//                    } else {
+//                        raiz = tempPadre;
+//                    }
+//                    // Intercambiar punteros
+//                    NodoHeap* temp = tempHijo->siguiente;
+//                    tempHijo->siguiente = tempPadre->siguiente;
+//                    tempPadre->siguiente = temp;
+//                }
+//            } else {
+//                qDebug() << "Index Out Of Bound";
+//            }
+//        }
+//    }
+
+    void Heap::swap(NodoHeap* hijo,NodoHeap* padre) {
+        if (padre == primerNodo) {
+            // Coloco el nuevoHijo donde estaba el Padre
+            NodoHeap* nuevoHijo = new NodoHeap(hijo->nodoDoble);
+            nuevoHijo->setIndice(1);
+            nuevoHijo->siguiente = padre->siguiente;
+            padre->siguiente = padre->anterior = NULL;
+            primerNodo = nuevoHijo;
+            // Coloco el Padre donde estaba el hijo
+            NodoHeap* nuevoPadre = new NodoHeap(padre->nodoDoble);
+            nuevoPadre->setIndice(hijo->indice);
+            nuevoPadre->siguiente = hijo->siguiente;
+            nuevoPadre->anterior = hijo->anterior;
+            hijo->anterior = hijo->siguiente = NULL;
+            NodoHeap* refSiguienteHijo = nuevoPadre->siguiente;
+            refSiguienteHijo->anterior = nuevoPadre;
+            NodoHeap* refAnteriorHijo = nuevoPadre->anterior;
+            refAnteriorHijo->siguiente = nuevoPadre;
             return;
         } else {
-            if ( indicePadre <= contador && indiceHijo <= contador) {
-                NodoHeap* tempPadre = raiz, *anteriorTempPadre = NULL;
-                while (anteriorTempPadre && tempPadre->indice != indicePadre) {
-                    anteriorTempPadre = tempPadre;
-                    tempPadre = tempPadre->siguiente;
-                }
-                NodoHeap* tempHijo = raiz, *anteriorTempHijo = NULL;
-                while (anteriorTempHijo && tempHijo->indice != indiceHijo) {
-                    anteriorTempHijo = tempHijo;
-                    tempHijo = tempHijo->siguiente;
-                }
-                if (tempHijo == NULL || tempPadre == NULL) {
-                    return;
-                } else {
-                    if (anteriorTempPadre != NULL) {
-                        anteriorTempPadre->siguiente = tempHijo;
-                    } else {
-                        raiz = tempHijo;
-                    }
-                    if (anteriorTempHijo != NULL) {
-                        anteriorTempHijo->siguiente = tempPadre;
-                    } else {
-                        raiz = tempPadre;
-                    }
-                    // Intercambiar punteros
-                    NodoHeap* temp = tempHijo->siguiente;
-                    tempHijo->siguiente = tempPadre->siguiente;
-                    tempPadre->siguiente = temp;
-                }
-            } else {
-                qDebug() << "Index Out Of Bound";
-            }
+            // Coloco el nuevoHijo donde estaba el Padre
+            NodoHeap* nuevoHijo = new NodoHeap(hijo->nodoDoble);
+            nuevoHijo->setIndice(padre->indice);
+            nuevoHijo->siguiente = padre->siguiente;
+            nuevoHijo->anterior = padre->anterior;
+            padre->siguiente = padre->anterior = NULL;
+            nuevoHijo->anterior = nuevoHijo;
+            nuevoHijo->siguiente->anterior = nuevoHijo;
+            // Coloco el Padre donde estaba el hijo
+            NodoHeap* nuevoPadre = new NodoHeap(padre->nodoDoble);
+            nuevoPadre->setIndice(hijo->indice);
+            nuevoPadre->siguiente = hijo->siguiente;
+            nuevoPadre->anterior = hijo->anterior;
+            hijo->anterior = hijo->siguiente = NULL;
+            NodoHeap* refSiguienteHijo = nuevoPadre->siguiente;
+            NodoHeap* refAnteriorHijo = nuevoPadre->anterior;
+            refSiguienteHijo->anterior = nuevoPadre;
+            refAnteriorHijo->siguiente = nuevoPadre;
+            return;
         }
     }
 
