@@ -37,6 +37,9 @@ struct NodoDoble{
         persona = _persona;
         siguiente = anterior = NULL;
     }
+
+    // metodos
+    void imprimir();
 };
 
 

@@ -13,7 +13,8 @@ struct NodoHeap{
         nodoDoble = _nodo;
         siguiente = anterior = NULL;
     }
-
+    // metodos
+    void imprimir();
 
 };
 

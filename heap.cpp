@@ -47,14 +47,16 @@
         }
     }
 
-    void Heap::acomodar(NodoHeap* hijo) {
-        NodoHeap* padre;
+    NodoHeap* Heap::acomodar(NodoHeap* hijo) {
+        NodoHeap* padre = NULL;
         if (paridad(hijo->indice)) {
             int k = hijo->indice / 2;
             padre = buscarIndice(k);
+            return padre;
         } else {
             int k = (hijo->indice - 1) / 2;
             padre = buscarIndice(k);
+            return padre;
         }
         // aqui hago el swap si valor de hijo > valor de padre
         // necesito primero arreglar swap
@@ -74,18 +76,50 @@
     }
 
     NodoHeap* Heap::buscarIndice(int _indice) {
-        NodoHeap* temp = primerNodo;
-        while (temp != NULL) {
-            if (temp->indice == _indice) {
-                return temp;
+        if (isEmpty()) {
+            return NULL;
+        } else {
+            NodoHeap* temp = primerNodo;
+            while (temp != NULL) {
+                if (temp->indice == _indice) {
+                    return temp;
+                }
+                temp = temp->siguiente;
             }
-            temp = temp->siguiente;
         }
-        return nullptr;
+        return NULL;
     }
 
     void Heap::swap(NodoHeap* padre,NodoHeap* hijo) {
-        // necesito ayuda aca
+        // nuevos hijos padres
+        NodoHeap copiaHijo = *hijo;
+        NodoHeap copiaPadre = *padre;
+        //aislar nodos
+        copiaHijo.anterior = NULL;
+        copiaHijo.siguiente = NULL;
+        copiaPadre.anterior = NULL;
+        copiaPadre.siguiente = NULL;
+        // AISLO PADRE
+        if (padre->indice == 1) {
+            qDebug() << "Padre : " << padre->indice << " ID: " << padre->nodoDoble->persona->id;
+            qDebug() << " Siguiente -> : " << padre->siguiente->indice << " ID: " << padre->siguiente->nodoDoble->persona->id;
+        } else {
+            qDebug() << "Padre : " << padre->indice << " ID: " << padre->nodoDoble->persona->id;
+            qDebug() << " Siguiente -> : " << padre->siguiente->indice << " ID: " << padre->siguiente->nodoDoble->persona->id;
+            qDebug() << " Anterior <- : " << padre->siguiente->indice << " ID: " << padre->anterior->nodoDoble->persona->id;
+        }
+        qDebug() << "Hijo : " << hijo->indice << " ID: " << hijo->nodoDoble->persona->id;
+        qDebug() << " Siguiente -> : " << hijo->siguiente->indice << " ID: " << hijo->siguiente->nodoDoble->persona->id;
+        // enlazo los siguientes para cada copia (futuro padre/hijo)
+        copiaHijo.siguiente = padre->siguiente;
+        copiaPadre.siguiente = hijo->siguiente;
+        // desenlazo primero el hijo
+        NodoHeap* anteriorHijoOrg = hijo->anterior;
+        anteriorHijoOrg->siguiente = NULL;
+        // inserto el nuevo hijo
+        copiaPadre.imprimir();
+
+        return;
     }
 
     void Heap::imprimir() {

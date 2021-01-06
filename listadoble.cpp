@@ -145,3 +145,22 @@ NodoDoble* ListaDoble::buscarEnPosicion(int posicion){
 
 
 
+void NodoDoble::imprimir(){
+    qDebug() << "ID: " << persona->id;
+    qDebug() << "Nombre: " + persona->nombre;
+    qDebug() << "Apellido: " + persona->apellido;
+    qDebug() << "Creencia: " + persona->creencia;
+    qDebug() << "Hijos: ";
+    NodoDoble* hijo = persona->hijos->primerNodo;
+    for (int i=0; i < persona->hijos->largo(); i++) {
+        qDebug() << "    ID: " << hijo->persona->id;
+        qDebug() << "    Nombre: " << hijo->persona->nombre;
+    }
+    // Imprimir los pecados (temporal)
+    for (int i = 0; i < 7; i++) {
+        qDebug() << "Pecado [" << i << "] = " << persona->accionesMalas[i];
+    }
+    // Imprimir nuevo atributo 'cantPecados'
+    qDebug() << "Cantidad de pecados : [ " << persona->cantPecados << " ]";
+    qDebug() << "";
+}
