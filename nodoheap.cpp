@@ -8,3 +8,7 @@ void NodoHeap::imprimir(){
     qDebug() << " Siguiente -> : " << siguiente->indice;
     siguiente->nodoDoble->imprimir();
 }
+
+void NodoHeap::setIndice(int _indice) {
+    indice = _indice;
+}

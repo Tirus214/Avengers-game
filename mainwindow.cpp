@@ -25,6 +25,6 @@ void MainWindow::on_btnCrearPersonas_clicked(){
     NodoHeap* padre = mundo->arbolHeap->acomodar(hijo);
     qDebug() << " [ Hijo : Indice =  " << hijo->indice << " ID : " << hijo->nodoDoble->persona->id << " ]";
     qDebug() << " [ Padre : Indice =  " << padre->indice << " ID : " << padre->nodoDoble->persona->id << " ]";
-    mundo->arbolHeap->swap(padre,hijo);
+    mundo->arbolHeap->swap(mundo->arbolHeap->primerNodo,padre->indice,hijo->indice);
     mundo->arbolHeap->imprimir();
 }

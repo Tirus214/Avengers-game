@@ -15,7 +15,7 @@ struct NodoHeap{
     }
     // metodos
     void imprimir();
-
+    void setIndice(int);
 };
 
 #endif // NODOHEAP_H
