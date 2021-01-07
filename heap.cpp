@@ -47,6 +47,8 @@
         }
     }
 
+    // Esta funcion no se usa es mejor una unica por heap que acomode segun criterio
+    // (pecados,deportes,familia,etc)
     NodoHeap* Heap::acomodar(NodoHeap* hijo) {
         NodoHeap* padre = NULL;
         if (paridad(hijo->indice)) {
@@ -60,6 +62,33 @@
         }
         // aqui hago el swap si valor de hijo > valor de padre
         // necesito primero arreglar swap
+    }
+
+    NodoHeap* Heap::getPadre(NodoHeap* hijo) {
+        NodoHeap* padre = NULL;
+        if (paridad(hijo->indice)) {
+            int k = hijo->indice / 2;
+            padre = buscarIndice(k);
+            return padre;
+        } else {
+            int k = (hijo->indice - 1) / 2;
+            padre = buscarIndice(k);
+            return padre;
+        }
+    }
+
+    NodoHeap* Heap::getHijoIzquierdo(NodoHeap* padre) {
+        NodoHeap* hijoIzquierdo = NULL;
+        int k = 2 * padre->indice;
+        hijoIzquierdo = buscarIndice(k);
+        return hijoIzquierdo;
+    }
+
+    NodoHeap* Heap::getHijoDerecho(NodoHeap* padre) {
+        NodoHeap* hijoDerecho = NULL;
+        int k = (2 * padre->indice) + 1;
+        hijoDerecho = buscarIndice(k);
+        return hijoDerecho;
     }
 
     bool Heap::paridad(int numero) {

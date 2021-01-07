@@ -281,3 +281,14 @@ void Mundo::llenarHeap() {
     }
     return;
 }
+
+void Mundo::llenarHeap(Heap *heapNuevo) {
+    if (!listaPersonas->isEmpty()) {
+        NodoDoble* tmp = listaPersonas->primerNodo;
+        do {
+            heapNuevo->insertar(tmp);
+            tmp = tmp->siguiente;
+        } while (tmp != listaPersonas->primerNodo);
+    }
+    return;
+}

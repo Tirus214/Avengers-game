@@ -58,6 +58,8 @@ struct Mundo{
     void imprimirMasPecador();
     // crear primer heap con las personas del mundo
     void llenarHeap();
+    // llenar un Heap con los nodos del mundo para poder llenar varios heaps con las mismas personas
+    void llenarHeap(Heap*);
 };
 
 #endif // MUNDO_H

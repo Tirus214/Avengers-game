@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     mundo = new Mundo();
+
     ui->setupUi(this);
 }
 
@@ -18,13 +19,18 @@ void MainWindow::on_btnCrearPersonas_clicked(){
     int num = ui->txfCrearPersonas->text().toInt();
     mundo->crearPersonas(num);
     mundo->imprimir();
-    mundo->llenarHeap();
-    mundo->arbolHeap->imprimir();
-    NodoHeap* hijo = mundo->arbolHeap->buscarIndice(3);
 
-    NodoHeap* padre = mundo->arbolHeap->acomodar(hijo);
-    qDebug() << " [ Hijo : Indice =  " << hijo->indice << " ID : " << hijo->nodoDoble->persona->id << " ]";
-    qDebug() << " [ Padre : Indice =  " << padre->indice << " ID : " << padre->nodoDoble->persona->id << " ]";
-    mundo->arbolHeap->swap(hijo,padre);
-    mundo->arbolHeap->imprimir();
+//    mundo->llenarHeap();
+//    mundo->arbolHeap->imprimir();
+//    NodoHeap* hijo = mundo->arbolHeap->buscarIndice(3);
+
+//    NodoHeap* padre = mundo->arbolHeap->acomodar(hijo);
+//    qDebug() << " [ Hijo : Indice =  " << hijo->indice << " ID : " << hijo->nodoDoble->persona->id << " ]";
+//    qDebug() << " [ Padre : Indice =  " << padre->indice << " ID : " << padre->nodoDoble->persona->id << " ]";
+//    mundo->arbolHeap->swap(hijo,padre);
+//    mundo->arbolHeap->imprimir();
+
+    // Primero se llena el mundo y luego se llenan los heaps
+    structCorvus = new CorvusGlaive(mundo);
+    structCorvus->heap->imprimir();
 }

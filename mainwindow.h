@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include "mundo.h"
+#include "aniquilacion.h"
 
 #include <QMainWindow>
 
@@ -12,6 +13,7 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
     Mundo * mundo;
+    CorvusGlaive* structCorvus;
 
 public:
     MainWindow(QWidget *parent = nullptr);

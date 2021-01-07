@@ -24,6 +24,9 @@ struct Heap{
     void swap(NodoHeap* hijo,NodoHeap* padre);
     NodoHeap* acomodar(NodoHeap*);
     void imprimir();
+    NodoHeap* getPadre(NodoHeap*);
+    NodoHeap* getHijoIzquierdo(NodoHeap*);
+    NodoHeap* getHijoDerecho(NodoHeap*);
 };
 
 #endif // HEAP_H
