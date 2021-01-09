@@ -32,6 +32,13 @@ void Persona::setCantPecados() {
         cantPecados += accionesMalas[i];
     }
 }
+
+void Persona::setCantAccionesBuenas() {
+    for (int i = 0; i < 7; i++) {
+        cantPecados += accionesBuenas[i];
+    }
+}
+
 void Persona::setLongevidad(){
     longevidad = 2021 - fechaNacimiento[0];
 }

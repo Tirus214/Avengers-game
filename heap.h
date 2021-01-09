@@ -18,12 +18,14 @@ struct Heap{
     void insertarAlInicio (NodoDoble*);
     void insertarAlFinal (NodoDoble*);
     // nuevos
-    void insertar(NodoDoble*);
     bool paridad(int);
     NodoHeap* buscarIndice(int);
     void swap(NodoHeap* hijo,NodoHeap* padre);
+    NodoHeap* swapConReturn(NodoHeap* hijo,NodoHeap* padre);
     NodoHeap* acomodar(NodoHeap*);
     void imprimir();
+    int contarNodos();
+    void insertar(NodoDoble*);
     NodoHeap* getPadre(NodoHeap*);
     NodoHeap* getHijoIzquierdo(NodoHeap*);
     NodoHeap* getHijoDerecho(NodoHeap*);
