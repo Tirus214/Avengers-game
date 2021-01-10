@@ -52,6 +52,7 @@ struct Persona {
     QString creencia;
     QString profesion;
     QString pais;
+    QString estadoActual = "Vivo";
     int fechaNacimiento[3];
     int accionesBuenas[7];
     int accionesMalas[7];
@@ -65,6 +66,7 @@ struct Persona {
     ListaDoble * hijos;
     int categoria;
     int cantPecados = 0;
+    int cantAccionesBuenas = 0;
 
     Persona(int _id, QString _nombre, QString _apellido, QString _creencia, QString _profesion, QString _pais, QStringList _paises, QString gender){
         id = _id;
@@ -82,6 +84,8 @@ struct Persona {
         setEstadoMarital();
         setFrecuencia();
         setCantPecados();
+        setCantAccionesBuenas();
+
         paises = _paises;
         categoria = 0;
     }
@@ -93,6 +97,7 @@ struct Persona {
     void setEstadoMarital();
     void setFrecuencia();
     void setCantPecados();
+    void setCantAccionesBuenas();
 
     int aleatorio(int min, int max);
 };
