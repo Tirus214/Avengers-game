@@ -32,5 +32,6 @@ void MainWindow::on_btnCrearPersonas_clicked(){
 
     // Primero se llena el mundo y luego se llenan los heaps
     structCorvus = new CorvusGlaive(mundo);
-    structCorvus->heap->imprimir();
+    //structCorvus->heap->imprimir();
+    structCorvus->imprimir();
 }

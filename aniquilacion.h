@@ -14,11 +14,14 @@ struct CorvusGlaive {
     CorvusGlaive (Mundo * _mundo) {
         heap = new Heap();
         mundo = _mundo;
-        mundo->llenarHeap(heap);
+        insertarAHeap();
     }
 
     // metodos
-    void acomodarHeap();
+    void imprimir();
+    void insertarAHeap();
+    void insertarAHeap_aux(NodoDoble*);
+    void acomodarHeap(NodoHeap*);
 };
 
 #endif // ANIQUILACION_H

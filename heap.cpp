@@ -199,6 +199,7 @@
             nuevoHijo->setIndice(1);
             nuevoHijo->siguiente = padre->siguiente;
             padre->siguiente = padre->anterior = NULL;
+            //padre = NULL; // esto es para evitar usar mucha memoria entonces me vuelo todo lo anterior
             primerNodo = nuevoHijo;
             // Coloco el Padre donde estaba el hijo
             NodoHeap* nuevoPadre = new NodoHeap(padre->nodoDoble);
@@ -206,10 +207,15 @@
             nuevoPadre->siguiente = hijo->siguiente;
             nuevoPadre->anterior = hijo->anterior;
             hijo->anterior = hijo->siguiente = NULL;
-            NodoHeap* refSiguienteHijo = nuevoPadre->siguiente;
-            refSiguienteHijo->anterior = nuevoPadre;
-            NodoHeap* refAnteriorHijo = nuevoPadre->anterior;
-            refAnteriorHijo->siguiente = nuevoPadre;
+            //hijo = NULL; // PROBANDO
+            if (nuevoPadre->siguiente != NULL) {
+                NodoHeap* refSiguienteHijo = nuevoPadre->siguiente;
+                refSiguienteHijo->anterior = nuevoPadre;
+            }
+            if (nuevoPadre->siguiente != NULL) {
+                NodoHeap* refAnteriorHijo = nuevoPadre->anterior;
+                refAnteriorHijo->siguiente = nuevoPadre;
+            }
             return;
         } else {
             // Coloco el nuevoHijo donde estaba el Padre
@@ -218,6 +224,7 @@
             nuevoHijo->siguiente = padre->siguiente;
             nuevoHijo->anterior = padre->anterior;
             padre->siguiente = padre->anterior = NULL;
+            //padre = NULL; // PROBANDO
             nuevoHijo->anterior = nuevoHijo;
             nuevoHijo->siguiente->anterior = nuevoHijo;
             // Coloco el Padre donde estaba el hijo
@@ -226,10 +233,15 @@
             nuevoPadre->siguiente = hijo->siguiente;
             nuevoPadre->anterior = hijo->anterior;
             hijo->anterior = hijo->siguiente = NULL;
-            NodoHeap* refSiguienteHijo = nuevoPadre->siguiente;
-            NodoHeap* refAnteriorHijo = nuevoPadre->anterior;
-            refSiguienteHijo->anterior = nuevoPadre;
-            refAnteriorHijo->siguiente = nuevoPadre;
+            //hijo = NULL; // PROBANDO
+            if (nuevoPadre->siguiente != NULL) {
+                NodoHeap* refSiguienteHijo = nuevoPadre->siguiente;
+                refSiguienteHijo->anterior = nuevoPadre;
+            }
+            if (nuevoPadre->siguiente != NULL) {
+                NodoHeap* refAnteriorHijo = nuevoPadre->anterior;
+                refAnteriorHijo->siguiente = nuevoPadre;
+            }
             return;
         }
     }
