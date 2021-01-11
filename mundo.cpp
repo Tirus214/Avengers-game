@@ -119,7 +119,6 @@ void Mundo::insertHijos(NodoDoble* papa, int num){
                 if(validarHijo(papa->persona, hijo->persona)){
                     papa->persona->hijos->insertarAlFinal(hijo->persona);
                     num--;
-                    qDebug() << num;
                 }
         hijo = hijo->siguiente;
     } while(hijo != listaPersonas->primerNodo || num < 0);

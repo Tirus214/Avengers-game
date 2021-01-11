@@ -61,3 +61,86 @@ void CorvusGlaive::insertarAHeap() {
     }
     return;
 }
+
+void Midnight::acomodarHeap(NodoHeap * hijo){
+    if (heap->isEmpty()) {
+        return;
+    } else {
+        NodoHeap* padre = NULL;
+        padre = heap->getPadre(hijo);
+        while (hijo->nodoDoble->persona->cantAccionesBuenas < padre->nodoDoble->persona->cantAccionesBuenas){
+            heap->swapConReturnNodos(hijo,padre);
+            hijo = padre;
+            padre = heap->getPadre(hijo);
+            if (padre == NULL) break;
+        }
+    }
+}
+
+void Midnight::recorrerHeap(){
+    if (heap->isEmpty()) {
+        return;
+    } else {
+        NodoHeap * tmp = heap->primerNodo;
+        if (tmp->anterior == NULL && tmp->siguiente == NULL) return;
+        while (tmp != NULL) {
+            if (heap->getPadre(tmp) != NULL)
+            acomodarHeap(tmp);
+            tmp = tmp->siguiente;
+            imprimir();
+        }
+        matarPersonas();
+    }
+}
+
+
+void Midnight::matarPersonas(){
+    if (heap->isEmpty()) {
+        return;
+    }
+    else {
+        int cantidadAEliminar = (heap->contador)*0.05;
+        NodoHeap* tmp = heap->primerNodo;
+        for (int i = 0; i <= cantidadAEliminar; i++){
+            tmp->nodoDoble->persona->estadoActual = "Muerto";
+            tmp = tmp->siguiente;
+        }
+        return;
+    }
+}
+
+void Midnight::imprimir(){
+    if (heap->isEmpty()) {
+        return;
+    } else {
+        NodoHeap* tmp = heap->primerNodo;
+        while (tmp != NULL) {
+            qDebug() << " [ #" << tmp->indice << " ID: " << tmp->nodoDoble->persona->id << " Acciones buenas: " << tmp->nodoDoble->persona->cantAccionesBuenas << "Estado:" << tmp->nodoDoble->persona->estadoActual << " ] ->";
+            tmp = tmp->siguiente;
+        }
+        qDebug() << "\n";
+        return;
+    }
+}
+
+NodoHeap* Nebula::randNodoArbol(){
+    std::uniform_int_distribution<int> distribution(0,tamanoArbol);
+    int random = distribution(*QRandomGenerator::global());
+    if (arbolEntrada->isEmpty()) {
+        return NULL;
+    }
+    else {
+        if (random == 0) return arbolEntrada->primerNodo;
+        NodoHeap* tmp = arbolEntrada->primerNodo;
+        for (int i = 0; i <= random; i++){
+            tmp = tmp->siguiente;
+        }
+        return tmp;
+    }
+}
+
+
+void Nebula::matarPersonas(){
+    NodoHeap* nodoSeleccionado = randNodoArbol();
+
+}
