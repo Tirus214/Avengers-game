@@ -49,7 +49,7 @@ struct Nebula{
     Mundo * mundo;
     ListaDoble * listaPersona = mundo->listaPersonas;
     Heap * arbolEntrada = mundo->arbolHeap;
-    int tamañoArbol = mundo->arbolHeap->contarNodos();
+    int tamanoArbol = mundo->arbolHeap->contarNodos();
 
 
     void matarPersonas();

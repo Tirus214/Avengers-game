@@ -207,59 +207,59 @@
 //        }
 //    }
 
-    void Heap::swap(NodoHeap* hijo,NodoHeap* padre) {
-        if (padre == primerNodo) {
-            // Coloco el nuevoHijo donde estaba el Padre
-            NodoHeap* nuevoHijo = new NodoHeap(hijo->nodoDoble);
-            nuevoHijo->setIndice(1);
-            nuevoHijo->siguiente = padre->siguiente;
-            padre->siguiente = padre->anterior = NULL;
-            //padre = NULL; // esto es para evitar usar mucha memoria entonces me vuelo todo lo anterior
-            primerNodo = nuevoHijo;
-            // Coloco el Padre donde estaba el hijo
-            NodoHeap* nuevoPadre = new NodoHeap(padre->nodoDoble);
-            nuevoPadre->setIndice(hijo->indice);
-            nuevoPadre->siguiente = hijo->siguiente;
-            nuevoPadre->anterior = hijo->anterior;
-            hijo->anterior = hijo->siguiente = NULL;
-            //hijo = NULL; // PROBANDO
-            if (nuevoPadre->siguiente != NULL) {
-                NodoHeap* refSiguienteHijo = nuevoPadre->siguiente;
-                refSiguienteHijo->anterior = nuevoPadre;
-            }
-            if (nuevoPadre->siguiente != NULL) {
-                NodoHeap* refAnteriorHijo = nuevoPadre->anterior;
-                refAnteriorHijo->siguiente = nuevoPadre;
-            }
-            return;
-        } else {
-            // Coloco el nuevoHijo donde estaba el Padre
-            NodoHeap* nuevoHijo = new NodoHeap(hijo->nodoDoble);
-            nuevoHijo->setIndice(padre->indice);
-            nuevoHijo->siguiente = padre->siguiente;
-            nuevoHijo->anterior = padre->anterior;
-            padre->siguiente = padre->anterior = NULL;
-            //padre = NULL; // PROBANDO
-            nuevoHijo->anterior = nuevoHijo;
-            nuevoHijo->siguiente->anterior = nuevoHijo;
-            // Coloco el Padre donde estaba el hijo
-            NodoHeap* nuevoPadre = new NodoHeap(padre->nodoDoble);
-            nuevoPadre->setIndice(hijo->indice);
-            nuevoPadre->siguiente = hijo->siguiente;
-            nuevoPadre->anterior = hijo->anterior;
-            hijo->anterior = hijo->siguiente = NULL;
-            //hijo = NULL; // PROBANDO
-            if (nuevoPadre->siguiente != NULL) {
-                NodoHeap* refSiguienteHijo = nuevoPadre->siguiente;
-                refSiguienteHijo->anterior = nuevoPadre;
-            }
-            if (nuevoPadre->siguiente != NULL) {
-                NodoHeap* refAnteriorHijo = nuevoPadre->anterior;
-                refAnteriorHijo->siguiente = nuevoPadre;
-            }
-            return;
-        }
-    }
+//    void Heap::swap(NodoHeap* hijo,NodoHeap* padre) {
+//        if (padre == primerNodo) {
+//            // Coloco el nuevoHijo donde estaba el Padre
+//            NodoHeap* nuevoHijo = new NodoHeap(hijo->nodoDoble);
+//            nuevoHijo->setIndice(1);
+//            nuevoHijo->siguiente = padre->siguiente;
+//            padre->siguiente = padre->anterior = NULL;
+//            //padre = NULL; // esto es para evitar usar mucha memoria entonces me vuelo todo lo anterior
+//            primerNodo = nuevoHijo;
+//            // Coloco el Padre donde estaba el hijo
+//            NodoHeap* nuevoPadre = new NodoHeap(padre->nodoDoble);
+//            nuevoPadre->setIndice(hijo->indice);
+//            nuevoPadre->siguiente = hijo->siguiente;
+//            nuevoPadre->anterior = hijo->anterior;
+//            hijo->anterior = hijo->siguiente = NULL;
+//            //hijo = NULL; // PROBANDO
+//            if (nuevoPadre->siguiente != NULL) {
+//                NodoHeap* refSiguienteHijo = nuevoPadre->siguiente;
+//                refSiguienteHijo->anterior = nuevoPadre;
+//            }
+//            if (nuevoPadre->siguiente != NULL) {
+//                NodoHeap* refAnteriorHijo = nuevoPadre->anterior;
+//                refAnteriorHijo->siguiente = nuevoPadre;
+//            }
+//            return;
+//        } else {
+//            // Coloco el nuevoHijo donde estaba el Padre
+//            NodoHeap* nuevoHijo = new NodoHeap(hijo->nodoDoble);
+//            nuevoHijo->setIndice(padre->indice);
+//            nuevoHijo->siguiente = padre->siguiente;
+//            nuevoHijo->anterior = padre->anterior;
+//            padre->siguiente = padre->anterior = NULL;
+//            //padre = NULL; // PROBANDO
+//            nuevoHijo->anterior = nuevoHijo;
+//            nuevoHijo->siguiente->anterior = nuevoHijo;
+//            // Coloco el Padre donde estaba el hijo
+//            NodoHeap* nuevoPadre = new NodoHeap(padre->nodoDoble);
+//            nuevoPadre->setIndice(hijo->indice);
+//            nuevoPadre->siguiente = hijo->siguiente;
+//            nuevoPadre->anterior = hijo->anterior;
+//            hijo->anterior = hijo->siguiente = NULL;
+//            //hijo = NULL; // PROBANDO
+//            if (nuevoPadre->siguiente != NULL) {
+//                NodoHeap* refSiguienteHijo = nuevoPadre->siguiente;
+//                refSiguienteHijo->anterior = nuevoPadre;
+//            }
+//            if (nuevoPadre->siguiente != NULL) {
+//                NodoHeap* refAnteriorHijo = nuevoPadre->anterior;
+//                refAnteriorHijo->siguiente = nuevoPadre;
+//            }
+//            return;
+//        }
+//    }
 
     NodoHeap* Heap::swapConReturn(NodoHeap* hijo,NodoHeap* padre) {
         if (padre == primerNodo) {
@@ -301,6 +301,24 @@
             refAnteriorHijo->siguiente = nuevoPadre;
             return nuevoHijo;
         }
+    }
+
+    void Heap::swap(NodoHeap *hijo, NodoHeap *padre) {
+        if (hijo->anterior) {
+            hijo->anterior->siguiente = padre;
+        }
+        if (padre->anterior) {
+            padre->anterior->siguiente = hijo;
+        }
+        if (hijo->siguiente) {
+            hijo->siguiente->anterior = padre;
+        }
+        if (padre->siguiente) {
+            padre->siguiente->anterior = hijo;
+        }
+        std::swap(hijo->anterior,padre->anterior);
+        std::swap(hijo->siguiente,padre->siguiente);
+        std::swap(hijo->indice,padre->indice);
     }
 
     void Heap::imprimir() {
