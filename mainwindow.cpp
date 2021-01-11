@@ -16,8 +16,8 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::on_btnCrearPersonas_clicked(){
-    int num = ui->txfCrearPersonas->text().toInt();
-    mundo->crearPersonas(num);
+    //int num = ui->txfCrearPersonas->text().toInt();
+    mundo->crearPersonas(6);
     mundo->imprimir();
 
 //    mundo->llenarHeap();
@@ -31,7 +31,8 @@ void MainWindow::on_btnCrearPersonas_clicked(){
 //    mundo->arbolHeap->imprimir();
 
     // Primero se llena el mundo y luego se llenan los heaps
-    structCorvus = new CorvusGlaive(mundo);
+    //structCorvus = new CorvusGlaive(mundo);
     //structCorvus->heap->imprimir();
-    structCorvus->imprimir();
+    //structCorvus->imprimir();
+    Midnight * structMidnight = new Midnight(mundo);
 }

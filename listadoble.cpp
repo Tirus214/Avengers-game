@@ -35,7 +35,7 @@ void Persona::setCantPecados() {
 
 void Persona::setCantAccionesBuenas() {
     for (int i = 0; i < 7; i++) {
-        cantPecados += accionesBuenas[i];
+        cantAccionesBuenas += accionesBuenas[i];
     }
 }
 

@@ -29,7 +29,7 @@ struct Midnight {
     // atributos
     Heap * heap;
     Mundo * mundo;
-    ListaDoble * listaPersona = mundo->listaPersonas;
+    ListaDoble * listaPersona;
 
 
     // constructor
@@ -37,10 +37,16 @@ struct Midnight {
         heap = new Heap();
         mundo = _mundo;
         mundo->llenarHeap(heap);
+        listaPersona = mundo->listaPersonas;
+        recorrerHeap();
+        imprimir();
+
     }
 
     // metodos
-    NodoHeap* acomodarHeap(NodoHeap *);
+    void acomodarHeap(NodoHeap *);
+    void imprimir();
+    void recorrerHeap();
     void matarPersonas();
 };
 
@@ -49,10 +55,11 @@ struct Nebula{
     Mundo * mundo;
     ListaDoble * listaPersona = mundo->listaPersonas;
     Heap * arbolEntrada = mundo->arbolHeap;
-    int tamañoArbol = mundo->arbolHeap->contarNodos();
+    int tamanoArbol = mundo->arbolHeap->contarNodos();
 
 
     void matarPersonas();
+    NodoHeap * randNodoArbol();
 
 };
 

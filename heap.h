@@ -22,6 +22,7 @@ struct Heap{
     NodoHeap* buscarIndice(int);
     void swap(NodoHeap* hijo,NodoHeap* padre);
     NodoHeap* swapConReturn(NodoHeap* hijo,NodoHeap* padre);
+    NodoHeap* swapConReturnNodos(NodoHeap* hijo,NodoHeap* padre);
     NodoHeap* acomodar(NodoHeap*);
     void imprimir();
     int contarNodos();
