@@ -67,10 +67,12 @@ struct Persona {
     int categoria;
     int cantPecados = 0;
     int cantAccionesBuenas = 0;
+    ListaDoble * amigos;
 
     Persona(int _id, QString _nombre, QString _apellido, QString _creencia, QString _profesion, QString _pais, QStringList _paises, QString gender){
         id = _id;
         hijos = new ListaDoble();
+        amigos = new ListaDoble();
         nombre = _nombre;
         apellido = _apellido;
         creencia = _creencia;

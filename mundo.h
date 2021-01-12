@@ -60,6 +60,9 @@ struct Mundo{
     void llenarHeap();
     // llenar un Heap con los nodos del mundo para poder llenar varios heaps con las mismas personas
     void llenarHeap(Heap*);
+    void putAmigos();
+    void searchAmigos(NodoDoble * actual, int numAmigos);
+    bool searchAmigosComun(ListaDoble * amigos, ListaDoble * amigosPosibles);
 };
 
 #endif // MUNDO_H

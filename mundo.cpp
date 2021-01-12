@@ -30,6 +30,7 @@ void Mundo::crearPersonas(int num){
     putHijos();
     putConyugue();
     putPadres();
+    putAmigos();
     //crearArbol();
 }
 
@@ -241,6 +242,53 @@ void Mundo::randomPadre(Persona* actual, QString gender){
 
 bool Mundo::validarConyugue(Persona* actual, Persona* tmp){
     return actual->conyugue == tmp;
+}
+
+
+void Mundo::putAmigos(){
+    if(!listaPersonas->isEmpty()){
+        NodoDoble * tmp = listaPersonas->primerNodo;
+        do{
+            int numAmigos = aleatorio(0,50);
+            searchAmigos(tmp, numAmigos);
+            tmp = tmp->siguiente;
+        } while(tmp != listaPersonas->primerNodo);
+    }
+}
+
+
+void Mundo::searchAmigos(NodoDoble * actual, int numAmigos){
+    if(!listaPersonas->isEmpty() || numAmigos != 0){
+        NodoDoble * tmp = listaPersonas->primerNodo;
+        do{
+                if(tmp->persona->pais == actual->persona->pais){
+                    actual->persona->amigos->insertarAlFinal(tmp->persona);
+                    numAmigos--;
+                }
+                else if(aleatorio(0,100) <= 40){
+                    actual->persona->amigos->insertarAlFinal(tmp->persona);
+                    numAmigos--;
+                }
+                else if(searchAmigosComun(actual->persona->amigos, tmp->persona->amigos)){
+                    actual->persona->amigos->insertarAlFinal(tmp->persona);
+                    numAmigos--;
+                }
+            tmp = tmp->siguiente;
+        } while(tmp != listaPersonas->primerNodo || numAmigos > 0);
+    }
+}
+
+
+bool Mundo::searchAmigosComun(ListaDoble * amigos, ListaDoble * amigosPosibles){
+    if(!amigos->isEmpty() && !amigosPosibles->isEmpty()){
+        NodoDoble * tmp = amigos->primerNodo;
+        do{
+            if(amigosPosibles->esta(tmp->persona->id))
+                return true;
+            tmp = tmp->siguiente;
+        } while(tmp != amigos->primerNodo);
+    }
+    return false;
 }
 
 
