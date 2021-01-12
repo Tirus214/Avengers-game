@@ -283,8 +283,9 @@ bool Mundo::searchAmigosComun(ListaDoble * amigos, ListaDoble * amigosPosibles){
     if(!amigos->isEmpty() && !amigosPosibles->isEmpty()){
         NodoDoble * tmp = amigos->primerNodo;
         do{
-            if(amigosPosibles->esta(tmp->persona->id))
-                return true;
+            if(amigosPosibles->esta(tmp->persona->id)){
+                if(aleatorio(0,100) <= 70) return true;
+            }
             tmp = tmp->siguiente;
         } while(tmp != amigos->primerNodo);
     }
