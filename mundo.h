@@ -44,6 +44,7 @@ struct Mundo{
     void putHijos();    //coloca hijos segun apellido a todas las personas
     void insertHijos(NodoDoble*, int);
     bool validarHijo(Persona* papa, Persona* hijo);
+    void insertDeportes();
     void crearArbol();
     int getCantNodosArbol();
     void sumarAcciones();

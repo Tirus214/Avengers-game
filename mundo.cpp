@@ -24,6 +24,7 @@ void Mundo::crearPersonas(int num){
         QStringList arrayPaises;
         getPaises(rand, arrayPaises);
         listaPersonas->insertarAlFinal(new Persona(id, _nombre, _apellido, _creencia, _profesion, _pais, arrayPaises, _gender));
+        insertDeportes();
     }
     index += num;
     clasificarRango();
@@ -31,7 +32,7 @@ void Mundo::crearPersonas(int num){
     putConyugue();
     putPadres();
     putAmigos();
-    //crearArbol();
+    crearArbol();
 }
 
 
@@ -132,6 +133,14 @@ bool Mundo::validarHijo(Persona* papa, Persona* hijo){
     else if(papa->categoria == 7 && hijo->categoria >= 4 & hijo->categoria <= 6) return true;
     else if(papa->categoria == 8 && hijo->categoria >= 6 & hijo->categoria <= 7) return true;
     return false;
+}
+
+
+void Mundo::insertDeportes(){
+    int numDeportes = aleatorio(1,7);
+    for (int i=0; i<numDeportes; i++) {
+        listaPersonas->primerNodo->anterior->persona->deportes.append(listaDeportes[i]);
+    }
 }
 
 
