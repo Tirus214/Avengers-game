@@ -53,15 +53,29 @@ struct Midnight {
 struct Nebula{
     // atributos
     Mundo * mundo;
-    ListaDoble * listaPersona = mundo->listaPersonas;
-    Heap * arbolEntrada = mundo->arbolHeap;
-    int tamanoArbol = mundo->arbolHeap->contarNodos();
+    ListaDoble * listaPersona;
+    Heap * arbolEntrada;
+    int tamanoArbol;
+    NodoDoble * nodoSeleccionado;
+
+    Nebula (Mundo * _mundo) {
+        mundo = _mundo;
+        listaPersona = mundo->listaPersonas;
+        arbolEntrada = mundo->arbolHeap;
+        tamanoArbol = arbolEntrada->contarNodos();
+        nodoSeleccionado = randNodoArbol();
+    }
 
 
-    void matarPersonas();
-    NodoHeap * randNodoArbol();
+    void matarPersonas(NodoDoble * raiz);
+    NodoDoble * randNodoArbol();
 
 };
+
+struct Dwarf{
+    ListaDoble * listaPersona;
+};
+
 
 
 #endif // ANIQUILACION_H

@@ -20,8 +20,8 @@ void MainWindow::on_btnCrearPersonas_clicked(){
     mundo->crearPersonas(num);
     mundo->imprimir();
 
-//    mundo->llenarHeap();
-//    mundo->arbolHeap->imprimir();
+//      mundo->crearArbol();
+//      mundo->arbolHeap->imprimir();
 //    NodoHeap* hijo = mundo->arbolHeap->buscarIndice(3);
 
 //    NodoHeap* padre = mundo->arbolHeap->acomodar(hijo);
@@ -31,9 +31,15 @@ void MainWindow::on_btnCrearPersonas_clicked(){
 //    mundo->arbolHeap->imprimir();
 
     // Primero se llena el mundo y luego se llenan los heaps
-    structCorvus = new CorvusGlaive(mundo);
+//    structCorvus = new CorvusGlaive(mundo);
     //structCorvus->heap->imprimir();
-    structCorvus->imprimir();
+    //structCorvus->imprimir();
 //    Midnight * structMidnight = new Midnight(mundo);
+
+
+    //Nebula * structNebula = new Nebula(mundo);
+    //structNebula->nodoSeleccionado->imprimir();
+    //structNebula->matarPersonas(structNebula->nodoSeleccionado);
+
 
 }
