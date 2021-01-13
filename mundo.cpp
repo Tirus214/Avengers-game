@@ -301,6 +301,7 @@ void Mundo::imprimir(){
             qDebug() << "Nombre: " + tmp->persona->nombre;
             qDebug() << "Apellido: " + tmp->persona->apellido;
             qDebug() << "Creencia: " + tmp->persona->creencia;
+            qDebug() << "Estado: " + tmp->persona->estadoActual;
             qDebug() << "Hijos: ";
             NodoDoble* hijo = tmp->persona->hijos->primerNodo;
             for (int i=0; i<tmp->persona->hijos->largo(); i++) {

@@ -144,7 +144,7 @@
 
     }
 
-<<<<<<< HEAD
+
 //    void Heap::swap(NodoHeap* hijo,NodoHeap* padre) {
 //        if (padre == primerNodo) {
 //            // Coloco el nuevoHijo donde estaba el Padre
@@ -198,7 +198,7 @@
 //            return;
 //        }
 //    }
-=======
+
     NodoHeap * Heap::swapConReturn(NodoHeap* i,NodoHeap* j) {
         if(i->anterior)  i->anterior->siguiente = j;
             if(j->anterior)  j->anterior->siguiente = i;
@@ -208,34 +208,32 @@
             std::swap(i->siguiente, j->siguiente);
             return j;
     }
->>>>>>> 14ce8bf8250908f1995d66b2d835b3383763fe15
+
 
     NodoHeap * Heap::swapConReturnNodos(NodoHeap* i,NodoHeap* j) {
             std::swap(i->nodoDoble->persona,j->nodoDoble->persona);
             return j;
     }
 
-<<<<<<< HEAD
-    void Heap::swap(NodoHeap *hijo, NodoHeap *padre) {
-        if (hijo->anterior) {
-            hijo->anterior->siguiente = padre;
-        }
-        if (padre->anterior) {
-            padre->anterior->siguiente = hijo;
-        }
-        if (hijo->siguiente) {
-            hijo->siguiente->anterior = padre;
-        }
-        if (padre->siguiente) {
-            padre->siguiente->anterior = hijo;
-        }
-        std::swap(hijo->anterior,padre->anterior);
-        std::swap(hijo->siguiente,padre->siguiente);
-        std::swap(hijo->indice,padre->indice);
-    }
-=======
 
->>>>>>> 14ce8bf8250908f1995d66b2d835b3383763fe15
+//    void Heap::swap(NodoHeap *hijo, NodoHeap *padre) {
+//        if (hijo->anterior) {
+//            hijo->anterior->siguiente = padre;
+//        }
+//        if (padre->anterior) {
+//            padre->anterior->siguiente = hijo;
+//        }
+//        if (hijo->siguiente) {
+//            hijo->siguiente->anterior = padre;
+//        }
+//        if (padre->siguiente) {
+//            padre->siguiente->anterior = hijo;
+//        }
+//        std::swap(hijo->anterior,padre->anterior);
+//        std::swap(hijo->siguiente,padre->siguiente);
+//        std::swap(hijo->indice,padre->indice);
+//    }
+
 
     void Heap::imprimir() {
         if (isEmpty()) {

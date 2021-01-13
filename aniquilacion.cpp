@@ -22,9 +22,10 @@ void CorvusGlaive::acomodarHeap(NodoHeap* hijo) {
         NodoHeap* padre = heap->getPadre(hijo);
         // Comparamos hijo con padre
         if (hijo->nodoDoble->persona->cantPecados > padre->nodoDoble->persona->cantPecados) {
-            int siguienteIndice = padre->indice;
-            heap->swap(hijo,padre);
-            acomodarHeap(heap->buscarIndice(siguienteIndice));
+//            int siguienteIndice = padre->indice;
+//            heap->swap(hijo,padre);
+//            acomodarHeap(heap->buscarIndice(siguienteIndice));
+            acomodarHeap(heap->swapConReturnNodos(hijo,padre));
         }
         return;
     }
@@ -123,24 +124,32 @@ void Midnight::imprimir(){
     }
 }
 
-NodoHeap* Nebula::randNodoArbol(){
+NodoDoble* Nebula::randNodoArbol(){
     std::uniform_int_distribution<int> distribution(0,tamanoArbol);
     int random = distribution(*QRandomGenerator::global());
+    arbolEntrada->imprimir();
     if (arbolEntrada->isEmpty()) {
         return NULL;
     }
     else {
-        if (random == 0) return arbolEntrada->primerNodo;
+        if (random == 0) return arbolEntrada->primerNodo->nodoDoble;
         NodoHeap* tmp = arbolEntrada->primerNodo;
         for (int i = 0; i <= random; i++){
             tmp = tmp->siguiente;
         }
-        return tmp;
+        return tmp->nodoDoble;
     }
 }
 
 
-void Nebula::matarPersonas(){
-    NodoHeap* nodoSeleccionado = randNodoArbol();
-
+void Nebula::matarPersonas(NodoDoble * raiz){
+    if (raiz == NULL) return;
+    else {
+        raiz->persona->estadoActual = "Muerto";
+        NodoDoble * tmp = raiz->persona->amigos->primerNodo;
+        while (tmp !=NULL){
+            matarPersonas(tmp);
+            tmp = tmp->siguiente;
+        }
+    }
 }
