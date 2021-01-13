@@ -22,9 +22,10 @@ void CorvusGlaive::acomodarHeap(NodoHeap* hijo) {
         NodoHeap* padre = heap->getPadre(hijo);
         // Comparamos hijo con padre
         if (hijo->nodoDoble->persona->cantPecados > padre->nodoDoble->persona->cantPecados) {
-            int siguienteIndice = padre->indice;
-            heap->swap(hijo,padre);
-            acomodarHeap(heap->buscarIndice(siguienteIndice));
+//            int siguienteIndice = padre->indice;
+//            heap->swap(hijo,padre);
+//            acomodarHeap(heap->buscarIndice(siguienteIndice));
+            acomodarHeap(heap->swapConReturnNodos(hijo,padre));
         }
         return;
     }
