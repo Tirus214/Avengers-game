@@ -190,8 +190,10 @@ int Arbol::cantHojas(NodoArbol* raiz)
 }
 
 
-
-
+bool Arbol::isEmpty(NodoArbol * raiz){
+    if (raiz == NULL) return true;
+    return false;
+}
 
 
 // borrar

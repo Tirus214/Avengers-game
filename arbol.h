@@ -25,6 +25,7 @@ struct Arbol{
     void nodos_nivel (NodoArbol*, int, int);
     int contadorNodos(NodoArbol*);
     NodoArbol* mayor (NodoArbol* arbol);
+    bool isEmpty(NodoArbol *);
 };
 
 #endif // ARBOL_H

@@ -144,7 +144,7 @@ NodoDoble* Nebula::randNodoArbol(){
 
 
 void Nebula::matarPersonas(NodoDoble * raiz){
-    if (raiz == NULL || (raiz->persona->estadoActual == "Muerto" && !revisarLista(raiz->persona->amigos))) return;
+    if (raiz == NULL || (raiz->persona->estadoActual == "Muerto" && ! revisarLista(raiz->persona->amigos))) return;
     else {
         raiz->persona->estadoActual = "Muerto";
         NodoDoble * tmp = raiz->persona->amigos->primerNodo;

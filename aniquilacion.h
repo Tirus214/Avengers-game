@@ -2,6 +2,7 @@
 #define ANIQUILACION_H
 #include "heap.h"
 #include "mundo.h"
+#include "arbol.h"
 
 // Cada estructura de aniquilacion tiene un heap exclusivo pero comparten el mismo mundo
 // Cada Heap de cada
@@ -23,6 +24,26 @@ struct CorvusGlaive {
     void insertarAHeap();
     void insertarAHeap_aux(NodoDoble*);
     void acomodarHeap(NodoHeap*);
+};
+
+struct Thanos {
+    //atributos
+    Mundo * mundo;
+    ListaDoble * listaPersona;
+    ListaDoble * matrizDispersion[70][10];
+    int eliminados;
+
+    Thanos(Mundo * _mundo){
+        mundo = _mundo;
+        eliminados = 0;
+    }
+
+    void insertar (int, int, NodoDoble *);
+    int hashFunction(NodoDoble *);
+    void recorrerLista();
+    void imprimir();
+    void comandoThanos(int, int);
+    void eliminarCasilla(ListaDoble *);
 };
 
 struct Midnight {
@@ -67,13 +88,26 @@ struct Nebula{
     }
 
 
-    void matarPersonas(NodoDoble * raiz);
+    void matarPersonas(NodoDoble *);
+    bool revisarLista(ListaDoble *);
     NodoDoble * randNodoArbol();
 
 };
 
 struct Dwarf{
     ListaDoble * listaPersona;
+    QString deporteSeleccionado;
+    int deporteRepeticiones;
+    Mundo * mundo;
+
+    Dwarf (Mundo * _mundo) {
+        mundo = _mundo;
+        listaPersona = mundo->listaPersonas;
+        deporteSeleccionado = "";
+        deporteRepeticiones = 0;
+    }
+
+    void matarPersonas();
 };
 
 

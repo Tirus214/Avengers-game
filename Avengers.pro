@@ -18,7 +18,8 @@ SOURCES += \
     mainwindow.cpp \
     mundo.cpp \
     nodoarbol.cpp \
-    nodoheap.cpp
+    nodoheap.cpp \
+    salvacion.cpp
 
 HEADERS += \
     aniquilacion.h \
@@ -29,7 +30,8 @@ HEADERS += \
     mainwindow.h \
     mundo.h \
     nodoarbol.h \
-    nodoheap.h
+    nodoheap.h \
+    salvacion.h
 
 FORMS += \
     mainwindow.ui
