@@ -18,6 +18,7 @@ struct Mundo{
 
     int index;
     Heap * arbolHeap;
+    Arbol * arbolOrdenado;
 
     Mundo(){
         listaPersonas = new ListaDoble();
@@ -31,6 +32,7 @@ struct Mundo{
         obtenerArray("Paises", listaPaises);
 
         arbolHeap = new Heap();
+        arbolOrdenado = new Arbol();
     }
 
     void crearPersonas(int num);
@@ -45,7 +47,7 @@ struct Mundo{
     void insertHijos(NodoDoble*, int);
     bool validarHijo(Persona* papa, Persona* hijo);
     void insertDeportes();
-    void crearArbol();
+    void crearHeap();
     int getCantNodosArbol();
     void sumarAcciones();
     void putConyugue();
@@ -64,6 +66,7 @@ struct Mundo{
     void putAmigos();
     void searchAmigos(NodoDoble * actual, int numAmigos);
     bool searchAmigosComun(ListaDoble * amigos, ListaDoble * amigosPosibles);
+    void crearArbol();
 };
 
 #endif // MUNDO_H

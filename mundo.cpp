@@ -32,7 +32,7 @@ void Mundo::crearPersonas(int num){
     putConyugue();
     putPadres();
     putAmigos();
-    crearArbol();
+    crearHeap();
 }
 
 
@@ -144,11 +144,13 @@ void Mundo::insertDeportes(){
 }
 
 
-void Mundo::crearArbol(){
+void Mundo::crearHeap(){
     int cantNodos = getCantNodosArbol();
     int multiplo = (int) listaPersonas->largo() / cantNodos;
     for(int i=0; i<cantNodos; i++) {
-        arbolHeap->insertarAlInicio(listaPersonas->buscarEnPosicion(multiplo*i));
+        NodoDoble * tmp = listaPersonas->buscarEnPosicion(multiplo*i);
+        arbolHeap->insertarAlInicio(tmp);
+        arbolOrdenado->insertar(tmp);
     }
 }
 
@@ -349,4 +351,10 @@ void Mundo::llenarHeap(Heap *heapNuevo) {
         } while (tmp != listaPersonas->primerNodo);
     }
     return;
+}
+
+
+
+void Mundo::crearArbol(){
+    arbolHeap->
 }
