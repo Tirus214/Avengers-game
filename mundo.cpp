@@ -137,10 +137,8 @@ bool Mundo::validarHijo(Persona* papa, Persona* hijo){
 
 
 void Mundo::insertDeportes(){
-    int numDeportes = aleatorio(1,7);
-    for (int i=0; i<numDeportes; i++) {
-        listaPersonas->primerNodo->anterior->persona->deportes.append(listaDeportes[i]);
-    }
+    int numDeportes = aleatorio(0,6);
+    listaPersonas->primerNodo->anterior->persona->deportes = listaDeportes[numDeportes];
 }
 
 

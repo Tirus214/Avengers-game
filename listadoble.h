@@ -58,9 +58,9 @@ struct Persona {
     int accionesMalas[7];
     int longevidad;
     QString estadoMarital;
-    int salud[7];
+    int salud;
     QStringList paises;
-    QStringList deportes;
+    QString deportes;
     Persona * papa;
     Persona * mama;
     Persona * conyugue;
@@ -74,6 +74,7 @@ struct Persona {
         id = _id;
         hijos = new ListaDoble();
         amigos = new ListaDoble();
+        salud = aleatorio(0,7);
         nombre = _nombre;
         apellido = _apellido;
         creencia = _creencia;
@@ -85,7 +86,6 @@ struct Persona {
         ranAccionesMalas();
         setLongevidad();
         setEstadoMarital();
-        setFrecuencia();
         setCantPecados();
         setCantAccionesBuenas();
         estadoActual = "Vivo";
