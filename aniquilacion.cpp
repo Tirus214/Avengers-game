@@ -1,5 +1,8 @@
 #include "aniquilacion.h"
 
+
+//===============================CORVUS GLAIVE=====================================================
+
 void CorvusGlaive::imprimir(){
     if (heap->isEmpty()) {
         return;
@@ -53,6 +56,24 @@ void CorvusGlaive::insertarAHeap_aux(NodoDoble* nodo) {
     }
 }
 
+void CorvusGlaive::matarPersonas(){
+    if (heap->isEmpty()) {
+        return;
+    }
+    else {
+        int cantidadAEliminar = (heap->contador)*0.05;
+        NodoHeap* tmp = heap->primerNodo;
+        for (int i = 0; i <= cantidadAEliminar; i++){
+            if(tmp->nodoDoble->persona->estadoActual == "Vivo"){
+                tmp->nodoDoble->persona->estadoActual = "Muerto";
+                contador++;
+            }
+            tmp = tmp->siguiente;
+        }
+        return;
+    }
+}
+
 void CorvusGlaive::insertarAHeap() {
     if (!mundo->listaPersonas->isEmpty()) {
         NodoDoble* tmp = mundo->listaPersonas->primerNodo;
@@ -63,6 +84,9 @@ void CorvusGlaive::insertarAHeap() {
     }
     return;
 }
+
+
+//================================MIDNIGHT=====================================================
 
 void Midnight::acomodarHeap(NodoHeap * hijo){
     if (heap->isEmpty()) {
@@ -104,7 +128,10 @@ void Midnight::matarPersonas(){
         int cantidadAEliminar = (heap->contador)*0.05;
         NodoHeap* tmp = heap->primerNodo;
         for (int i = 0; i <= cantidadAEliminar; i++){
-            tmp->nodoDoble->persona->estadoActual = "Muerto";
+            if(tmp->nodoDoble->persona->estadoActual == "Vivo"){
+                tmp->nodoDoble->persona->estadoActual = "Muerto";
+                contador++;
+            }
             tmp = tmp->siguiente;
         }
         return;
@@ -125,6 +152,12 @@ void Midnight::imprimir(){
     }
 }
 
+
+
+//===============================NEBULA=====================================================
+
+
+
 NodoDoble* Nebula::randNodoArbol(){
     std::uniform_int_distribution<int> distribution(0,tamanoArbol);
     int random = distribution(*QRandomGenerator::global());
@@ -143,13 +176,17 @@ NodoDoble* Nebula::randNodoArbol(){
 }
 
 
-void Nebula::matarPersonas(NodoDoble * raiz){
+void Nebula::matarPersonas(NodoDoble * raiz, NodoDoble * amigoAsociado){
     if (raiz == NULL || (raiz->persona->estadoActual == "Muerto" && !revisarLista(raiz->persona->amigos))) return;
     else {
-        raiz->persona->estadoActual = "Muerto";
+        *amigoAsociado = *raiz;
+        if (raiz->persona->estadoActual == "Vivo"){
+            raiz->persona->estadoActual = "Muerto";
+            contador++;
+        }
         NodoDoble * tmp = raiz->persona->amigos->primerNodo;
         do{
-            matarPersonas(tmp);
+            matarPersonas(tmp, amigoAsociado);
             tmp = tmp->siguiente;
         }while(tmp != raiz->persona->amigos->primerNodo);
     }
@@ -182,12 +219,26 @@ void Dwarf::matarPersonas(){
         do{
             if(tmp->persona->profesion == deporteSeleccionado && tmp->persona->longevidad > deporteRepeticiones){
                 contadorEliminados++;
-                tmp->persona->estadoActual = "Muerto";
+                if (tmp->persona->estadoActual == "Vivo"){
+                    tmp->persona->estadoActual = "Muerto";
+                    contador++;
+                }
+
                 if (contadorEliminados >= eliminacionesPorRealizar) return;
             }
         }while(tmp != listaPersona->primerNodo);
     }
 }
+
+
+
+
+
+
+//===============================THANOS=====================================================
+
+
+
 
 void Thanos::recorrerLista(){
     if (listaPersona->isEmpty()) {
