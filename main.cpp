@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include "filemanager.h"
+#include <QDate>
 
 
 int main(int argc, char *argv[])
@@ -18,8 +18,11 @@ int main(int argc, char *argv[])
     l->imprimir();*/
 
     //Mundo * m = new Mundo();
-    //m->crearPersonas(10);
+    //m->crearPersonas(1000);
     //m->imprimir();
+
+    QString fecha = QDate::currentDate().toString();
+    qDebug() << QDate::currentDate().month();
 
     QApplication a(argc, argv);
     MainWindow w;
