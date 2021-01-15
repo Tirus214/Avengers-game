@@ -178,7 +178,7 @@ void Spiderman::crearTela(){
             aleatorio = mundo->aleatorio(0,100);
             if (aleatorio >= 50){
                 contadorTelas++;
-                if (heapEntrada->getHijoDerecho(tmp) == nullptr && heapEntrada->getHijoIzquierdo(tmp) && hojaEncontrada == nullptr){
+                if (heapEntrada->getHijoDerecho(tmp) == nullptr && heapEntrada->getHijoIzquierdo(tmp) == nullptr && hojaEncontrada == nullptr){
                     hojaEncontrada = tmp;
                 }
             }
