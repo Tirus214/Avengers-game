@@ -52,13 +52,6 @@ void Persona::setEstadoMarital(){
 }
 
 
-void Persona::setFrecuencia(){
-    for(int i=0; i<7; i++){
-        salud[i] = aleatorio(0,7);
-    }
-}
-
-
 
 void ListaDoble::insertarAlFinal(Persona * persona){
         if(primerNodo == NULL){

@@ -14,6 +14,7 @@ SOURCES += \
     filemanager.cpp \
     heap.cpp \
     listadoble.cpp \
+    log.cpp \
     main.cpp \
     mainwindow.cpp \
     mundo.cpp \
@@ -27,6 +28,7 @@ HEADERS += \
     filemanager.h \
     heap.h \
     listadoble.h \
+    log.h \
     mainwindow.h \
     mundo.h \
     nodoarbol.h \

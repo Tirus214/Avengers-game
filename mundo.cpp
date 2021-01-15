@@ -353,6 +353,3 @@ void Mundo::llenarHeap(Heap *heapNuevo) {
 
 
 
-void Mundo::crearArbol(){
-    arbolHeap->
-}
