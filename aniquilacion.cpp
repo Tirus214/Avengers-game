@@ -278,7 +278,8 @@ void Thanos::eliminarCasilla(ListaDoble * casillaEliminada){
         do {
             tmp->persona->estadoActual = "Muerto";
             tmp = tmp->siguiente;
-            eliminados++;
+            // JEAN PAUL
+            eliminados++;           // Este es el contador, solo que se llama eliminados en este caso
         }while(tmp != casillaEliminada->primerNodo);
     }
 }
