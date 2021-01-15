@@ -127,7 +127,78 @@ void Ironman::salvarDescendientes(Persona * raiz){
         else{
             do{
                 salvarAscendientes(tmp->persona);
-            }while(tmp != NULL);
+            }while(tmp != raiz->amigos->primerNodo);
+        }
+    }
+}
+
+void Thor::obtenerNodoPorNivel(NodoArbol *raiz, int nivelActual, int nivelBuscado){
+    if(raiz == NULL) {
+          return;
+      }
+      if(nivelActual == nivelBuscado) {
+        salvarPersonas(raiz->nodoPersona->persona->papa);
+        salvarPersonas(raiz->nodoPersona->persona->mama);
+        NodoDoble * tmp = raiz->nodoPersona->persona->hijos->primerNodo;
+        do{
+            if (tmp == NULL) break;
+            salvarPersonas(tmp->persona);
+            tmp = tmp->siguiente;
+        }while(tmp != raiz->nodoPersona->persona->hijos->primerNodo);
+      }
+      obtenerNodoPorNivel(raiz->hijoIzquierdo, nivelActual+1, nivelBuscado);
+      obtenerNodoPorNivel(raiz->hijoDerecho, nivelActual+1, nivelBuscado);
+}
+
+void Thor::salvarPersonas(Persona * personaSalvada){
+    if (personaSalvada == nullptr) return;
+    else{
+        NodoDoble * amigoTmp = personaSalvada->amigos->primerNodo;
+        if (amigoTmp == nullptr) return;
+        else{
+            do{
+                if (amigoTmp->persona->estadoActual == "Muerto"){
+                    amigoTmp->persona->estadoActual = "Vivo";
+                    contador++;
+                }
+            }while (amigoTmp != personaSalvada->amigos->primerNodo);
+        }
+    }
+    return;
+}
+
+void Spiderman::crearTela(){
+    if (heapEntrada->primerNodo == nullptr) return;
+    else{
+        NodoHeap * tmp = heapEntrada->primerNodo;
+        int aleatorio = 0;
+        contadorTelas = 0;
+        NodoHeap * hojaEncontrada = nullptr;
+        while(tmp != nullptr){
+            aleatorio = mundo->aleatorio(0,100);
+            if (aleatorio >= 50){
+                contadorTelas++;
+                if (heapEntrada->getHijoDerecho(tmp) == nullptr && heapEntrada->getHijoIzquierdo(tmp) && hojaEncontrada == nullptr){
+                    hojaEncontrada = tmp;
+                }
+            }
+            tmp = tmp->siguiente;
+        }
+        salvarPersonas(hojaEncontrada);
+    }
+}
+
+void Spiderman::salvarPersonas(NodoHeap * hoja){
+    if (hoja == nullptr) return;
+    else{
+        NodoDoble * inicio = listaPersonas->buscarPorId(hoja->nodoDoble->persona->id);
+        for(int i = 0; i <= contadorTelas; i++){
+            if (inicio == nullptr) return;
+            if(inicio->persona->estadoActual == "Muerto"){
+                inicio->persona->estadoActual = "Vivo";
+                contador ++;
+            }
+            inicio = inicio->siguiente;
         }
     }
 }

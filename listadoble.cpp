@@ -137,6 +137,20 @@ int ListaDoble::largo(){
     return index;
 }
 
+NodoDoble * ListaDoble::buscarPorId(int id){
+    if(primerNodo != NULL){
+        NodoDoble * tmp = primerNodo;
+        do{
+            if (tmp->persona->id == id) {
+                return tmp;
+            }
+            tmp = tmp->siguiente;
+        } while(tmp != primerNodo);
+    }
+    return NULL;
+}
+
+
 
 NodoDoble* ListaDoble::buscarEnPosicion(int posicion){
     if (!isEmpty()){
