@@ -53,6 +53,7 @@ struct Mundo{
     void insertDeportes();
     void crearHeap();
     int getCantNodosArbol();
+    int getIndex(int exponente);
     void sumarAcciones();
     void putConyugue();
     void putPadres();

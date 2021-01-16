@@ -148,6 +148,37 @@ void Mundo::insertDeportes(){
 }
 
 
+<<<<<<< Updated upstream
+=======
+void Mundo::crearHeap(){
+    int cantNodos = getCantNodosArbol();
+    int multiplo = (int) listaPersonas->largo() / cantNodos;
+    for(int i=0; i<cantNodos; i++) {
+        NodoDoble * tmp = listaPersonas->buscarEnPosicion(multiplo*i);
+        arbolHeap->insertarAlInicio(tmp);
+        arbolOrdenado->insertar(tmp);
+    }
+}
+
+
+int Mundo::getCantNodosArbol(){
+    int cantNodos = (int) listaPersonas->largo()/100;    //obtengo el 1%
+    int exponente = 0;
+    int index = getIndex(exponente);
+    while(cantNodos >= index){
+        exponente++;
+        index = getIndex(exponente);
+    }
+    return index;
+}
+
+
+int Mundo::getIndex(int exponente){
+   return pow(2,exponente)-1;
+}
+
+
+>>>>>>> Stashed changes
 void Mundo::sumarAcciones(){
     if(!listaPersonas->isEmpty()){
         NodoDoble * tmp = listaPersonas->primerNodo;
