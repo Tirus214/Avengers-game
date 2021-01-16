@@ -1,22 +1,18 @@
 #include "filemanager.h"
 
-void FileManager::escribir(QString name, QString arreglo[]){
+void FileManager::escribir(QString name, QStringList arreglo){
     QFile file("C:/Archivos/" + name + ".txt");
-    if (!file.open(QFile::ReadOnly | QFile::Text)){
+    if (!file.open(QFile::WriteOnly | QFile::Text)){
         qDebug() << "No se pudo abrir el archivo";
         return;
     }
-    int index = 0;
-    QTextStream in(&file);
-    while(!in.atEnd()){
-        QString line = in.readLine();
-        try {
-            arreglo[index] = line;
-            index++;
-        }  catch (FileManager) {
-            continue;
-        }
+    QTextStream out(&file);
+    for (int i=0; i<arreglo.length(); i++) {
+        QString line = arreglo[i];
+        out << line;
+        out << "\n";
     }
+    file.flush();
     file.close();
 }
 

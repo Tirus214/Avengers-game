@@ -1,8 +1,8 @@
 #ifndef MUNDO_H
 #define MUNDO_H
 #include "heap.h"
-#include "filemanager.h"
 #include "arbol.h"
+#include "log.h"
 
 
 struct Mundo{
@@ -19,6 +19,8 @@ struct Mundo{
     int index;
     Heap * arbolHeap;
     Arbol * arbolOrdenado;
+    Log * logMuertes;
+    Log * logSalvacion;
 
     Mundo(){
         listaPersonas = new ListaDoble();
@@ -33,6 +35,8 @@ struct Mundo{
 
         arbolHeap = new Heap();
         arbolOrdenado = new Arbol();
+        logMuertes = new Log();
+        logSalvacion = new Log();
     }
 
     void crearPersonas(int num);

@@ -79,7 +79,7 @@ struct Spiderman{
         mundo = _mundo;
         heapEntrada = mundo->arbolHeap;
         contador = 0;
-        contadorTelas;
+        contadorTelas = 0;
     }
 
     void crearTela();

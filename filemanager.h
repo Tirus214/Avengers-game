@@ -14,7 +14,7 @@ struct FileManager{
     }
 
     void leer(QString name, QString arreglo[]);
-    void escribir(QString name, QString arreglo[]);
+    void escribir(QString name, QStringList arreglo);
 };
 
 #endif // FILEMANAGER_H

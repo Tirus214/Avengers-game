@@ -21,8 +21,10 @@ int main(int argc, char *argv[])
     //m->crearPersonas(1000);
     //m->imprimir();
 
-    QString fecha = QDate::currentDate().toString();
-    qDebug() << QDate::currentDate().month();
+    QStringList array = {"hola", "buenas", "tardes"};
+
+    FileManager * f = new FileManager();
+    f->escribir("Prueba", array);
 
     QApplication a(argc, argv);
     MainWindow w;
