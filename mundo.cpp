@@ -28,11 +28,17 @@ void Mundo::crearPersonas(int num){
     }
     index += num;
     clasificarRango();
+    qDebug() << "Lista sirve";
     putHijos();
+    qDebug() << "putHijos sirve";
     putConyugue();
+    qDebug() << "putConyugue sirve";
     putPadres();
+    qDebug() << "putPadres sirve";
     putAmigos();
-    crearHeap();
+    qDebug() << "putAmigos sirve";
+    //crearHeap();
+    qDebug() << "crearHeap sirve";
 }
 
 
@@ -123,7 +129,7 @@ void Mundo::insertHijos(NodoDoble* papa, int num){
                     num--;
                 }
         hijo = hijo->siguiente;
-    } while(hijo != listaPersonas->primerNodo || num < 0);
+    } while(hijo != listaPersonas->primerNodo && num > 0);
 }
 
 
@@ -139,29 +145,6 @@ bool Mundo::validarHijo(Persona* papa, Persona* hijo){
 void Mundo::insertDeportes(){
     int numDeportes = aleatorio(0,6);
     listaPersonas->primerNodo->anterior->persona->deportes = listaDeportes[numDeportes];
-}
-
-
-void Mundo::crearHeap(){
-    int cantNodos = getCantNodosArbol();
-    int multiplo = (int) listaPersonas->largo() / cantNodos;
-    for(int i=0; i<cantNodos; i++) {
-        NodoDoble * tmp = listaPersonas->buscarEnPosicion(multiplo*i);
-        arbolHeap->insertarAlInicio(tmp);
-        arbolOrdenado->insertar(tmp);
-    }
-}
-
-
-int Mundo::getCantNodosArbol(){
-    int cantNodos = (int) listaPersonas->largo()/100;    //obtengo el 1%
-    int exponente = 0;
-    int index = 2;
-    while(cantNodos <= (int) pow(index,exponente)-1){
-        exponente++;
-    }
-    cantNodos = (int) pow(index,exponente-1);
-    return cantNodos;
 }
 
 
@@ -316,6 +299,7 @@ void Mundo::imprimir(){
             for (int i=0; i<tmp->persona->hijos->largo(); i++) {
                 qDebug() << "    ID: " << hijo->persona->id;
                 qDebug() << "    Nombre: " << hijo->persona->nombre;
+                hijo = hijo->siguiente;
             }
             // Imprimir los pecados (temporal)
             for (int i = 0; i < 7; i++) {
@@ -327,6 +311,28 @@ void Mundo::imprimir(){
             tmp = tmp->siguiente;
         } while(tmp != listaPersonas->primerNodo);
     }
+}
+
+void Mundo::crearHeap(){
+    int cantNodos = getCantNodosArbol();
+    int multiplo = (int) listaPersonas->largo() / cantNodos;
+    for(int i=0; i<cantNodos; i++) {
+        NodoDoble * tmp = listaPersonas->buscarEnPosicion(multiplo*i);
+        arbolHeap->insertarAlInicio(tmp);
+        arbolOrdenado->insertar(tmp);
+    }
+}
+
+
+int Mundo::getCantNodosArbol(){
+    int cantNodos = (int) listaPersonas->largo()/100;    //obtengo el 1%
+    int exponente = 0;
+    int index = 2;
+    while(cantNodos <= (int) pow(index,exponente)-1){
+        exponente++;
+    }
+    cantNodos = (int) pow(index,exponente-1);
+    return cantNodos;
 }
 
 void Mundo::llenarHeap() {

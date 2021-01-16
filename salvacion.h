@@ -27,6 +27,7 @@ struct Antman{
 
     //métodos
     void dejarFeromonas();
+    int maximo(int, int);
     void escogerNodo();
     void salvarPersonas();
     void clearFeromonas(NodoArbol *);
@@ -73,13 +74,15 @@ struct Spiderman{
     int contador;
     Heap * heapEntrada;
     Mundo * mundo;
+    ListaDoble * listaPersonas;
     int contadorTelas;
 
     Spiderman (Mundo * _mundo){
         mundo = _mundo;
         heapEntrada = mundo->arbolHeap;
         contador = 0;
-        contadorTelas;
+        listaPersonas = mundo->listaPersonas;
+        contadorTelas = 0;
     }
 
     void crearTela();

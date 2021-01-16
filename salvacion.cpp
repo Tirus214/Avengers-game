@@ -73,7 +73,7 @@ void Antman::salvarPersonas(){
     return;
 }
 
-int maximo (int a, int b)
+int Antman::maximo (int a, int b)
 {
     if (a>b)
        return a;
