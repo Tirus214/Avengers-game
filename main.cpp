@@ -17,14 +17,6 @@ int main(int argc, char *argv[])
     l->insertarAlFinal(new Persona(122,"juan", "perez", "cristiano", "profesor", paises));
     l->imprimir();*/
 
-    //Mundo * m = new Mundo();
-    //m->crearPersonas(1000);
-    //m->imprimir();
-
-    QStringList array = {"hola", "buenas", "tardes"};
-
-    FileManager * f = new FileManager();
-    f->escribir("Prueba", array);
 
     QApplication a(argc, argv);
     MainWindow w;

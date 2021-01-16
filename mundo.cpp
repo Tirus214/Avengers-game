@@ -37,8 +37,8 @@ void Mundo::crearPersonas(int num){
     qDebug() << "putPadres sirve";
     putAmigos();
     qDebug() << "putAmigos sirve";
-    //crearHeap();
-    qDebug() << "crearHeap sirve";
+    //crearHeap2();
+    qDebug() << "crearHeap2 sirve";
 }
 
 
@@ -148,8 +148,6 @@ void Mundo::insertDeportes(){
 }
 
 
-<<<<<<< Updated upstream
-=======
 void Mundo::crearHeap(){
     int cantNodos = getCantNodosArbol();
     int multiplo = (int) listaPersonas->largo() / cantNodos;
@@ -178,7 +176,6 @@ int Mundo::getIndex(int exponente){
 }
 
 
->>>>>>> Stashed changes
 void Mundo::sumarAcciones(){
     if(!listaPersonas->isEmpty()){
         NodoDoble * tmp = listaPersonas->primerNodo;
@@ -344,27 +341,6 @@ void Mundo::imprimir(){
     }
 }
 
-void Mundo::crearHeap(){
-    int cantNodos = getCantNodosArbol();
-    int multiplo = (int) listaPersonas->largo() / cantNodos;
-    for(int i=0; i<cantNodos; i++) {
-        NodoDoble * tmp = listaPersonas->buscarEnPosicion(multiplo*i);
-        arbolHeap->insertarAlInicio(tmp);
-        arbolOrdenado->insertar(tmp);
-    }
-}
-
-
-int Mundo::getCantNodosArbol(){
-    int cantNodos = (int) listaPersonas->largo()/100;    //obtengo el 1%
-    int exponente = 0;
-    int index = 2;
-    while(cantNodos <= (int) pow(index,exponente)-1){
-        exponente++;
-    }
-    cantNodos = (int) pow(index,exponente-1);
-    return cantNodos;
-}
 
 void Mundo::llenarHeap() {
     if (!listaPersonas->isEmpty()) {
