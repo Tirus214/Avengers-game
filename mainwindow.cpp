@@ -18,8 +18,6 @@ MainWindow::~MainWindow()
 void MainWindow::on_btnCrearPersonas_clicked(){
     int num = ui->txfCrearPersonas->text().toInt();
     mundo->crearPersonas(num);
-    mundo->imprimir();
-    qDebug() << mundo->listaPersonas->largo();
 
 //      mundo->crearArbol();
 //      mundo->arbolHeap->imprimir();

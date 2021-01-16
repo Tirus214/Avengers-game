@@ -28,17 +28,11 @@ void Mundo::crearPersonas(int num){
     }
     index += num;
     clasificarRango();
-    qDebug() << "Lista sirve";
     putHijos();
-    qDebug() << "putHijos sirve";
     putConyugue();
-    qDebug() << "putConyugue sirve";
     putPadres();
-    qDebug() << "putPadres sirve";
     putAmigos();
-    qDebug() << "putAmigos sirve";
-    //crearHeap2();
-    qDebug() << "crearHeap2 sirve";
+    //crearHeap();
 }
 
 
@@ -243,6 +237,10 @@ void Mundo::putPadres(){
         do{
             randomPadre(tmp->persona, "Hombre");
             randomPadre(tmp->persona, "Mujer");
+            qDebug() << tmp->persona->papa->id;
+            qDebug() << tmp->persona->papa->nombre;
+            qDebug() << tmp->persona->papa->apellido;
+            qDebug() << "";
             tmp = tmp->siguiente;
         } while(tmp != listaPersonas->primerNodo);
     }
@@ -256,7 +254,8 @@ void Mundo::randomPadre(Persona* actual, QString gender){
         index = aleatorio(0, listaPersonas->largo()-1);
         tmp = listaPersonas->buscarEnPosicion(index)->persona;
     }
-    actual->conyugue = tmp;
+    if(gender == "Hombre") actual->papa = tmp;
+    else if(gender == "Mujer") actual->mama = tmp;
 }
 
 
