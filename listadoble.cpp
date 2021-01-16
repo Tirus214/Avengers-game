@@ -52,6 +52,24 @@ void Persona::setEstadoMarital(){
 }
 
 
+int Persona::sumaPecados(){
+    int resul = 0;
+    for (int i=0; i<7; i++) {
+        resul += accionesMalas[i];
+    }
+    return resul;
+}
+
+int Persona::sumaAccionesBuenas(){
+    int resul = 0;
+    for (int i=0; i<7; i++) {
+        resul += accionesBuenas[i];
+    }
+    return resul;
+}
+
+
+
 
 void ListaDoble::insertarAlFinal(Persona * persona){
         if(primerNodo == NULL){

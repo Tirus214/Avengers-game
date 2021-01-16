@@ -46,7 +46,7 @@ struct Thanos {
     void recorrerLista();
     void imprimir();
     void comandoThanos(int, int);
-    void eliminarCasilla(ListaDoble *);
+    void eliminarCasilla(ListaDoble *, int, int);
 };
 
 struct Midnight {

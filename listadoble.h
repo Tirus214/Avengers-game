@@ -102,6 +102,8 @@ struct Persona {
     void setFrecuencia();
     void setCantPecados();
     void setCantAccionesBuenas();
+    int sumaPecados();
+    int sumaAccionesBuenas();
 
     int aleatorio(int min, int max);
 };

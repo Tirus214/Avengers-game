@@ -67,6 +67,8 @@ void CorvusGlaive::matarPersonas(){
             if(tmp->nodoDoble->persona->estadoActual == "Vivo"){
                 tmp->nodoDoble->persona->estadoActual = "Muerto";
                 contador++;
+                mundo->logMuertes->insertarMuerte(tmp->nodoDoble->persona, "Corvus Glaive por ser del 5% mas pecador con una suma de: " +
+                                                  QString::number(tmp->nodoDoble->persona->sumaPecados()) );
             }
             tmp = tmp->siguiente;
         }
@@ -131,6 +133,8 @@ void Midnight::matarPersonas(){
             if(tmp->nodoDoble->persona->estadoActual == "Vivo"){
                 tmp->nodoDoble->persona->estadoActual = "Muerto";
                 contador++;
+                mundo->logMuertes->insertarMuerte(tmp->nodoDoble->persona, "Midnight por ser del 5% menos acciones buenas con una suma de: " +
+                                                  QString::number(tmp->nodoDoble->persona->sumaAccionesBuenas()) );
             }
             tmp = tmp->siguiente;
         }
@@ -183,6 +187,9 @@ void Nebula::matarPersonas(NodoDoble * raiz, NodoDoble * amigoAsociado){
         if (raiz->persona->estadoActual == "Vivo"){
             raiz->persona->estadoActual = "Muerto";
             contador++;
+            mundo->logMuertes->insertarMuerte(raiz->persona, "Nebula por ser amigo del humano con ID: " +
+                                              QString::number(amigoAsociado->persona->id) );
+
         }
         NodoDoble * tmp = raiz->persona->amigos->primerNodo;
         do{
@@ -211,17 +218,19 @@ void Dwarf::matarPersonas(){
         NodoDoble * tmp =  listaPersona->primerNodo;
         int contadorTotal = 0;
         do{
-            if(tmp->persona->profesion == deporteSeleccionado && tmp->persona->longevidad > deporteRepeticiones) contadorTotal++;
+            if(tmp->persona->deportes == deporteSeleccionado && tmp->persona->salud > deporteRepeticiones) contadorTotal++;
             tmp = tmp->siguiente;
         }while(tmp != listaPersona->primerNodo);
         int eliminacionesPorRealizar = contadorTotal / 2;
         int contadorEliminados = 0;
         do{
-            if(tmp->persona->profesion == deporteSeleccionado && tmp->persona->longevidad > deporteRepeticiones){
+            if(tmp->persona->deportes == deporteSeleccionado && tmp->persona->salud > deporteRepeticiones){
                 contadorEliminados++;
                 if (tmp->persona->estadoActual == "Vivo"){
                     tmp->persona->estadoActual = "Muerto";
                     contador++;
+                    mundo->logMuertes->insertarMuerte(tmp->persona, "Dwarf por practicar el deporte" + deporteSeleccionado +"mas de " +
+                                                      deporteRepeticiones + " veces por semana");
                 }
 
                 if (contadorEliminados >= eliminacionesPorRealizar) return;
@@ -271,14 +280,15 @@ void Thanos::insertar(int anioNacimiento, int resultadoHash, NodoDoble * persona
     matrizDispersion[anioNacimiento][resultadoHash]->insertarAlFinal(personaInsertada->persona);
 }
 
-void Thanos::eliminarCasilla(ListaDoble * casillaEliminada){
+void Thanos::eliminarCasilla(ListaDoble * casillaEliminada, int ano, int nivel){
     if (casillaEliminada->isEmpty()) return;
     else{
         NodoDoble * tmp = casillaEliminada->primerNodo;
         do {
             tmp->persona->estadoActual = "Muerto";
             tmp = tmp->siguiente;
-            // JEAN PAUL
+            mundo->logMuertes->insertarMuerte(tmp->persona, "Thanos por estar en el nivel " + QString::number(nivel) +
+                                              " y nacer en el año " + QString::number(ano));
             eliminados++;           // Este es el contador, solo que se llama eliminados en este caso
         }while(tmp != casillaEliminada->primerNodo);
     }
@@ -287,15 +297,15 @@ void Thanos::eliminarCasilla(ListaDoble * casillaEliminada){
 void Thanos::comandoThanos(int anio, int nivelHash){
     if (anio == -1){
         for(int i = 0; i <= 69; i++){
-            eliminarCasilla(matrizDispersion[i][nivelHash]);
+            eliminarCasilla(matrizDispersion[i][nivelHash], anio, nivelHash);
         }
     }
     else if (nivelHash == -1){
         for(int i = 0; i <= 9; i++){
-            eliminarCasilla(matrizDispersion[anio][i]);
+            eliminarCasilla(matrizDispersion[anio][i], anio, nivelHash);
         }
     }
-    else eliminarCasilla(matrizDispersion[anio][nivelHash]);
+    else eliminarCasilla(matrizDispersion[anio][nivelHash], anio, nivelHash);
 }
 
 void Thanos::imprimir(){
