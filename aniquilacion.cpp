@@ -62,9 +62,9 @@ void CorvusGlaive::matarPersonas(){
     }
     else {
         contadorUltimaCorrida = 0;
-        int cantidadAEliminar = (heap->contador)*0.05;
+        int cantidadAEliminar = (heap->contador/2)*0.05;
         NodoHeap* tmp = heap->primerNodo;
-        for (int i = 0; i <= cantidadAEliminar; i++){
+        for (int i = 0; i < cantidadAEliminar; i++){
             if(tmp->nodoDoble->persona->estadoActual == "Vivo"){
                 contadorUltimaCorrida++;
                 tmp->nodoDoble->persona->estadoActual = "Muerto";
@@ -117,9 +117,7 @@ void Midnight::recorrerHeap(){
             if (heap->getPadre(tmp) != NULL)
             acomodarHeap(tmp);
             tmp = tmp->siguiente;
-            imprimir();
         }
-        matarPersonas();
     }
 }
 
@@ -130,9 +128,9 @@ void Midnight::matarPersonas(){
     }
     else {
         contadorUltimaCorrida = 0;
-        int cantidadAEliminar = (heap->contador)*0.05;
+        int cantidadAEliminar = (heap->contador/2)*0.05;
         NodoHeap* tmp = heap->primerNodo;
-        for (int i = 0; i <= cantidadAEliminar; i++){
+        for (int i = 0; i < cantidadAEliminar; i++){
             if(tmp->nodoDoble->persona->estadoActual == "Vivo"){
                 tmp->nodoDoble->persona->estadoActual = "Muerto";
                 contadorUltimaCorrida++;
@@ -167,42 +165,42 @@ void Midnight::imprimir(){
 
 
 NodoDoble* Nebula::randNodoArbol(){
-    std::uniform_int_distribution<int> distribution(0,tamanoArbol);
-    int random = distribution(*QRandomGenerator::global());
-    arbolEntrada->imprimir();
+    int random = mundo->aleatorio(0,tamanoArbol - 1);
     if (arbolEntrada->isEmpty()) {
         return NULL;
     }
     else {
         if (random == 0) return arbolEntrada->primerNodo->nodoDoble;
         NodoHeap* tmp = arbolEntrada->primerNodo;
-        for (int i = 0; i <= random; i++){
+        for (int i = 0; i < random; i++){
             tmp = tmp->siguiente;
         }
-        matarPersonas(nodoSeleccionado,nodoSeleccionado);
+        nodoSeleccionado = tmp->nodoDoble;
+        contadorUltimaCorrida = 0;
         return tmp->nodoDoble;
     }
 }
 
 
-void Nebula::matarPersonas(NodoDoble * raiz, NodoDoble * amigoAsociado){
-    if (raiz == NULL || (raiz->persona->estadoActual == "Muerto" && !revisarLista(raiz->persona->amigos))) return;
+void Nebula::matarPersonas(NodoDoble * raiz, int idAnterior){
+    if (raiz == NULL) return;
+    if (raiz->persona->estadoActual == "Muerto" && revisarLista(raiz->persona->amigos) == false) return;
     else {
-        contadorUltimaCorrida = 0;
-        *amigoAsociado = *raiz;
+        idAnterior = raiz->persona->id;
         if (raiz->persona->estadoActual == "Vivo"){
             raiz->persona->estadoActual = "Muerto";
             contadorUltimaCorrida++;
             contador++;
             mundo->logMuertes->insertarMuerte(raiz->persona, "Nebula por ser amigo del humano con ID: " +
-                                              QString::number(amigoAsociado->persona->id) );
+                                              QString::number(idAnterior) );
 
         }
         NodoDoble * tmp = raiz->persona->amigos->primerNodo;
-        do{
-            matarPersonas(tmp, amigoAsociado);
+        for(int i = 0; i < raiz->persona->amigos->largo(); i++){
+            matarPersonas(tmp, idAnterior);
             tmp = tmp->siguiente;
-        }while(tmp != raiz->persona->amigos->primerNodo);
+        }
+        return;
     }
 }
 
@@ -224,12 +222,12 @@ void Dwarf::matarPersonas(){
     else {
         contadorUltimaCorrida = 0;
         NodoDoble * tmp =  listaPersona->primerNodo;
-        int contadorTotal = 0;
+        int contadorTotalDeportes = 0;
         do{
-            if(tmp->persona->deportes == deporteSeleccionado && tmp->persona->salud > deporteRepeticiones) contadorTotal++;
+            if(tmp->persona->deportes == deporteSeleccionado && tmp->persona->salud > deporteRepeticiones) contadorTotalDeportes++;
             tmp = tmp->siguiente;
         }while(tmp != listaPersona->primerNodo);
-        int eliminacionesPorRealizar = contadorTotal / 2;
+        int eliminacionesPorRealizar = contadorTotalDeportes / 2;
         int contadorEliminados = 0;
         do{
             if(tmp->persona->deportes == deporteSeleccionado && tmp->persona->salud > deporteRepeticiones){
@@ -244,7 +242,9 @@ void Dwarf::matarPersonas(){
 
                 if (contadorEliminados >= eliminacionesPorRealizar) return;
             }
+            tmp = tmp->siguiente;
         }while(tmp != listaPersona->primerNodo);
+        return;
     }
 }
 
@@ -256,32 +256,39 @@ void Dwarf::matarPersonas(){
 //===============================THANOS=====================================================
 
 
-
+void Thanos::addListas(){
+    for (int i = 0; i <= 70; i++){
+        for(int j = 0; j <= 9; j++){
+            matrizDispersion[i][j] = new ListaDoble();
+        }
+    }
+}
 
 void Thanos::recorrerLista(){
     if (listaPersona->isEmpty()) {
         return;
     }
     else{
+        addListas();
         NodoDoble * tmp = listaPersona->primerNodo;
         do{
             int resultadoHash = hashFunction(tmp);
-            insertar(tmp->persona->fechaNacimiento[0], resultadoHash, tmp);
+            insertar(2020-tmp->persona->fechaNacimiento[0], resultadoHash, tmp);
             tmp = tmp->siguiente;
         }while(tmp != listaPersona->primerNodo);
+        return;
     }
 }
 
 int Thanos::hashFunction(NodoDoble * analizado){
     Persona * personaAnalizada = analizado->persona;
     int puntos = 9;
-    if (personaAnalizada->cantPecados > personaAnalizada->cantAccionesBuenas) puntos = puntos - 3;
-    if (personaAnalizada->hijos->isEmpty()) puntos--;
-    if (personaAnalizada->estadoMarital == "Soltero") puntos--;
-    if (personaAnalizada->estadoMarital == "Divorciado") puntos = puntos -2;
+    if (personaAnalizada->cantPecados >= 1600) puntos = puntos - 4;
+    if (personaAnalizada->hijos->largo() >= 2) puntos--;
+    if (personaAnalizada->estadoMarital == "Soltero")puntos = puntos - 2;
+    else if (personaAnalizada->estadoMarital == "Divorciado") puntos--;
     if (personaAnalizada->longevidad > 35) puntos--;
-    if (personaAnalizada->longevidad > 55) puntos = puntos - 2;
-    if (personaAnalizada->amigos->largo() > 10) puntos = puntos - 1;
+    else if (personaAnalizada->longevidad > 55) puntos = puntos - 2;
     return puntos;
 }
 
@@ -309,13 +316,13 @@ void Thanos::eliminarCasilla(ListaDoble * casillaEliminada, int ano, int nivel){
 
 void Thanos::comandoThanos(int anio, int nivelHash){
     if (anio == -1){
-        for(int i = 0; i <= 69; i++){
-            eliminarCasilla(matrizDispersion[i][nivelHash], anio, nivelHash);
+        for(int i = 0; i <= 70; i++){
+            eliminarCasilla(matrizDispersion[i][nivelHash], i, nivelHash);
         }
     }
     else if (nivelHash == -1){
         for(int i = 0; i <= 9; i++){
-            eliminarCasilla(matrizDispersion[anio][i], anio, nivelHash);
+            eliminarCasilla(matrizDispersion[anio][i], anio, i);
         }
     }
     else eliminarCasilla(matrizDispersion[anio][nivelHash], anio, nivelHash);

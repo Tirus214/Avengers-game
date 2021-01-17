@@ -25,6 +25,7 @@ struct Heap{
     NodoHeap* acomodar(NodoHeap*);
     void imprimir();
     int contarNodos();
+    int contarNodosRecibe(Heap *);
     void insertar(NodoDoble*);
     NodoHeap* getPadre(NodoHeap*);
     NodoHeap* getHijoIzquierdo(NodoHeap*);

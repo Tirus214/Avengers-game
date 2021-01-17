@@ -35,17 +35,19 @@ struct Thanos {
     //atributos
     Mundo * mundo;
     ListaDoble * listaPersona;
-    ListaDoble * matrizDispersion[70][10];
+    ListaDoble * matrizDispersion[71][10];
     int eliminados;
     int contadorUltimaCorrida;
 
     Thanos(Mundo * _mundo){
         mundo = _mundo;
         eliminados = 0;
+        listaPersona = mundo->listaPersonas;
         contadorUltimaCorrida = 0;
     }
 
     void insertar (int, int, NodoDoble *);
+    void addListas();
     int hashFunction(NodoDoble *);
     void recorrerLista();
     void imprimir();
@@ -65,9 +67,8 @@ struct Midnight {
     Midnight (Mundo * _mundo) {
         heap = new Heap();
         mundo = _mundo;
-        mundo->llenarHeap(heap);
         listaPersona = mundo->listaPersonas;
-        recorrerHeap();
+        mundo->llenarHeap(heap);
         contador = 0;
         contadorUltimaCorrida = 0;
     }
@@ -93,14 +94,14 @@ struct Nebula{
         mundo = _mundo;
         listaPersona = mundo->listaPersonas;
         arbolEntrada = mundo->arbolHeap;
-        tamanoArbol = arbolEntrada->contarNodos();
+        tamanoArbol = arbolEntrada->contador;
         nodoSeleccionado = randNodoArbol();
         contador = 0;
         contadorUltimaCorrida = 0;
     }
 
 
-    void matarPersonas(NodoDoble *, NodoDoble *);
+    void matarPersonas(NodoDoble *, int);
     bool revisarLista(ListaDoble *);
     NodoDoble * randNodoArbol();
 
@@ -120,6 +121,7 @@ struct Dwarf{
         deporteSeleccionado = "";
         deporteRepeticiones = 0;
         contador = 0;
+        deporteSeleccionado = "Tenis";
         contadorUltimaCorrida = 0;
     }
 

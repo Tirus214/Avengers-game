@@ -37,6 +37,7 @@ struct Mundo{
         arbolOrdenado = new Arbol();
         logMuertes = new Log();
         logSalvacion = new Log();
+        llenarHeap(arbolHeap);
     }
 
     void crearPersonas(int num);
@@ -72,6 +73,8 @@ struct Mundo{
     void searchAmigos(NodoDoble * actual, int numAmigos);
     bool searchAmigosComun(ListaDoble * amigos, ListaDoble * amigosPosibles);
     void crearArbol();
+    int contarVivos();
+    int contarMuertos();
 };
 
 #endif // MUNDO_H

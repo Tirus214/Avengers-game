@@ -18,7 +18,37 @@ MainWindow::~MainWindow()
 void MainWindow::on_btnCrearPersonas_clicked(){
     int num = ui->txfCrearPersonas->text().toInt();
     mundo->crearPersonas(num);
-
+    //mundo->imprimir();
+    mundo->llenarHeap(mundo->arbolHeap);
+//    qDebug() << mundo->listaPersonas->largo();
+//        CorvusGlaive * corvus = new CorvusGlaive(mundo);
+//        corvus->insertarAHeap();
+//        qDebug() << "Corvus sirve 1";
+//        corvus->matarPersonas();
+//        qDebug() << "Corvus sirve 2";
+//        Midnight * midnight = new Midnight(mundo);
+//        mundo->llenarHeap(midnight->heap);
+//        qDebug() << "Midnight sirve 1";
+//        midnight->recorrerHeap();
+//        midnight->matarPersonas();
+//        Nebula * nebula = new Nebula(mundo);
+//        nebula->randNodoArbol();
+//        nebula->matarPersonas(nebula->nodoSeleccionado, nebula->nodoSeleccionado->persona->id);
+//        qDebug() << nebula->contador;
+//        qDebug() << "Nebula sirve";
+//        //mundo->imprimir();
+//        Dwarf * black = new Dwarf(mundo);
+//        qDebug() << "Dwarf sirve sirve constructor";
+//        black->matarPersonas();
+//        qDebug() << "Dwarf sirve sirve";
+//        qDebug() << black->contador;
+//        mundo->contarMuertos();
+//        mundo->contarVivos();
+    Thanos * thanosPrueba = new Thanos(mundo);
+    thanosPrueba->recorrerLista();
+    thanosPrueba->comandoThanos(65,-1);
+    qDebug() << thanosPrueba->eliminados;
+    qDebug() << "Thanos recorrer sirve";
 
 //      mundo->crearArbol();
 //      mundo->arbolHeap->imprimir();

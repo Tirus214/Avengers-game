@@ -61,6 +61,19 @@
         }
     }
 
+    int Heap::contarNodosRecibe(Heap * arbolHeap){
+        int contador = 0;
+        if (arbolHeap->isEmpty()) {
+            return 0;
+        }
+        else {
+            NodoHeap* tmp = arbolHeap->primerNodo;
+            while (tmp != NULL) {
+                contador++;
+            }
+            return contador;
+        }
+    }
 
     // Esta funcion no se usa es mejor una unica por heap que acomode segun criterio
     // (pecados,deportes,familia,etc)

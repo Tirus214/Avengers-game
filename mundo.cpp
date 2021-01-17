@@ -237,10 +237,6 @@ void Mundo::putPadres(){
         do{
             randomPadre(tmp->persona, "Hombre");
             randomPadre(tmp->persona, "Mujer");
-            qDebug() << tmp->persona->papa->id;
-            qDebug() << tmp->persona->papa->nombre;
-            qDebug() << tmp->persona->papa->apellido;
-            qDebug() << "";
             tmp = tmp->siguiente;
         } while(tmp != listaPersonas->primerNodo);
     }
@@ -280,6 +276,10 @@ void Mundo::searchAmigos(NodoDoble * actual, int numAmigos){
     if(!listaPersonas->isEmpty() || numAmigos != 0){
         NodoDoble * tmp = listaPersonas->primerNodo;
         do{
+                if(actual->persona->amigos->esta(tmp->persona->id)){
+                    tmp = tmp->siguiente;
+                    continue;
+                }
                 if(tmp->persona->pais == actual->persona->pais){
                     actual->persona->amigos->insertarAlFinal(tmp->persona);
                     numAmigos--;
@@ -293,7 +293,7 @@ void Mundo::searchAmigos(NodoDoble * actual, int numAmigos){
                     numAmigos--;
                 }
             tmp = tmp->siguiente;
-        } while(tmp != listaPersonas->primerNodo || numAmigos > 0);
+        } while(tmp != listaPersonas->primerNodo && numAmigos > 0);
     }
 }
 
@@ -328,6 +328,14 @@ void Mundo::imprimir(){
                 qDebug() << "    Nombre: " << hijo->persona->nombre;
                 hijo = hijo->siguiente;
             }
+            qDebug() << "Amigos: ";
+            NodoDoble* amigos = tmp->persona->amigos->primerNodo;
+            for (int i=0; i<tmp->persona->amigos->largo(); i++) {
+                qDebug() << "    ID: " << amigos->persona->id;
+                qDebug() << "    Nombre: " << amigos->persona->nombre;
+                qDebug() << "    Estado: " << amigos->persona->estadoActual;
+                amigos = amigos->siguiente;
+            }
             // Imprimir los pecados (temporal)
             for (int i = 0; i < 7; i++) {
                 qDebug() << "Pecado [" << i << "] = " << tmp->persona->accionesMalas[i];
@@ -340,6 +348,27 @@ void Mundo::imprimir(){
     }
 }
 
+int Mundo::contarMuertos(){
+    NodoDoble * tmp = listaPersonas->primerNodo;
+    int contador = 0;
+    do{
+        if (tmp->persona->estadoActual == "Muerto")contador++;
+        tmp = tmp->siguiente;
+    }while(tmp != listaPersonas->primerNodo);
+    qDebug() << contador;
+    return contador;
+}
+
+int Mundo::contarVivos(){
+    NodoDoble * tmp = listaPersonas->primerNodo;
+    int contador = 0;
+    do{
+        if (tmp->persona->estadoActual == "Vivo")contador++;
+        tmp = tmp->siguiente;
+    }while(tmp != listaPersonas->primerNodo);
+    qDebug() << contador;
+    return contador;
+}
 
 void Mundo::llenarHeap() {
     if (!listaPersonas->isEmpty()) {

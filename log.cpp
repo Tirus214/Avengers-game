@@ -14,11 +14,19 @@ void Log::getFechaYHora(){
 
 
 void Log::insertarMuerte(Persona* persona, QString nota){
-    historico.append(" < " + fecha + " " + tiempo + "   Humano " + QString::number(persona->id) + " " + persona->nombre +
-                     " " + persona->apellido + " " + persona->pais + " " + "Amigos [ " + getAmigos(persona) + " ] " +
-                     "Pareja ID: " +QString::number(persona->conyugue->id) + " " + persona->conyugue->nombre + " " +
-                     persona->conyugue->apellido + " Familia [ " + getFamilia(persona) + " ] " + "Murio el " + fecha +
-                     " aniquilidado por " + nota + " > ");
+    if (persona->estadoMarital == "Soltero"){
+        historico.append(" < " + fecha + " " + tiempo + "   Humano " + QString::number(persona->id) + " " + persona->nombre +
+                         " " + persona->apellido + " " + persona->pais + " " + "Amigos [ " + getAmigos(persona) + " ] " +
+                         + " Familia [ " + getFamilia(persona) + " ] " + "Murio el " + fecha +
+                         " aniquilidado por " + nota + " > ");
+    }
+    else{
+        historico.append(" < " + fecha + " " + tiempo + "   Humano " + QString::number(persona->id) + " " + persona->nombre +
+                         " " + persona->apellido + " " + persona->pais + " " + "Amigos [ " + getAmigos(persona) + " ] " +
+                         "Pareja ID: " +QString::number(persona->conyugue->id) + " " + persona->conyugue->nombre + " " +
+                         persona->conyugue->apellido + " Familia [ " + getFamilia(persona) + " ] " + "Murio el " + fecha +
+                         " aniquilidado por " + nota + " > ");
+    }
 }
 
 
@@ -45,14 +53,9 @@ QString Log::getAmigos(Persona* persona){
 
 QString Log::getFamilia(Persona* persona){
     QString resul = " ";
-    if (persona->papa == nullptr){
-        qDebug() << "Nulo padre";
-    }
-    qDebug() << "Papa ID: " << QString::number(persona->mama->id);
-    qDebug() << "Papa ID: " << QString::number(persona->papa->id);
     resul = resul + "Papa ID: " +QString::number(persona->papa->id) + " " + persona->papa->nombre + " " + persona->papa->apellido + " ";
     resul = resul + "Mama ID: " +QString::number(persona->mama->id) + " " + persona->mama->nombre + " " + persona->mama->apellido + " ";
-    if(!persona->amigos->isEmpty()){
+    if(!persona->hijos->isEmpty()){
         NodoDoble * tmp = persona->hijos->primerNodo;
         do{
             resul = resul + "ID: " +QString::number(tmp->persona->id) + " " + tmp->persona->nombre + " " + tmp->persona->apellido;
