@@ -45,6 +45,11 @@ QString Log::getAmigos(Persona* persona){
 
 QString Log::getFamilia(Persona* persona){
     QString resul = " ";
+    if (persona->papa == nullptr){
+        qDebug() << "Nulo padre";
+    }
+    qDebug() << "Papa ID: " << QString::number(persona->mama->id);
+    qDebug() << "Papa ID: " << QString::number(persona->papa->id);
     resul = resul + "Papa ID: " +QString::number(persona->papa->id) + " " + persona->papa->nombre + " " + persona->papa->apellido + " ";
     resul = resul + "Mama ID: " +QString::number(persona->mama->id) + " " + persona->mama->nombre + " " + persona->mama->apellido + " ";
     if(!persona->amigos->isEmpty()){

@@ -61,10 +61,12 @@ void CorvusGlaive::matarPersonas(){
         return;
     }
     else {
+        contadorUltimaCorrida = 0;
         int cantidadAEliminar = (heap->contador)*0.05;
         NodoHeap* tmp = heap->primerNodo;
         for (int i = 0; i <= cantidadAEliminar; i++){
             if(tmp->nodoDoble->persona->estadoActual == "Vivo"){
+                contadorUltimaCorrida++;
                 tmp->nodoDoble->persona->estadoActual = "Muerto";
                 contador++;
                 mundo->logMuertes->insertarMuerte(tmp->nodoDoble->persona, "Corvus Glaive por ser del 5% mas pecador con una suma de: " +
@@ -127,11 +129,13 @@ void Midnight::matarPersonas(){
         return;
     }
     else {
+        contadorUltimaCorrida = 0;
         int cantidadAEliminar = (heap->contador)*0.05;
         NodoHeap* tmp = heap->primerNodo;
         for (int i = 0; i <= cantidadAEliminar; i++){
             if(tmp->nodoDoble->persona->estadoActual == "Vivo"){
                 tmp->nodoDoble->persona->estadoActual = "Muerto";
+                contadorUltimaCorrida++;
                 contador++;
                 mundo->logMuertes->insertarMuerte(tmp->nodoDoble->persona, "Midnight por ser del 5% menos acciones buenas con una suma de: " +
                                                   QString::number(tmp->nodoDoble->persona->sumaAccionesBuenas()) );
@@ -175,6 +179,7 @@ NodoDoble* Nebula::randNodoArbol(){
         for (int i = 0; i <= random; i++){
             tmp = tmp->siguiente;
         }
+        matarPersonas(nodoSeleccionado,nodoSeleccionado);
         return tmp->nodoDoble;
     }
 }
@@ -183,9 +188,11 @@ NodoDoble* Nebula::randNodoArbol(){
 void Nebula::matarPersonas(NodoDoble * raiz, NodoDoble * amigoAsociado){
     if (raiz == NULL || (raiz->persona->estadoActual == "Muerto" && !revisarLista(raiz->persona->amigos))) return;
     else {
+        contadorUltimaCorrida = 0;
         *amigoAsociado = *raiz;
         if (raiz->persona->estadoActual == "Vivo"){
             raiz->persona->estadoActual = "Muerto";
+            contadorUltimaCorrida++;
             contador++;
             mundo->logMuertes->insertarMuerte(raiz->persona, "Nebula por ser amigo del humano con ID: " +
                                               QString::number(amigoAsociado->persona->id) );
@@ -215,6 +222,7 @@ void Dwarf::matarPersonas(){
         return;
     }
     else {
+        contadorUltimaCorrida = 0;
         NodoDoble * tmp =  listaPersona->primerNodo;
         int contadorTotal = 0;
         do{
@@ -227,6 +235,7 @@ void Dwarf::matarPersonas(){
             if(tmp->persona->deportes == deporteSeleccionado && tmp->persona->salud > deporteRepeticiones){
                 contadorEliminados++;
                 if (tmp->persona->estadoActual == "Vivo"){
+                    contadorUltimaCorrida++;
                     tmp->persona->estadoActual = "Muerto";
                     contador++;
                     mundo->logMuertes->insertarMuerte(tmp->persona, "Dwarf por practicar el deporte" + deporteSeleccionado +"mas de " +
@@ -283,13 +292,17 @@ void Thanos::insertar(int anioNacimiento, int resultadoHash, NodoDoble * persona
 void Thanos::eliminarCasilla(ListaDoble * casillaEliminada, int ano, int nivel){
     if (casillaEliminada->isEmpty()) return;
     else{
+        contadorUltimaCorrida = 0;
         NodoDoble * tmp = casillaEliminada->primerNodo;
         do {
-            tmp->persona->estadoActual = "Muerto";
-            tmp = tmp->siguiente;
-            mundo->logMuertes->insertarMuerte(tmp->persona, "Thanos por estar en el nivel " + QString::number(nivel) +
-                                              " y nacer en el año " + QString::number(ano));
-            eliminados++;           // Este es el contador, solo que se llama eliminados en este caso
+            if (tmp->persona->estadoActual == "Vivo"){
+                eliminados++;
+                contadorUltimaCorrida++;
+                tmp->persona->estadoActual = "Muerto";
+                tmp = tmp->siguiente;
+                mundo->logMuertes->insertarMuerte(tmp->persona, "Thanos por estar en el nivel " + QString::number(nivel) +
+                                                  " y nacer en el año " + QString::number(ano));
+            }
         }while(tmp != casillaEliminada->primerNodo);
     }
 }

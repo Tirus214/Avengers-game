@@ -18,8 +18,22 @@ MainWindow::~MainWindow()
 void MainWindow::on_btnCrearPersonas_clicked(){
     int num = ui->txfCrearPersonas->text().toInt();
     mundo->crearPersonas(num);
+//    CorvusGlaive * corvus = new CorvusGlaive(mundo);
+//    corvus->insertarAHeap();
+//    corvus->matarPersonas();
+//    qDebug() << "Corvus sirve";
+//    Midnight * midnight = new Midnight(mundo);
+//    mundo->llenarHeap(midnight->heap);
+//    midnight->recorrerHeap();
+//    qDebug() << "Midnight sirve";
+//    Nebula * nebula = new Nebula(mundo);
+//    nebula->randNodoArbol();
+//    qDebug() << "Nebula sirve";
+//    Dwarf * black = new Dwarf(mundo);
+//    black->matarPersonas();
+//    qDebug() << "Dwarf sirve sirve";
     mundo->imprimir();
-    qDebug() << mundo->listaPersonas->largo();
+    //qDebug() << mundo->listaPersonas->largo();
 
 //      mundo->crearArbol();
 //      mundo->arbolHeap->imprimir();

@@ -11,6 +11,7 @@ struct CorvusGlaive {
     Heap * heap;
     Mundo * mundo;
     int contador;
+    int contadorUltimaCorrida;
 
 
     // constructor
@@ -19,6 +20,7 @@ struct CorvusGlaive {
         mundo = _mundo;
         insertarAHeap();
         contador = 0;
+        contadorUltimaCorrida = 0;
     }
 
     // metodos
@@ -35,10 +37,12 @@ struct Thanos {
     ListaDoble * listaPersona;
     ListaDoble * matrizDispersion[70][10];
     int eliminados;
+    int contadorUltimaCorrida;
 
     Thanos(Mundo * _mundo){
         mundo = _mundo;
         eliminados = 0;
+        contadorUltimaCorrida = 0;
     }
 
     void insertar (int, int, NodoDoble *);
@@ -55,6 +59,7 @@ struct Midnight {
     Mundo * mundo;
     ListaDoble * listaPersona;
     int contador;
+    int contadorUltimaCorrida;
 
     // constructor
     Midnight (Mundo * _mundo) {
@@ -63,8 +68,8 @@ struct Midnight {
         mundo->llenarHeap(heap);
         listaPersona = mundo->listaPersonas;
         recorrerHeap();
-        imprimir();
         contador = 0;
+        contadorUltimaCorrida = 0;
     }
 
     // metodos
@@ -82,6 +87,7 @@ struct Nebula{
     int tamanoArbol;
     NodoDoble * nodoSeleccionado;
     int contador;
+    int contadorUltimaCorrida;
 
     Nebula (Mundo * _mundo) {
         mundo = _mundo;
@@ -90,6 +96,7 @@ struct Nebula{
         tamanoArbol = arbolEntrada->contarNodos();
         nodoSeleccionado = randNodoArbol();
         contador = 0;
+        contadorUltimaCorrida = 0;
     }
 
 
@@ -105,6 +112,7 @@ struct Dwarf{
     int deporteRepeticiones;
     Mundo * mundo;
     int contador;
+    int contadorUltimaCorrida;
 
     Dwarf (Mundo * _mundo) {
         mundo = _mundo;
@@ -112,6 +120,7 @@ struct Dwarf{
         deporteSeleccionado = "";
         deporteRepeticiones = 0;
         contador = 0;
+        contadorUltimaCorrida = 0;
     }
 
     void matarPersonas();

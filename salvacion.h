@@ -12,6 +12,7 @@ struct Antman{
     NodoArbol * inicio;
     NodoArbol * final;
     Arbol * arbolEntrada;
+    int contadorUltimaCorrida;
 
     //constructor
     Antman (Mundo * _mundo) {
@@ -20,6 +21,7 @@ struct Antman{
         arbolEntrada = mundo->arbolOrdenado;
         listaPersonas = mundo->listaPersonas;
         contador = 0;
+        contadorUltimaCorrida = 0;
         inicio = NULL;
         final = NULL;
     }
@@ -39,12 +41,14 @@ struct Ironman{
     int contador;
     Heap * heapEntrada;
     Mundo * mundo;
+    int contadorUltimaCorrida;
 
     //constructor
     Ironman (Mundo * _mundo){
         mundo = _mundo;
         heapEntrada = mundo->arbolHeap;
         contador = 0;
+        contadorUltimaCorrida = 0;
     }
 
     void detonarBombas();
@@ -56,6 +60,7 @@ struct Ironman{
 struct Thor{
 
     int contador;
+    int contadorUltimaCorrida;
     Arbol * arbolEntrada;
     Mundo * mundo;
     int nivelEscogido;
@@ -64,6 +69,7 @@ struct Thor{
         mundo = _mundo;
         arbolEntrada = mundo->arbolOrdenado;
         contador = 0;
+        contadorUltimaCorrida = 0;
     }
 
     void obtenerNodoPorNivel(NodoArbol *, int, int);
@@ -76,6 +82,7 @@ struct Spiderman{
     Mundo * mundo;
     ListaDoble * listaPersonas;
     int contadorTelas;
+    int contadorUltimaCorrida;
 
     Spiderman (Mundo * _mundo){
         mundo = _mundo;
@@ -83,6 +90,7 @@ struct Spiderman{
         contador = 0;
         listaPersonas = mundo->listaPersonas;
         contadorTelas = 0;
+        contadorUltimaCorrida = 0;
     }
 
     void crearTela();
