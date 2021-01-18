@@ -19,7 +19,7 @@ void MainWindow::on_btnCrearPersonas_clicked(){
     int num = ui->txfCrearPersonas->text().toInt();
     mundo->crearPersonas(num);
     //mundo->imprimir();
-    mundo->llenarHeap(mundo->arbolHeap);
+    //mundo->llenarHeap(mundo->arbolHeap);
 //    qDebug() << mundo->listaPersonas->largo();
 //        CorvusGlaive * corvus = new CorvusGlaive(mundo);
 //        corvus->insertarAHeap();
@@ -44,11 +44,11 @@ void MainWindow::on_btnCrearPersonas_clicked(){
 //        qDebug() << black->contador;
 //        mundo->contarMuertos();
 //        mundo->contarVivos();
-    Thanos * thanosPrueba = new Thanos(mundo);
-    thanosPrueba->recorrerLista();
-    thanosPrueba->comandoThanos(65,-1);
-    qDebug() << thanosPrueba->eliminados;
-    qDebug() << "Thanos recorrer sirve";
+    //Thanos * thanosPrueba = new Thanos(mundo);
+    //thanosPrueba->recorrerLista();
+    //thanosPrueba->comandoThanos(65,-1);
+    //qDebug() << thanosPrueba->eliminados;
+    //qDebug() << "Thanos recorrer sirve";
 
 //      mundo->crearArbol();
 //      mundo->arbolHeap->imprimir();
@@ -71,5 +71,5 @@ void MainWindow::on_btnCrearPersonas_clicked(){
     //structNebula->nodoSeleccionado->imprimir();
     //structNebula->matarPersonas(structNebula->nodoSeleccionado);
 
-
+    qDebug() << mundo->arbolOrdenado->contadorNodos(mundo->arbolOrdenado->raiz);
 }

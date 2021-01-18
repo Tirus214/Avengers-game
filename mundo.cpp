@@ -32,7 +32,7 @@ void Mundo::crearPersonas(int num){
     putConyugue();
     putPadres();
     putAmigos();
-    //crearHeap();
+    crearHeap();
 }
 
 
@@ -157,7 +157,7 @@ int Mundo::getCantNodosArbol(){
     int cantNodos = (int) listaPersonas->largo()/100;    //obtengo el 1%
     int exponente = 0;
     int index = getIndex(exponente);
-    while(cantNodos >= index){
+    while(cantNodos > index){
         exponente++;
         index = getIndex(exponente);
     }
