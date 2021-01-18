@@ -31,11 +31,19 @@ void Log::insertarMuerte(Persona* persona, QString nota){
 
 
 void Log::insertarSalvacion(Persona* persona, QString nota){
-    historico.append(" < " + fecha + " " + tiempo + "   Humano " + QString::number(persona->id) + " " + persona->nombre +
-                     " " + persona->apellido + " " + persona->pais + " " + "Amigos [ " + getAmigos(persona) + " ] " +
-                     "Pareja ID: " +QString::number(persona->conyugue->id) + " " + persona->conyugue->nombre + " " +
-                     persona->conyugue->apellido + " Familia [ " + getFamilia(persona) + " ] " + "Fue salvado el " + fecha +
-                     " salvado por " + nota + " > ");
+    if (persona->estadoMarital == "Soltero"){
+        historico.append(" < " + fecha + " " + tiempo + "   Humano " + QString::number(persona->id) + " " + persona->nombre +
+                         " " + persona->apellido + " " + persona->pais + " " + "Amigos [ " + getAmigos(persona) + " ] " +
+                         + " Familia [ " + getFamilia(persona) + " ] " + "Murio el " + fecha +
+                         " aniquilidado por " + nota + " > ");
+    }
+    else{
+        historico.append(" < " + fecha + " " + tiempo + "   Humano " + QString::number(persona->id) + " " + persona->nombre +
+                         " " + persona->apellido + " " + persona->pais + " " + "Amigos [ " + getAmigos(persona) + " ] " +
+                         "Pareja ID: " +QString::number(persona->conyugue->id) + " " + persona->conyugue->nombre + " " +
+                         persona->conyugue->apellido + " Familia [ " + getFamilia(persona) + " ] " + "Murio el " + fecha +
+                         " aniquilidado por " + nota + " > ");
+    }
 }
 
 

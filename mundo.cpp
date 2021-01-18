@@ -143,8 +143,15 @@ void Mundo::insertDeportes(){
 
 
 void Mundo::crearHeap(){
+    int multiplo = 0;
     int cantNodos = getCantNodosArbol();
-    int multiplo = (int) listaPersonas->largo() / cantNodos;
+    if (cantNodos > 0) {
+        multiplo = (int) listaPersonas->largo() / cantNodos;
+    }
+    else{
+        cantNodos = 1;
+        multiplo = 1;
+    }
     for(int i=0; i<cantNodos; i++) {
         NodoDoble * tmp = listaPersonas->buscarEnPosicion(multiplo*i);
         arbolHeap->insertarAlInicio(tmp);

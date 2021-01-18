@@ -5,21 +5,23 @@ void Antman::dejarFeromonas(){
     else {
         clearFeromonas(arbolEntrada->raiz);
         NodoArbol * tmp = NULL;
-        for(int i = 0;i > 2; i++){
+        for(int i = 0;i < 2; i++){
             int aleatorio = 0;
             if (i == 0) tmp = arbolEntrada->raiz->hijoIzquierdo;
             else if (i == 1) tmp = arbolEntrada->raiz->hijoDerecho;
             for (int i = 0; i <= cantidadHormigas; i++){
                 while(tmp != NULL){
                     aleatorio = mundo->aleatorio(0,100);
-                    tmp->feromonas++;
-                    if (0 <= aleatorio && aleatorio > 50 and tmp->hijoIzquierdo != NULL) tmp = tmp->hijoIzquierdo;
+                    tmp->feromonas = tmp->feromonas + 1;
+                    if (0 <= aleatorio && aleatorio > 50 && tmp->hijoIzquierdo != NULL) tmp = tmp->hijoIzquierdo;
                     else tmp = tmp->hijoDerecho;
                 }
             }
+            if (i == 0) inicio = escogerNodo(arbolEntrada->raiz->hijoIzquierdo);
+            else final = escogerNodo(arbolEntrada->raiz->hijoDerecho);
+            salvarPersonas();
         }
     }
-    escogerNodo();
     return;
 }
 
@@ -32,34 +34,21 @@ void Antman::clearFeromonas(NodoArbol * raiz){
     }
 }
 
-void Antman::escogerNodo(){
-    for(int i = 0; i < 0; i++){
-        NodoArbol * tmp = NULL;
-        if (i == 0) tmp = arbolEntrada->raiz->hijoIzquierdo;
-        if (i == 1) tmp = arbolEntrada->raiz->hijoDerecho;
-        while (tmp != NULL) {
-            if(tmp->hijoDerecho == tmp->hijoIzquierdo == NULL) break;
-            else if (tmp->hijoDerecho == NULL){
-                tmp = tmp->hijoIzquierdo;
-            }
-            else if (tmp->hijoIzquierdo == NULL){
-                tmp = tmp->hijoDerecho;
-            }
-            else if (tmp->hijoDerecho->feromonas > tmp->hijoIzquierdo->feromonas){
-                tmp = tmp->hijoDerecho;
-            }
-            else if (tmp->hijoDerecho->feromonas < tmp->hijoIzquierdo->feromonas){
-                tmp = tmp->hijoIzquierdo;
-            }
-            else if (tmp->hijoDerecho->feromonas == tmp->hijoIzquierdo->feromonas){
-                tmp = desempate(tmp->hijoIzquierdo, tmp->hijoDerecho);
-            }
+NodoArbol * Antman::escogerNodo(NodoArbol * raiz){
+    qDebug() << arbolEntrada->contadorNodos(arbolEntrada->raiz);
+    NodoArbol * tmp = raiz;
+    while (tmp != NULL) {
+        if(tmp->hijoDerecho == NULL || tmp->hijoIzquierdo == NULL) return tmp;
+        else if (tmp->hijoDerecho->feromonas > tmp->hijoIzquierdo->feromonas){
+            return escogerNodo(raiz->hijoDerecho);
         }
-        if (i == 0) inicio = tmp;
-        if (i == 1) final = tmp;
+        else if (tmp->hijoDerecho->feromonas < tmp->hijoIzquierdo->feromonas){
+            return escogerNodo(raiz->hijoIzquierdo);
+        }
+        else if (tmp->hijoDerecho->feromonas == tmp->hijoIzquierdo->feromonas){
+            return escogerNodo(desempate(tmp->hijoIzquierdo, tmp->hijoDerecho));
+        }
     }
-    salvarPersonas();
-    return;
 }
 
 
@@ -117,6 +106,9 @@ void Ironman::detonarBombas(){
 
 void Ironman::salvarAscendientes(Persona * personaAnalizada){
     if (personaAnalizada == NULL) return;
+    qDebug() << personaAnalizada->nombre;
+    qDebug() << personaAnalizada->estadoActual;
+    qDebug() << personaAnalizada->id;
     if (personaAnalizada->estadoActual == "Muerto"){
         contadorUltimaCorrida++;
         contador++;
@@ -124,9 +116,8 @@ void Ironman::salvarAscendientes(Persona * personaAnalizada){
         mundo->logSalvacion->insertarSalvacion(personaAnalizada, "Ironman por ser pariente de la persona: " + QString::number(personaAnalizada->id)
                                                + " a la que le detono la bomba");
     }
-    else;
-    salvarAscendientes(personaAnalizada->papa);
-    salvarAscendientes(personaAnalizada->mama);
+    if (personaAnalizada->papa != nullptr) salvarAscendientes(personaAnalizada->papa);
+    if (personaAnalizada->mama != nullptr) salvarAscendientes(personaAnalizada->mama);
     return;
 }
 

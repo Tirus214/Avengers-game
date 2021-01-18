@@ -16,7 +16,7 @@ struct Antman{
 
     //constructor
     Antman (Mundo * _mundo) {
-        cantidadHormigas = 0;
+        cantidadHormigas = 200;
         mundo = _mundo;
         arbolEntrada = mundo->arbolOrdenado;
         listaPersonas = mundo->listaPersonas;
@@ -30,7 +30,7 @@ struct Antman{
     //métodos
     void dejarFeromonas();
     int maximo(int, int);
-    void escogerNodo();
+    NodoArbol * escogerNodo(NodoArbol *);
     void salvarPersonas();
     void clearFeromonas(NodoArbol *);
     NodoArbol * desempate(NodoArbol *,NodoArbol *);

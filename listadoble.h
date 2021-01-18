@@ -46,6 +46,7 @@ struct NodoDoble{
 
 
 struct Persona {
+    QString estadoActual;
     int id;
     QString nombre;
     QString apellido;
@@ -53,7 +54,6 @@ struct Persona {
     QString creencia;
     QString profesion;
     QString pais;
-    QString estadoActual;
     int fechaNacimiento[3];
     int accionesBuenas[7];
     int accionesMalas[7];
@@ -82,6 +82,8 @@ struct Persona {
         profesion = _profesion;
         pais = _pais;
         genero = gender;
+        papa = nullptr;
+        mama = nullptr;
         ranFechaNacimiento();
         ranAccionesBuenas();
         ranAccionesMalas();
@@ -89,8 +91,8 @@ struct Persona {
         setEstadoMarital();
         setCantPecados();
         setCantAccionesBuenas();
-        estadoActual = "Vivo";
         paises = _paises;
+        estadoActual = "Vivo";
         categoria = 0;
     }
 
