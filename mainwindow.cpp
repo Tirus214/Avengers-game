@@ -26,11 +26,15 @@ void MainWindow::on_btnCrearPersonas_clicked(){
 //        qDebug() << "Corvus sirve 1";
 //        corvus->matarPersonas();
 //        qDebug() << "Corvus sirve 2";
-//        Midnight * midnight = new Midnight(mundo);
-//        mundo->llenarHeap(midnight->heap);
+        Midnight * midnight = new Midnight(mundo);
+        mundo->llenarHeap(midnight->heap);
+
 //        qDebug() << "Midnight sirve 1";
-//        midnight->recorrerHeap();
-//        midnight->matarPersonas();
+        midnight->recorrerHeap();
+        midnight->matarPersonas();
+        mundo->contarMuertos();
+        mundo->contarVivos();
+        qDebug() << "After salvar";
 //        Nebula * nebula = new Nebula(mundo);
 //        nebula->randNodoArbol();
 //        nebula->matarPersonas(nebula->nodoSeleccionado, nebula->nodoSeleccionado->persona->id);
@@ -42,13 +46,15 @@ void MainWindow::on_btnCrearPersonas_clicked(){
 //        black->matarPersonas();
 //        qDebug() << "Dwarf sirve sirve";
 //        qDebug() << black->contador;
-//        mundo->contarMuertos();
-//        mundo->contarVivos();
-    Thanos * thanosPrueba = new Thanos(mundo);
-    thanosPrueba->recorrerLista();
-    thanosPrueba->comandoThanos(65,-1);
-    qDebug() << thanosPrueba->eliminados;
-    qDebug() << "Thanos recorrer sirve";
+        Ironman * ironmanPrueba = new Ironman(mundo);
+        ironmanPrueba->detonarBombas();
+        mundo->contarMuertos();
+        mundo->contarVivos();
+    //Thanos * thanosPrueba = new Thanos(mundo);
+    //thanosPrueba->recorrerLista();
+    //thanosPrueba->comandoThanos(65,-1);
+    //qDebug() << thanosPrueba->eliminados;
+    //qDebug() << "Thanos recorrer sirve";
 
 //      mundo->crearArbol();
 //      mundo->arbolHeap->imprimir();
