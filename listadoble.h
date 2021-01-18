@@ -24,6 +24,7 @@ struct ListaDoble{
     void imprimir();
     bool esta(int index);
     NodoDoble * buscarPorId(int);
+    void sort(NodoDoble *, int);
     int largo();
     NodoDoble* buscarEnPosicion(int posicion);
 };

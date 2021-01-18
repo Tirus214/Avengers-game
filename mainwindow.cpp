@@ -18,7 +18,8 @@ MainWindow::~MainWindow()
 void MainWindow::on_btnCrearPersonas_clicked(){
     int num = ui->txfCrearPersonas->text().toInt();
     mundo->crearPersonas(num);
-    //mundo->imprimir();
+    qDebug() << "Sort pasa";
+    mundo->imprimir();
     //mundo->llenarHeap(mundo->arbolHeap);
 //    qDebug() << mundo->listaPersonas->largo();
 //        CorvusGlaive * corvus = new CorvusGlaive(mundo);

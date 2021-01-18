@@ -114,6 +114,24 @@ void ListaDoble::insertarAlInicio(Persona * persona){
     index++;
 }
 
+void ListaDoble::sort(NodoDoble * start, int largoLista){
+    struct NodoDoble *t, *s;
+    int i;
+
+    if (start == NULL) return;
+
+    s = start;
+    for(i = 0;i < largoLista; i++){
+        t = s->siguiente;
+        while(t != start){
+            if (s->persona->id < t->persona->id){
+                std::swap(s->persona, t->persona);
+            }
+            t = t->siguiente;
+        }
+        s = s->siguiente;
+    }
+}
 
 bool ListaDoble::isEmpty(){
     return primerNodo == NULL;
@@ -128,7 +146,6 @@ void ListaDoble::imprimir(){
         } while(tmp != primerNodo);
     }
 }
-
 
 bool ListaDoble::esta(int num){
     if(primerNodo != NULL){
@@ -181,18 +198,18 @@ void NodoDoble::imprimir(){
     qDebug() << "ID: " << persona->id;
     qDebug() << "Nombre: " + persona->nombre;
     qDebug() << "Apellido: " + persona->apellido;
-    qDebug() << "Creencia: " + persona->creencia;
-    qDebug() << "Hijos: ";
-    NodoDoble* hijo = persona->hijos->primerNodo;
-    for (int i=0; i < persona->hijos->largo(); i++) {
-        qDebug() << "    ID: " << hijo->persona->id;
-        qDebug() << "    Nombre: " << hijo->persona->nombre;
-    }
-    // Imprimir los pecados (temporal)
-    for (int i = 0; i < 7; i++) {
-        qDebug() << "Pecado [" << i << "] = " << persona->accionesMalas[i];
-    }
-    // Imprimir nuevo atributo 'cantPecados'
-    qDebug() << "Cantidad de pecados : [ " << persona->cantPecados << " ]";
-    qDebug() << "";
+//    qDebug() << "Creencia: " + persona->creencia;
+//    qDebug() << "Hijos: ";
+//    NodoDoble* hijo = persona->hijos->primerNodo;
+//    for (int i=0; i < persona->hijos->largo(); i++) {
+//        qDebug() << "    ID: " << hijo->persona->id;
+//        qDebug() << "    Nombre: " << hijo->persona->nombre;
+//    }
+//    // Imprimir los pecados (temporal)
+//    for (int i = 0; i < 7; i++) {
+//        qDebug() << "Pecado [" << i << "] = " << persona->accionesMalas[i];
+//    }
+//    // Imprimir nuevo atributo 'cantPecados'
+//    qDebug() << "Cantidad de pecados : [ " << persona->cantPecados << " ]";
+//    qDebug() << "";
 }

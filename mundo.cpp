@@ -24,6 +24,7 @@ void Mundo::crearPersonas(int num){
         QStringList arrayPaises;
         getPaises(rand, arrayPaises);
         listaPersonas->insertarAlFinal(new Persona(id, _nombre, _apellido, _creencia, _profesion, _pais, arrayPaises, _gender));
+        listaPersonas->sort(listaPersonas->primerNodo,listaPersonas->largo());
         insertDeportes();
     }
     index += num;
