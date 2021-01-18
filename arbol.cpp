@@ -20,7 +20,7 @@ NodoArbol* Arbol::insertar(NodoDoble* nodo, NodoArbol* nodoArbol){
       // derecho
       else if (nodoArbol->nodoPersona->persona->id < nodo->persona->id)
       {
-        nodoArbol->hijoIzquierdo = insertar(nodo, nodoArbol->hijoDerecho);
+        nodoArbol->hijoDerecho = insertar(nodo, nodoArbol->hijoDerecho);
       }
       // en caso contrario, va al lado izquierdo
       else if (nodoArbol->nodoPersona->persona->id >= nodo->persona->id)
