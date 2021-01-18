@@ -7,9 +7,9 @@ void Antman::dejarFeromonas(){
         NodoArbol * tmp = NULL;
         for(int i = 0;i > 2; i++){
             int aleatorio = 0;
+            if (i == 0) tmp = arbolEntrada->raiz->hijoIzquierdo;
+            else if (i == 1) tmp = arbolEntrada->raiz->hijoDerecho;
             for (int i = 0; i <= cantidadHormigas; i++){
-                if (i == 0) tmp = arbolEntrada->raiz->hijoIzquierdo;
-                if (i == 1) tmp = arbolEntrada->raiz->hijoDerecho;
                 while(tmp != NULL){
                     aleatorio = mundo->aleatorio(0,100);
                     tmp->feromonas++;
@@ -19,6 +19,8 @@ void Antman::dejarFeromonas(){
             }
         }
     }
+    escogerNodo();
+    return;
 }
 
 void Antman::clearFeromonas(NodoArbol * raiz){
@@ -56,6 +58,7 @@ void Antman::escogerNodo(){
         if (i == 0) inicio = tmp;
         if (i == 1) final = tmp;
     }
+    salvarPersonas();
     return;
 }
 
@@ -121,8 +124,10 @@ void Ironman::salvarAscendientes(Persona * personaAnalizada){
         mundo->logSalvacion->insertarSalvacion(personaAnalizada, "Ironman por ser pariente de la persona: " + QString::number(personaAnalizada->id)
                                                + " a la que le detono la bomba");
     }
+    else;
     salvarAscendientes(personaAnalizada->papa);
     salvarAscendientes(personaAnalizada->mama);
+    return;
 }
 
 void Ironman::salvarDescendientes(Persona * raiz){
@@ -136,11 +141,9 @@ void Ironman::salvarDescendientes(Persona * raiz){
                                                    + " a la que le detono la bomba");
         }
         NodoDoble * tmp = raiz->amigos->primerNodo;
-        if (tmp == NULL) return;
-        else{
-            do{
-                salvarAscendientes(tmp->persona);
-            }while(tmp != raiz->amigos->primerNodo);
+        for(int i = 0; i < raiz->amigos->largo(); i++){
+            salvarDescendientes(tmp->persona);
+            tmp = tmp->siguiente;
         }
     }
 }
