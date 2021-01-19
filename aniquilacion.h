@@ -94,7 +94,7 @@ struct Nebula{
         mundo = _mundo;
         listaPersona = mundo->listaPersonas;
         arbolEntrada = mundo->arbolHeap;
-        tamanoArbol = arbolEntrada->contador;
+        tamanoArbol = arbolEntrada->contarNodos();
         nodoSeleccionado = randNodoArbol();
         contador = 0;
         contadorUltimaCorrida = 0;

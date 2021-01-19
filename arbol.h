@@ -11,6 +11,7 @@ struct Arbol{
     }
 
     void insertar (NodoDoble*);
+    NodoArbol * crearNodo (NodoDoble*);
     NodoArbol* insertar(NodoDoble*, NodoArbol*);
     NodoDoble* buscar (int id, NodoArbol* nodoArbol);
     int obtenerNumeroElementos(NodoArbol*);
@@ -26,6 +27,7 @@ struct Arbol{
     int contadorNodos(NodoArbol*);
     NodoArbol* mayor (NodoArbol* arbol);
     bool isEmpty(NodoArbol *);
+    NodoArbol* insertarPorNivel(NodoArbol *&, NodoDoble *);
 };
 
 #endif // ARBOL_H

@@ -56,6 +56,7 @@
             NodoHeap* tmp = primerNodo;
             while (tmp != NULL) {
                 contador++;
+                tmp = tmp->siguiente;
             }
             return contador;
         }

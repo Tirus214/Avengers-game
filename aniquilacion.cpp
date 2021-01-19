@@ -165,7 +165,7 @@ void Midnight::imprimir(){
 
 
 NodoDoble* Nebula::randNodoArbol(){
-    int random = mundo->aleatorio(0,tamanoArbol - 1);
+    int random = mundo->aleatorio(0,tamanoArbol);
     if (arbolEntrada->isEmpty()) {
         return NULL;
     }

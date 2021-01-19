@@ -1,5 +1,11 @@
 #include "arbol.h"
+#include <queue>
 
+NodoArbol * Arbol::crearNodo(NodoDoble * nodo){
+    NodoArbol * nuevoNodo = new NodoArbol(nodo);
+    nuevoNodo->hijoDerecho = nuevoNodo->hijoIzquierdo = NULL;
+    return nuevoNodo;
+}
 
 void Arbol::insertar(NodoDoble* nodo)
 {
@@ -31,8 +37,34 @@ NodoArbol* Arbol::insertar(NodoDoble* nodo, NodoArbol* nodoArbol){
       return nodoArbol;
 }
 
+NodoArbol * Arbol::insertarPorNivel(NodoArbol *&raiz, NodoDoble * valor){
+    if (raiz == NULL) {
+            raiz = crearNodo(valor);
+            return raiz;
+        }
 
+        std::queue <NodoArbol *> q;
+        q.push(raiz);
 
+        while (!q.empty()) {
+            NodoArbol* temp = q.front();
+            q.pop();
+
+            if (temp->hijoIzquierdo != NULL)
+                q.push(temp->hijoIzquierdo);
+            else {
+                temp->hijoIzquierdo = crearNodo(valor);
+                return raiz;
+            }
+
+            if (temp->hijoDerecho != NULL)
+                q.push(temp->hijoDerecho);
+            else {
+                temp->hijoDerecho = crearNodo(valor);
+                return raiz;
+            }
+        }
+}
 
 int Arbol::contadorNodos(NodoArbol* NodoArbol)
 {

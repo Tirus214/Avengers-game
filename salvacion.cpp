@@ -17,10 +17,10 @@ void Antman::dejarFeromonas(){
                     else tmp = tmp->hijoDerecho;
                 }
             }
-            if (i == 0) inicio = escogerNodo(arbolEntrada->raiz->hijoIzquierdo);
-            else final = escogerNodo(arbolEntrada->raiz->hijoDerecho);
-            salvarPersonas();
         }
+        inicio = escogerNodo(arbolEntrada->raiz->hijoIzquierdo);
+        final = escogerNodo(arbolEntrada->raiz->hijoDerecho);
+        salvarPersonas();
     }
     return;
 }
@@ -35,19 +35,15 @@ void Antman::clearFeromonas(NodoArbol * raiz){
 }
 
 NodoArbol * Antman::escogerNodo(NodoArbol * raiz){
-    qDebug() << arbolEntrada->contadorNodos(arbolEntrada->raiz);
-    NodoArbol * tmp = raiz;
-    while (tmp != NULL) {
-        if(tmp->hijoDerecho == NULL || tmp->hijoIzquierdo == NULL) return tmp;
-        else if (tmp->hijoDerecho->feromonas > tmp->hijoIzquierdo->feromonas){
-            return escogerNodo(raiz->hijoDerecho);
-        }
-        else if (tmp->hijoDerecho->feromonas < tmp->hijoIzquierdo->feromonas){
-            return escogerNodo(raiz->hijoIzquierdo);
-        }
-        else if (tmp->hijoDerecho->feromonas == tmp->hijoIzquierdo->feromonas){
-            return escogerNodo(desempate(tmp->hijoIzquierdo, tmp->hijoDerecho));
-        }
+    if(raiz->hijoDerecho == NULL) return raiz;
+    else if (raiz->hijoDerecho->feromonas > raiz->hijoIzquierdo->feromonas){
+        return escogerNodo(raiz->hijoDerecho);
+    }
+    else if (raiz->hijoDerecho->feromonas < raiz->hijoIzquierdo->feromonas){
+        return escogerNodo(raiz->hijoIzquierdo);
+    }
+    else if (raiz->hijoDerecho->feromonas == raiz->hijoIzquierdo->feromonas){
+        return escogerNodo(desempate(raiz->hijoIzquierdo, raiz->hijoDerecho));
     }
 }
 

@@ -156,8 +156,9 @@ void Mundo::crearHeap(){
     for(int i=0; i<cantNodos; i++) {
         NodoDoble * tmp = listaPersonas->buscarEnPosicion(multiplo*i);
         arbolHeap->insertarAlInicio(tmp);
-        arbolOrdenado->insertar(tmp);
+        arbolOrdenado->insertarPorNivel(arbolOrdenado->raiz,tmp);
     }
+    return;
 }
 
 
