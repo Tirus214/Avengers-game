@@ -24,6 +24,8 @@ struct ListaDoble{
     void imprimir();
     bool esta(int index);
     NodoDoble * buscarPorId(int);
+    NodoDoble * insertarSorted(NodoDoble *&,Persona *);
+    void ordenaLista(NodoDoble *);
     void sort(NodoDoble *, int);
     int largo();
     NodoDoble* buscarEnPosicion(int posicion);

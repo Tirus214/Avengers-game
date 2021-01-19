@@ -114,6 +114,54 @@ void ListaDoble::insertarAlInicio(Persona * persona){
     index++;
 }
 
+
+
+NodoDoble * ListaDoble::insertarSorted(NodoDoble *& head ,Persona * nuevaPersona){
+        NodoDoble * ins = new NodoDoble(nuevaPersona);
+        NodoDoble * itr = head;
+        if (head == NULL) {
+            ins->siguiente = ins;
+            ins->anterior = ins;
+            head = ins;
+            index++;
+            return head;
+        }
+        //case: at begining
+        else if (head->persona->id < nuevaPersona->id){
+            head->anterior->siguiente = ins;
+            ins->anterior = head->anterior;
+            ins->siguiente = head;
+            head->anterior = ins;
+            head = ins;
+            index++;
+            return ins;
+        }
+        else {
+            while (itr->persona->id > nuevaPersona->id) {
+                // case: at end of list
+                if (itr->siguiente == head) {
+                    ins->siguiente = head;
+                    ins->anterior = itr;
+                    itr->siguiente = ins;
+                    head->anterior = ins;
+                    index++;
+                    return ins;
+                }
+                else {
+                    itr = itr->siguiente;
+                }
+            }
+            // case: middle
+            itr->anterior->siguiente = ins;
+            ins->anterior = itr->anterior;
+            itr->anterior = ins;
+            ins->siguiente = itr;
+            index++;
+            return ins;
+        }
+    }
+
+
 void ListaDoble::sort(NodoDoble * start, int largoLista){
     struct NodoDoble *t, *s;
     int i;
@@ -133,6 +181,34 @@ void ListaDoble::sort(NodoDoble * start, int largoLista){
     }
 }
 
+void ListaDoble::ordenaLista(NodoDoble *nodo)
+{
+    int n;
+    NodoDoble *actual, *siguienteNodo;
+
+    if(nodo != NULL)
+    {
+        actual = nodo;
+        do
+        {
+            siguienteNodo = actual->siguiente;
+            while(siguienteNodo != nodo)
+            {
+                if(actual->persona->id < siguienteNodo->persona->id)
+                {
+                    n = siguienteNodo->persona->id;
+                    siguienteNodo->persona->id = actual->persona->id;
+                    actual->persona->id = n;
+                }
+                siguienteNodo = siguienteNodo->siguiente;
+            }
+            actual = actual->siguiente;
+            siguienteNodo = actual->siguiente;
+        }
+        while(siguienteNodo != nodo);
+    }
+}
+
 bool ListaDoble::isEmpty(){
     return primerNodo == NULL;
 }
@@ -141,19 +217,20 @@ void ListaDoble::imprimir(){
     if(!isEmpty()){
         NodoDoble * tmp = primerNodo;
         do{
-            qDebug() << tmp->persona->id << tmp->persona->nombre;
             tmp = tmp->siguiente;
         } while(tmp != primerNodo);
     }
 }
 
 bool ListaDoble::esta(int num){
-    if(primerNodo != NULL){
-        NodoDoble * tmp = primerNodo;
+    if(primerNodo != NULL){   
+        NodoDoble * tmp = NULL;
+        tmp = primerNodo;
         do{
             if (tmp->persona->id == num) {
                 return true;
             }
+            if (primerNodo == tmp) return false;
             tmp = tmp->siguiente;
         } while(tmp != primerNodo);
     }
@@ -191,8 +268,6 @@ NodoDoble* ListaDoble::buscarEnPosicion(int posicion){
     }
     return NULL;
 }
-
-
 
 void NodoDoble::imprimir(){
     qDebug() << "ID: " << persona->id;

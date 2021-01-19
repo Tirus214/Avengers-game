@@ -9,11 +9,11 @@ void Mundo::crearPersonas(int num){
         QString _nombre = "";
         if(ranGenero()){
             _gender = "Mujer";
-            _nombre = listaNombresMujer[aleatorio(0, listaNombresMujer->length()-1)];
+            _nombre = listaNombresMujer[aleatorio(0, 500)];
         }
         else{
             _gender = "Hombre";
-            _nombre = listaNombresHombre[aleatorio(0, listaNombresHombre->length()-1)];
+            _nombre = listaNombresHombre[aleatorio(0, 500)];
         }
         QString _apellido = listaApellidos[aleatorio(0,listaApellidos->length()-1)];
         QString _creencia = listaCreencias[aleatorio(0, listaCreencias->length()-1)];
@@ -23,9 +23,8 @@ void Mundo::crearPersonas(int num){
         int rand = getNumPaises();
         QStringList arrayPaises;
         getPaises(rand, arrayPaises);
-        listaPersonas->insertarAlFinal(new Persona(id, _nombre, _apellido, _creencia, _profesion, _pais, arrayPaises, _gender));
-        listaPersonas->sort(listaPersonas->primerNodo,listaPersonas->largo());
-        insertDeportes();
+        NodoDoble * nodoCreado = listaPersonas->insertarSorted(listaPersonas->primerNodo,new Persona(id, _nombre, _apellido, _creencia, _profesion, _pais, arrayPaises, _gender));
+        insertDeportes(nodoCreado);
     }
     index += num;
     clasificarRango();
@@ -137,9 +136,9 @@ bool Mundo::validarHijo(Persona* papa, Persona* hijo){
 }
 
 
-void Mundo::insertDeportes(){
+void Mundo::insertDeportes(NodoDoble * nodoCreado){
     int numDeportes = aleatorio(0,6);
-    listaPersonas->primerNodo->anterior->persona->deportes = listaDeportes[numDeportes];
+    nodoCreado->persona->deportes = listaDeportes[numDeportes];
 }
 
 
@@ -329,31 +328,32 @@ void Mundo::imprimir(){
             qDebug() << "ID: " << tmp->persona->id;
             qDebug() << "Nombre: " + tmp->persona->nombre;
             qDebug() << "Apellido: " + tmp->persona->apellido;
-            qDebug() << "Creencia: " + tmp->persona->creencia;
-            qDebug() << "Estado: " + tmp->persona->estadoActual;
-            qDebug() << "Hijos: ";
-            NodoDoble* hijo = tmp->persona->hijos->primerNodo;
-            for (int i=0; i<tmp->persona->hijos->largo(); i++) {
-                qDebug() << "    ID: " << hijo->persona->id;
-                qDebug() << "    Nombre: " << hijo->persona->nombre;
-                hijo = hijo->siguiente;
-            }
-            qDebug() << "Amigos: ";
-            NodoDoble* amigos = tmp->persona->amigos->primerNodo;
-            for (int i=0; i<tmp->persona->amigos->largo(); i++) {
-                qDebug() << "    ID: " << amigos->persona->id;
-                qDebug() << "    Nombre: " << amigos->persona->nombre;
-                qDebug() << "    Estado: " << amigos->persona->estadoActual;
-                amigos = amigos->siguiente;
-            }
-            // Imprimir los pecados (temporal)
-            for (int i = 0; i < 7; i++) {
-                qDebug() << "Pecado [" << i << "] = " << tmp->persona->accionesMalas[i];
-            }
-            // Imprimir nuevo atributo 'cantPecados'
-            qDebug() << "Cantidad de pecados : [ " << tmp->persona->cantPecados << " ]";
-            qDebug() << "";
-            tmp = tmp->siguiente;
+            qDebug() << "Deporte: " + tmp->persona->deportes;
+//            qDebug() << "Creencia: " + tmp->persona->creencia;
+//            qDebug() << "Estado: " + tmp->persona->estadoActual;
+//            qDebug() << "Hijos: ";
+//            NodoDoble* hijo = tmp->persona->hijos->primerNodo;
+//            for (int i=0; i<tmp->persona->hijos->largo(); i++) {
+//                qDebug() << "    ID: " << hijo->persona->id;
+//                qDebug() << "    Nombre: " << hijo->persona->nombre;
+//                hijo = hijo->siguiente;
+//            }
+//            qDebug() << "Amigos: ";
+//            NodoDoble* amigos = tmp->persona->amigos->primerNodo;
+//            for (int i=0; i<tmp->persona->amigos->largo(); i++) {
+//                qDebug() << "    ID: " << amigos->persona->id;
+//                qDebug() << "    Nombre: " << amigos->persona->nombre;
+//                qDebug() << "    Estado: " << amigos->persona->estadoActual;
+//                amigos = amigos->siguiente;
+//            }
+//            // Imprimir los pecados (temporal)
+//            for (int i = 0; i < 7; i++) {
+//                qDebug() << "Pecado [" << i << "] = " << tmp->persona->accionesMalas[i];
+//            }
+//            // Imprimir nuevo atributo 'cantPecados'
+//            qDebug() << "Cantidad de pecados : [ " << tmp->persona->cantPecados << " ]";
+//            qDebug() << "";
+              tmp = tmp->siguiente;
         } while(tmp != listaPersonas->primerNodo);
     }
 }

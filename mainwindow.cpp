@@ -18,17 +18,18 @@ MainWindow::~MainWindow()
 void MainWindow::on_btnCrearPersonas_clicked(){
     int num = ui->txfCrearPersonas->text().toInt();
     mundo->crearPersonas(num);
-        Nebula * nebula = new Nebula(mundo);
-        nebula->randNodoArbol();
-        nebula->matarPersonas(nebula->nodoSeleccionado, nebula->nodoSeleccionado->persona->id);
-        qDebug() << "Muertos:" << mundo->contarMuertos();
-        qDebug() << "Vivos:" << mundo->contarVivos();
-        qDebug() << "After salvar";
-        Antman * antmanPrueba = new Antman(mundo);
-        antmanPrueba->cantidadHormigas = 15;
-        antmanPrueba->dejarFeromonas();
-        qDebug() << "Muertos:" << mundo->contarMuertos();
-        qDebug() << "Vivos:" << mundo->contarVivos();
+    mundo->imprimir();
+//        Nebula * nebula = new Nebula(mundo);
+//        nebula->randNodoArbol();
+//        nebula->matarPersonas(nebula->nodoSeleccionado, nebula->nodoSeleccionado->persona->id);
+//        qDebug() << "Muertos:" << mundo->contarMuertos();
+//        qDebug() << "Vivos:" << mundo->contarVivos();
+//        qDebug() << "After salvar";
+//        Antman * antmanPrueba = new Antman(mundo);
+//        antmanPrueba->cantidadHormigas = 15;
+//        antmanPrueba->dejarFeromonas();
+//        qDebug() << "Muertos:" << mundo->contarMuertos();
+//        qDebug() << "Vivos:" << mundo->contarVivos();
 
 
 }
