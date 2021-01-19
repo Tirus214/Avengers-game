@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     mundo = new Mundo();
 
     ui->setupUi(this);
+
 }
 
 MainWindow::~MainWindow()
