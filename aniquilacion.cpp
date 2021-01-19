@@ -68,6 +68,9 @@ void CorvusGlaive::matarPersonas(){
             if(tmp->nodoDoble->persona->estadoActual == "Vivo"){
                 contadorUltimaCorrida++;
                 tmp->nodoDoble->persona->estadoActual = "Muerto";
+                // Hago un record de quien lo mato
+                tmp->nodoDoble->persona->situacion = "Eliminado por Corvus Glaive";
+                tmp->nodoDoble->persona->cantEliminaciones = tmp->nodoDoble->persona->cantEliminaciones+1;
                 contador++;
                 mundo->logMuertes->insertarMuerte(tmp->nodoDoble->persona, "Corvus Glaive por ser del 5% mas pecador con una suma de: " +
                                                   QString::number(tmp->nodoDoble->persona->sumaPecados()) );
@@ -133,6 +136,8 @@ void Midnight::matarPersonas(){
         for (int i = 0; i < cantidadAEliminar; i++){
             if(tmp->nodoDoble->persona->estadoActual == "Vivo"){
                 tmp->nodoDoble->persona->estadoActual = "Muerto";
+                tmp->nodoDoble->persona->situacion = "Eliminado por Midnight";
+                tmp->nodoDoble->persona->cantEliminaciones = tmp->nodoDoble->persona->cantEliminaciones+1;
                 contadorUltimaCorrida++;
                 contador++;
                 mundo->logMuertes->insertarMuerte(tmp->nodoDoble->persona, "Midnight por ser del 5% menos acciones buenas con una suma de: " +
@@ -189,6 +194,8 @@ void Nebula::matarPersonas(NodoDoble * raiz, int idAnterior){
         idAnterior = raiz->persona->id;
         if (raiz->persona->estadoActual == "Vivo"){
             raiz->persona->estadoActual = "Muerto";
+            raiz->persona->situacion = "Eliminado por Nebula";
+            raiz->persona->cantEliminaciones = raiz->persona->cantEliminaciones+1;
             contadorUltimaCorrida++;
             contador++;
             mundo->logMuertes->insertarMuerte(raiz->persona, "Nebula por ser amigo del humano con ID: " +
@@ -235,6 +242,8 @@ void Dwarf::matarPersonas(){
                 if (tmp->persona->estadoActual == "Vivo"){
                     contadorUltimaCorrida++;
                     tmp->persona->estadoActual = "Muerto";
+                    tmp->persona->situacion = "Eliminado por Dwarf";
+                    tmp->persona->cantEliminaciones = tmp->persona->cantEliminaciones+1;
                     contador++;
                     mundo->logMuertes->insertarMuerte(tmp->persona, "Dwarf por practicar el deporte" + deporteSeleccionado +"mas de " +
                                                       deporteRepeticiones + " veces por semana");
@@ -306,6 +315,8 @@ void Thanos::eliminarCasilla(ListaDoble * casillaEliminada, int ano, int nivel){
                 eliminados++;
                 contadorUltimaCorrida++;
                 tmp->persona->estadoActual = "Muerto";
+                tmp->persona->situacion = "Eliminado por Thanos";
+                tmp->persona->cantEliminaciones = tmp->persona->cantEliminaciones+1;
                 tmp = tmp->siguiente;
                 mundo->logMuertes->insertarMuerte(tmp->persona, "Thanos por estar en el nivel " + QString::number(nivel) +
                                                   " y nacer en el año " + QString::number(ano));
@@ -345,3 +356,5 @@ void Thanos::imprimir(){
         }
     }
 }
+
+// =================================== Ebony Maw ===========================================

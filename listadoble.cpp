@@ -213,3 +213,71 @@ void NodoDoble::imprimir(){
 //    qDebug() << "Cantidad de pecados : [ " << persona->cantPecados << " ]";
 //    qDebug() << "";
 }
+
+void NodoDoble::imprimirEspecial() {
+    qDebug() << "ID [ " << persona->id << " ]";
+    qDebug() << "Nombre: " << persona->nombre;
+    qDebug() << "Apellido: " << persona->apellido;
+    qDebug() << "Edad: " << persona->longevidad;
+    qDebug() << "Estado: " << persona->estadoActual;
+
+    qDebug() << "Situacion actual: " << persona->situacion;
+    qDebug() << "Cantidad de veces eliminad@: " << persona->cantEliminaciones;
+    qDebug() << "Cantidad de veces salvad@: " << persona->cantSalvaciones;
+    qDebug() << "Creencia: " << persona->creencia;
+    qDebug() << "Papa: ";
+    persona->papa->imprimir();
+    qDebug() << "Madre: ";
+    persona->mama->imprimir();
+    qDebug() << "Hijos: { ";
+    NodoDoble* hijo = persona->hijos->primerNodo;
+    for (int i=0; i < persona->hijos->largo(); i++) {
+        qDebug() << "    ID: " << hijo->persona->id;
+        qDebug() << "    Nombre: " << hijo->persona->nombre;
+        hijo = hijo->siguiente;
+    }
+    // Imprimir los pecados (temporal)
+    for (int i = 0; i < 7; i++) {
+        qDebug() << "Pecado [" << i << "] = " << persona->accionesMalas[i];
+    }
+    // Imprimir nuevo atributo 'cantPecados'
+    qDebug() << "Cantidad de pecados : [ " << persona->cantPecados << " ]";
+    qDebug() << "";
+
+}
+
+void NodoDoble::imprimirFamilia() {
+    qDebug() << "ID [ " << persona->id << " ]";
+    qDebug() << "Nombre: " << persona->nombre;
+    qDebug() << "Apellido: " << persona->apellido;
+    qDebug() << "Edad: " << persona->longevidad;
+    qDebug() << "Estado: " << persona->estadoActual;
+
+    qDebug() << "Situacion actual: " << persona->situacion;
+    qDebug() << "Cantidad de veces eliminad@: " << persona->cantEliminaciones;
+    qDebug() << "Cantidad de veces salvad@: " << persona->cantSalvaciones;
+    // Padre
+    qDebug() << " Padre: ";
+    persona->papa->imprimir2();
+    qDebug() << " Madre: ";
+    persona->mama->imprimir2();
+    qDebug() << " Hijos: ";
+    NodoDoble* hijo = persona->hijos->primerNodo;
+    while (hijo != NULL) {
+        hijo->persona->imprimir2();
+    }
+}
+void Persona::imprimir() {
+    qDebug() << "ID [ " << id << " ]";
+    qDebug() << "Nombre: " << nombre << " Apellido: " << apellido;
+}
+
+void Persona::imprimir2() {
+    qDebug() << "ID [ " << id << " ]";
+    qDebug() << "Nombre: " << nombre << " Apellido: " << apellido;
+    qDebug() << "Edad: " << longevidad;
+    qDebug() << "Estado: " << estadoActual;
+    qDebug() << "Situacion actual: " << situacion;
+    qDebug() << "Cantidad de veces eliminad@: " << cantEliminaciones;
+    qDebug() << "Cantidad de veces salvad@: " << cantSalvaciones;
+}

@@ -42,6 +42,8 @@ struct NodoDoble{
 
     // metodos
     void imprimir();
+    void imprimirEspecial();
+    void imprimirFamilia();
 };
 
 
@@ -71,6 +73,10 @@ struct Persona {
     int cantPecados = 0;
     int cantAccionesBuenas = 0;
     ListaDoble * amigos;
+    // Nombre de villano que lo mato/salvo
+    QString situacion;
+    int cantEliminaciones = 0;
+    int cantSalvaciones = 0;
 
     Persona(int _id, QString _nombre, QString _apellido, QString _creencia, QString _profesion, QString _pais, QStringList _paises, QString gender){
         id = _id;
@@ -109,6 +115,9 @@ struct Persona {
     int sumaAccionesBuenas();
 
     int aleatorio(int min, int max);
+    //
+    void imprimir();
+    void imprimir2();
 };
 
 #endif // ListaPersonas_H
