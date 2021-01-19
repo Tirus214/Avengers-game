@@ -8,7 +8,8 @@ MainWindow::MainWindow(QWidget *parent)
     mundo = new Mundo();
 
     ui->setupUi(this);
-
+    // No se puede escribir en la pantalla
+    ui->txtPantalla->setReadOnly(true);
 }
 
 MainWindow::~MainWindow()
