@@ -329,30 +329,30 @@ void Mundo::imprimir(){
             qDebug() << "Nombre: " + tmp->persona->nombre;
             qDebug() << "Apellido: " + tmp->persona->apellido;
             qDebug() << "Deporte: " + tmp->persona->deportes;
-//            qDebug() << "Creencia: " + tmp->persona->creencia;
-//            qDebug() << "Estado: " + tmp->persona->estadoActual;
-//            qDebug() << "Hijos: ";
-//            NodoDoble* hijo = tmp->persona->hijos->primerNodo;
-//            for (int i=0; i<tmp->persona->hijos->largo(); i++) {
-//                qDebug() << "    ID: " << hijo->persona->id;
-//                qDebug() << "    Nombre: " << hijo->persona->nombre;
-//                hijo = hijo->siguiente;
-//            }
-//            qDebug() << "Amigos: ";
-//            NodoDoble* amigos = tmp->persona->amigos->primerNodo;
-//            for (int i=0; i<tmp->persona->amigos->largo(); i++) {
-//                qDebug() << "    ID: " << amigos->persona->id;
-//                qDebug() << "    Nombre: " << amigos->persona->nombre;
-//                qDebug() << "    Estado: " << amigos->persona->estadoActual;
-//                amigos = amigos->siguiente;
-//            }
-//            // Imprimir los pecados (temporal)
-//            for (int i = 0; i < 7; i++) {
-//                qDebug() << "Pecado [" << i << "] = " << tmp->persona->accionesMalas[i];
-//            }
-//            // Imprimir nuevo atributo 'cantPecados'
-//            qDebug() << "Cantidad de pecados : [ " << tmp->persona->cantPecados << " ]";
-//            qDebug() << "";
+            qDebug() << "Creencia: " + tmp->persona->creencia;
+            qDebug() << "Vivo: " << tmp->persona->vivo;
+            qDebug() << "Hijos: ";
+            NodoDoble* hijo = tmp->persona->hijos->primerNodo;
+            for (int i=0; i<tmp->persona->hijos->largo(); i++) {
+                qDebug() << "    ID: " << hijo->persona->id;
+                qDebug() << "    Nombre: " << hijo->persona->nombre;
+                hijo = hijo->siguiente;
+            }
+            qDebug() << "Amigos: ";
+            NodoDoble* amigos = tmp->persona->amigos->primerNodo;
+            for (int i=0; i<tmp->persona->amigos->largo(); i++) {
+                qDebug() << "    ID: " << amigos->persona->id;
+                qDebug() << "    Nombre: " << amigos->persona->nombre;
+                qDebug() << "    Vivo: " << amigos->persona->vivo;
+                amigos = amigos->siguiente;
+            }
+            // Imprimir los pecados (temporal)
+            for (int i = 0; i < 7; i++) {
+                qDebug() << "Pecado [" << i << "] = " << tmp->persona->accionesMalas[i];
+            }
+            // Imprimir nuevo atributo 'cantPecados'
+            qDebug() << "Cantidad de pecados : [ " << tmp->persona->cantPecados << " ]";
+            qDebug() << "";
               tmp = tmp->siguiente;
         } while(tmp != listaPersonas->primerNodo);
     }
@@ -362,10 +362,9 @@ int Mundo::contarMuertos(){
     NodoDoble * tmp = listaPersonas->primerNodo;
     int contador = 0;
     do{
-        if (tmp->persona->estadoActual == "Muerto")contador++;
+        if (tmp->persona->vivo == false)contador++;
         tmp = tmp->siguiente;
     }while(tmp != listaPersonas->primerNodo);
-    qDebug() << contador;
     return contador;
 }
 
@@ -373,10 +372,9 @@ int Mundo::contarVivos(){
     NodoDoble * tmp = listaPersonas->primerNodo;
     int contador = 0;
     do{
-        if (tmp->persona->estadoActual == "Vivo")contador++;
+        if (tmp->persona->vivo == true)contador++;
         tmp = tmp->siguiente;
     }while(tmp != listaPersonas->primerNodo);
-    qDebug() << contador;
     return contador;
 }
 

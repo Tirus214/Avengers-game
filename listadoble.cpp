@@ -294,7 +294,7 @@ void NodoDoble::imprimirEspecial() {
     qDebug() << "Nombre: " << persona->nombre;
     qDebug() << "Apellido: " << persona->apellido;
     qDebug() << "Edad: " << persona->longevidad;
-    qDebug() << "Estado: " << persona->estadoActual;
+    qDebug() << "Vivo: " << persona->vivo;
 
     qDebug() << "Situacion actual: " << persona->situacion;
     qDebug() << "Cantidad de veces eliminad@: " << persona->cantEliminaciones;
@@ -326,7 +326,7 @@ void NodoDoble::imprimirFamilia() {
     qDebug() << "Nombre: " << persona->nombre;
     qDebug() << "Apellido: " << persona->apellido;
     qDebug() << "Edad: " << persona->longevidad;
-    qDebug() << "Estado: " << persona->estadoActual;
+    qDebug() << "vivo: " << persona->vivo;
 
     qDebug() << "Situacion actual: " << persona->situacion;
     qDebug() << "Cantidad de veces eliminad@: " << persona->cantEliminaciones;
@@ -351,7 +351,7 @@ void Persona::imprimir2() {
     qDebug() << "ID [ " << id << " ]";
     qDebug() << "Nombre: " << nombre << " Apellido: " << apellido;
     qDebug() << "Edad: " << longevidad;
-    qDebug() << "Estado: " << estadoActual;
+    qDebug() << "Vivo: " << vivo;
     qDebug() << "Situacion actual: " << situacion;
     qDebug() << "Cantidad de veces eliminad@: " << cantEliminaciones;
     qDebug() << "Cantidad de veces salvad@: " << cantSalvaciones;

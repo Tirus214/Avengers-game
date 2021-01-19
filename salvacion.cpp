@@ -53,10 +53,10 @@ void Antman::salvarPersonas(){
     NodoDoble * inicioDoble = listaPersonas->buscarPorId(inicio->nodoPersona->persona->id);
     NodoDoble * finalDoble = listaPersonas->buscarPorId(final->nodoPersona->persona->id);
     do{
-        if(inicioDoble->persona->estadoActual == "Muerto"){
+        if(inicioDoble->persona->vivo == false){
             contadorUltimaCorrida++;
             contador++;
-            inicioDoble->persona->estadoActual = "Vivo";
+            inicioDoble->persona->vivo = true;
             inicioDoble->persona->situacion = "Salvado por Antman";
             inicioDoble->persona->cantSalvaciones = inicioDoble->persona->cantSalvaciones+1;
             mundo->logSalvacion->insertarSalvacion(inicioDoble->persona, "Antman por estar en una de las ramas con mayor rastro de hormigas");
@@ -104,13 +104,10 @@ void Ironman::detonarBombas(){
 
 void Ironman::salvarAscendientes(Persona * personaAnalizada){
     if (personaAnalizada == NULL) return;
-    qDebug() << personaAnalizada->nombre;
-    qDebug() << personaAnalizada->estadoActual;
-    qDebug() << personaAnalizada->id;
-    if (personaAnalizada->estadoActual == "Muerto"){
+    if (personaAnalizada->vivo == false){
         contadorUltimaCorrida++;
         contador++;
-        personaAnalizada->estadoActual = "Vivo";
+        personaAnalizada->vivo = true;
         personaAnalizada->situacion = "Salvado por Ironman";
         personaAnalizada->cantSalvaciones = personaAnalizada->cantSalvaciones+1;
         mundo->logSalvacion->insertarSalvacion(personaAnalizada, "Ironman por ser pariente de la persona: " + QString::number(personaAnalizada->id)
@@ -124,10 +121,10 @@ void Ironman::salvarAscendientes(Persona * personaAnalizada){
 void Ironman::salvarDescendientes(Persona * raiz){
     if(raiz == NULL) return;
     else{
-        if (raiz->estadoActual == "Muerto"){
+        if (raiz->vivo == false){
             contadorUltimaCorrida++;
             contador++;
-            raiz->estadoActual = "Vivo";
+            raiz->vivo = true;
             raiz->situacion = "Salvado por Ironman";
             raiz->cantSalvaciones = raiz->cantSalvaciones+1;
             mundo->logSalvacion->insertarSalvacion(raiz, "Ironman por ser pariente de la persona: " + QString::number(raiz->id)
@@ -169,9 +166,9 @@ void Thor::salvarPersonas(Persona * personaSalvada){
         if (amigoTmp == nullptr) return;
         else{
             do{
-                if (amigoTmp->persona->estadoActual == "Muerto"){
+                if (amigoTmp->persona->vivo == false){
                     contadorUltimaCorrida++;
-                    amigoTmp->persona->estadoActual = "Vivo";
+                    amigoTmp->persona->vivo = true;
                     amigoTmp->persona->situacion = "Salvado por Thor";
                     amigoTmp->persona->cantSalvaciones = amigoTmp->persona->cantSalvaciones+1;
                     contador++;
@@ -212,9 +209,9 @@ void Spiderman::salvarPersonas(NodoHeap * hoja){
         NodoDoble * inicio = mundo->listaPersonas->buscarPorId(hoja->nodoDoble->persona->id);
         for(int i = 0; i <= contadorTelas; i++){
             if (inicio == nullptr) return;
-            if(inicio->persona->estadoActual == "Muerto"){
+            if(inicio->persona->vivo == false){
                 contadorUltimaCorrida++;
-                inicio->persona->estadoActual = "Vivo";
+                inicio->persona->vivo = true;
                 inicio->persona->situacion = "Salvado por Spiderman";
                 inicio->persona->cantSalvaciones = inicio->persona->cantSalvaciones+1;
                 contador ++;

@@ -65,9 +65,9 @@ void CorvusGlaive::matarPersonas(){
         int cantidadAEliminar = (heap->contador/2)*0.05;
         NodoHeap* tmp = heap->primerNodo;
         for (int i = 0; i < cantidadAEliminar; i++){
-            if(tmp->nodoDoble->persona->estadoActual == "Vivo"){
+            if(tmp->nodoDoble->persona->vivo == true){
                 contadorUltimaCorrida++;
-                tmp->nodoDoble->persona->estadoActual = "Muerto";
+                tmp->nodoDoble->persona->vivo = false;
                 // Hago un record de quien lo mato
                 tmp->nodoDoble->persona->situacion = "Eliminado por Corvus Glaive";
                 tmp->nodoDoble->persona->cantEliminaciones = tmp->nodoDoble->persona->cantEliminaciones+1;
@@ -134,8 +134,8 @@ void Midnight::matarPersonas(){
         int cantidadAEliminar = (heap->contador/2)*0.05;
         NodoHeap* tmp = heap->primerNodo;
         for (int i = 0; i < cantidadAEliminar; i++){
-            if(tmp->nodoDoble->persona->estadoActual == "Vivo"){
-                tmp->nodoDoble->persona->estadoActual = "Muerto";
+            if(tmp->nodoDoble->persona->vivo == true){
+                tmp->nodoDoble->persona->vivo = false;
                 tmp->nodoDoble->persona->situacion = "Eliminado por Midnight";
                 tmp->nodoDoble->persona->cantEliminaciones = tmp->nodoDoble->persona->cantEliminaciones+1;
                 contadorUltimaCorrida++;
@@ -155,7 +155,7 @@ void Midnight::imprimir(){
     } else {
         NodoHeap* tmp = heap->primerNodo;
         while (tmp != NULL) {
-            qDebug() << " [ #" << tmp->indice << " ID: " << tmp->nodoDoble->persona->id << " Acciones buenas: " << tmp->nodoDoble->persona->cantAccionesBuenas << "Estado:" << tmp->nodoDoble->persona->estadoActual << " ] ->";
+            qDebug() << " [ #" << tmp->indice << " ID: " << tmp->nodoDoble->persona->id << " Acciones buenas: " << tmp->nodoDoble->persona->cantAccionesBuenas << "Estado:" << tmp->nodoDoble->persona->vivo << " ] ->";
             tmp = tmp->siguiente;
         }
         qDebug() << "\n";
@@ -175,7 +175,7 @@ NodoDoble* Nebula::randNodoArbol(){
         return NULL;
     }
     else {
-        if (random == 0) return arbolEntrada->primerNodo->nodoDoble;
+        if (random == 0 || tamanoArbol == 1) return arbolEntrada->primerNodo->nodoDoble;
         NodoHeap* tmp = arbolEntrada->primerNodo;
         for (int i = 0; i < random; i++){
             tmp = tmp->siguiente;
@@ -189,11 +189,11 @@ NodoDoble* Nebula::randNodoArbol(){
 
 void Nebula::matarPersonas(NodoDoble * raiz, int idAnterior){
     if (raiz == NULL) return;
-    if (raiz->persona->estadoActual == "Muerto" && !revisarLista(raiz->persona->amigos)) return;
+    if (raiz->persona->vivo == false && !revisarLista(raiz->persona->amigos)) return;
     else {
         idAnterior = raiz->persona->id;
-        if (raiz->persona->estadoActual == "Vivo"){
-            raiz->persona->estadoActual = "Muerto";
+        if (raiz->persona->vivo == true){
+            raiz->persona->vivo = false;
             raiz->persona->situacion = "Eliminado por Nebula";
             raiz->persona->cantEliminaciones = raiz->persona->cantEliminaciones+1;
             contadorUltimaCorrida++;
@@ -216,7 +216,7 @@ bool Nebula::revisarLista(ListaDoble * listaAmigos){
     else{
         NodoDoble * tmp = listaAmigos->primerNodo;
         do{
-            if (tmp->persona->estadoActual == "Vivo") return true;
+            if (tmp->persona->vivo == true) return true;
         }while(tmp != listaAmigos->primerNodo);
         return false;
     }
@@ -239,9 +239,9 @@ void Dwarf::matarPersonas(){
         do{
             if(tmp->persona->deportes == deporteSeleccionado && tmp->persona->salud > deporteRepeticiones){
                 contadorEliminados++;
-                if (tmp->persona->estadoActual == "Vivo"){
+                if (tmp->persona->vivo == true){
                     contadorUltimaCorrida++;
-                    tmp->persona->estadoActual = "Muerto";
+                    tmp->persona->vivo = false;
                     tmp->persona->situacion = "Eliminado por Dwarf";
                     tmp->persona->cantEliminaciones = tmp->persona->cantEliminaciones+1;
                     contador++;
@@ -311,10 +311,10 @@ void Thanos::eliminarCasilla(ListaDoble * casillaEliminada, int ano, int nivel){
         contadorUltimaCorrida = 0;
         NodoDoble * tmp = casillaEliminada->primerNodo;
         do {
-            if (tmp->persona->estadoActual == "Vivo"){
+            if (tmp->persona->vivo == true){
                 eliminados++;
                 contadorUltimaCorrida++;
-                tmp->persona->estadoActual = "Muerto";
+                tmp->persona->vivo = false;
                 tmp->persona->situacion = "Eliminado por Thanos";
                 tmp->persona->cantEliminaciones = tmp->persona->cantEliminaciones+1;
                 tmp = tmp->siguiente;
@@ -349,7 +349,7 @@ void Thanos::imprimir(){
                     qDebug() << "Anio nacimiento: " << 2021 - i;
                     qDebug() << "Nivel de utilidad (Entre más alto, mejor): " << j;
                     qDebug() << "Edad: " << tmp->persona->longevidad;
-                    qDebug() << "Estado actual " << tmp->persona->estadoActual;
+                    qDebug() << "Vivo " << tmp->persona->vivo;
                 } while(tmp != listaImpresa->primerNodo);
             }
             else qDebug() << "La lista en los valores " << i <<", "<< j << " está vacía";

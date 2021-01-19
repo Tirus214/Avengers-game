@@ -18,12 +18,10 @@ MainWindow::~MainWindow()
 void MainWindow::on_btnCrearPersonas_clicked(){
     int num = ui->txfCrearPersonas->text().toInt();
     mundo->crearPersonas(num);
-    mundo->imprimir();
-//        Nebula * nebula = new Nebula(mundo);
-//        nebula->randNodoArbol();
-//        nebula->matarPersonas(nebula->nodoSeleccionado, nebula->nodoSeleccionado->persona->id);
-//        qDebug() << "Muertos:" << mundo->contarMuertos();
-//        qDebug() << "Vivos:" << mundo->contarVivos();
+        Nebula * nebula = new Nebula(mundo);
+        nebula->randNodoArbol();
+        nebula->matarPersonas(nebula->nodoSeleccionado, nebula->nodoSeleccionado->persona->id);
+        mundo->imprimir();
 //        qDebug() << "After salvar";
 //        Antman * antmanPrueba = new Antman(mundo);
 //        antmanPrueba->cantidadHormigas = 15;

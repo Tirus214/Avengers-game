@@ -51,22 +51,22 @@ struct NodoDoble{
 
 
 struct Persona {
-    QString estadoActual;
-    int id;
     QString nombre;
     QString apellido;
     QString genero;
     QString creencia;
     QString profesion;
     QString pais;
+    QStringList paises;
+    QString deportes;
+    QString estadoMarital;
+    bool vivo;
+    int id;
     int fechaNacimiento[3];
     int accionesBuenas[7];
     int accionesMalas[7];
     int longevidad;
-    QString estadoMarital;
     int salud;
-    QStringList paises;
-    QString deportes;
     Persona * papa;
     Persona * mama;
     Persona * conyugue;
@@ -82,6 +82,7 @@ struct Persona {
 
     Persona(int _id, QString _nombre, QString _apellido, QString _creencia, QString _profesion, QString _pais, QStringList _paises, QString gender){
         id = _id;
+        situacion = "No ha sido afectado";
         hijos = new ListaDoble();
         amigos = new ListaDoble();
         salud = aleatorio(0,7);
@@ -91,6 +92,7 @@ struct Persona {
         profesion = _profesion;
         pais = _pais;
         genero = gender;
+        vivo = true;
         papa = nullptr;
         mama = nullptr;
         ranFechaNacimiento();
@@ -101,7 +103,6 @@ struct Persona {
         setCantPecados();
         setCantAccionesBuenas();
         paises = _paises;
-        estadoActual = "Vivo";
         categoria = 0;
     }
 
