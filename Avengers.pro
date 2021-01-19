@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     aniquilacion.cpp \
     arbol.cpp \
+    consultas.cpp \
     filemanager.cpp \
     heap.cpp \
     listadoble.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
 HEADERS += \
     aniquilacion.h \
     arbol.h \
+    consultas.h \
     filemanager.h \
     heap.h \
     listadoble.h \
