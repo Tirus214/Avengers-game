@@ -1,6 +1,7 @@
 #include "mundo.h"
 #include "QRandomGenerator64"
-
+#include <QPlainTextDocumentLayout>
+#include <QPlainTextEdit>
 
 void Mundo::crearPersonas(int num){
     for(int i=0; i<num; i++) { 
@@ -358,6 +359,18 @@ void Mundo::imprimir(){
     }
 }
 
+// =====================================    PANTALLAS   =====================================================
+
+void Mundo::imprimirPantalla() {
+    if (!listaPersonas->isEmpty()) {
+        NodoDoble* tmp = listaPersonas->primerNodo;
+        do {
+
+        }
+    }
+}
+
+// ==========================================================================================================
 int Mundo::contarMuertos(){
     NodoDoble * tmp = listaPersonas->primerNodo;
     int contador = 0;

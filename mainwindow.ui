@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1242</width>
+    <height>669</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>0</y>
-      <width>801</width>
-      <height>581</height>
+      <width>1221</width>
+      <height>621</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -32,8 +32,8 @@
     <widget class="QPushButton" name="btnCrearPersonas">
      <property name="geometry">
       <rect>
-       <x>110</x>
-       <y>130</y>
+       <x>20</x>
+       <y>90</y>
        <width>101</width>
        <height>25</height>
       </rect>
@@ -45,11 +45,300 @@
     <widget class="QLineEdit" name="txfCrearPersonas">
      <property name="geometry">
       <rect>
-       <x>100</x>
-       <y>100</y>
+       <x>20</x>
+       <y>50</y>
        <width>113</width>
        <height>24</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QPlainTextEdit" name="txtPantalla">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>10</y>
+       <width>671</width>
+       <height>601</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblAniquilacion">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>10</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Aniquilacion</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>50</y>
+       <width>160</width>
+       <height>170</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="layoutAniquilacion">
+      <item>
+       <widget class="QPushButton" name="btnCorvusGlaive">
+        <property name="text">
+         <string>Corvus Glaive</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnMidnight">
+        <property name="text">
+         <string>Midnight</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnNebula">
+        <property name="text">
+         <string>Nebula</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnEbonyMaw">
+        <property name="text">
+         <string>Ebony Maw</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnBlackDwarf">
+        <property name="text">
+         <string>Black Dwarf</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnThanos">
+        <property name="text">
+         <string>Thanos</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QLabel" name="lblSalvacion">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>10</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Salvacion</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>50</y>
+       <width>160</width>
+       <height>161</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="layoutSalvacion">
+      <item>
+       <widget class="QPushButton" name="btnAntMan">
+        <property name="text">
+         <string>Ant Man</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnIronman">
+        <property name="text">
+         <string>Ironman</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnThor">
+        <property name="text">
+         <string>Thor</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnSpiderman">
+        <property name="text">
+         <string>Spiderman</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QPushButton" name="btnLog">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>130</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Log</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="formLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>260</y>
+       <width>251</width>
+       <height>112</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="layoutConsultas">
+      <item row="0" column="0">
+       <widget class="QPushButton" name="btnConsultarHumano">
+        <property name="text">
+         <string>Consultar humano</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QPushButton" name="btnConsultarAmigos">
+        <property name="text">
+         <string>Consultar amigos</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QPushButton" name="btnConsultarDeporte">
+        <property name="text">
+         <string>Consultar deporte</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="txfConsultarHumano"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="tfxConsultarFamilia"/>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="tfxConsultarAmigos"/>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="txfConsultarDeporte"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QPushButton" name="btnConsultarFamilia">
+        <property name="text">
+         <string>Consultar familia</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_3">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>420</y>
+       <width>160</width>
+       <height>112</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="layoutEstadisticas">
+      <item>
+       <widget class="QPushButton" name="btnHumanosVivos">
+        <property name="text">
+         <string>Humanos vivos</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnHumanosMuertos">
+        <property name="text">
+         <string>Humanos eliminados</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnHumanosSalvados">
+        <property name="text">
+         <string>Humanos salvados</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnImprimirArbol">
+        <property name="text">
+         <string>Imprimir arbol</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QLabel" name="lblConsultas">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>230</y>
+       <width>101</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Consultas</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblEstadisticas">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>380</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Estadisticas</string>
      </property>
     </widget>
    </widget>
@@ -59,8 +348,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>25</height>
+     <width>1242</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>
