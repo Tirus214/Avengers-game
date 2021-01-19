@@ -32,7 +32,7 @@ public:
 
 private slots:
     void on_btnCrearPersonas_clicked();
-
+    void on_btnLog_clicked();
 
     void on_btnCorvusGlaive_clicked();
 

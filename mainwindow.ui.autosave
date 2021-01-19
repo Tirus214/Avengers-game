@@ -17,7 +17,7 @@
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>0</y>
       <width>1221</width>
       <height>621</height>
@@ -33,7 +33,7 @@
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>90</y>
+       <y>100</y>
        <width>101</width>
        <height>25</height>
       </rect>
@@ -52,7 +52,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QPlainTextEdit" name="txtPantalla">
+    <widget class="QPlainTextEdit" name="plainTextEdit">
      <property name="geometry">
       <rect>
        <x>540</x>
@@ -62,12 +62,12 @@
       </rect>
      </property>
     </widget>
-    <widget class="QLabel" name="lblAniquilacion">
+    <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
        <x>170</x>
        <y>10</y>
-       <width>131</width>
+       <width>101</width>
        <height>31</height>
       </rect>
      </property>
@@ -88,47 +88,47 @@
        <x>160</x>
        <y>50</y>
        <width>160</width>
-       <height>187</height>
+       <height>170</height>
       </rect>
      </property>
-     <layout class="QVBoxLayout" name="layoutAniquilacion">
+     <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QPushButton" name="btnCorvusGlaive">
+       <widget class="QPushButton" name="pushButton">
         <property name="text">
          <string>Corvus Glaive</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btnMidnight">
+       <widget class="QPushButton" name="pushButton_6">
         <property name="text">
          <string>Midnight</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btnNebula">
+       <widget class="QPushButton" name="pushButton_2">
         <property name="text">
          <string>Nebula</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btnEbonyMaw">
+       <widget class="QPushButton" name="pushButton_3">
         <property name="text">
          <string>Ebony Maw</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btnBlackDwarf">
+       <widget class="QPushButton" name="pushButton_4">
         <property name="text">
          <string>Black Dwarf</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btnThanos">
+       <widget class="QPushButton" name="pushButton_5">
         <property name="text">
          <string>Thanos</string>
         </property>
@@ -136,12 +136,12 @@
       </item>
      </layout>
     </widget>
-    <widget class="QLabel" name="lblSalvacion">
+    <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
        <x>380</x>
        <y>10</y>
-       <width>101</width>
+       <width>81</width>
        <height>31</height>
       </rect>
      </property>
@@ -165,30 +165,30 @@
        <height>161</height>
       </rect>
      </property>
-     <layout class="QVBoxLayout" name="layoutSalvacion">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QPushButton" name="btnAntMan">
+       <widget class="QPushButton" name="pushButton_7">
         <property name="text">
          <string>Ant Man</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btnIronman">
+       <widget class="QPushButton" name="pushButton_8">
         <property name="text">
          <string>Ironman</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btnThor">
+       <widget class="QPushButton" name="pushButton_10">
         <property name="text">
          <string>Thor</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btnSpiderman">
+       <widget class="QPushButton" name="pushButton_9">
         <property name="text">
          <string>Spiderman</string>
         </property>
@@ -196,12 +196,12 @@
       </item>
      </layout>
     </widget>
-    <widget class="QPushButton" name="btnLog">
+    <widget class="QPushButton" name="pushButton_11">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>130</y>
-       <width>101</width>
+       <x>30</x>
+       <y>470</y>
+       <width>75</width>
        <height>23</height>
       </rect>
      </property>
@@ -213,49 +213,49 @@
      <property name="geometry">
       <rect>
        <x>160</x>
-       <y>270</y>
+       <y>260</y>
        <width>251</width>
-       <height>123</height>
+       <height>112</height>
       </rect>
      </property>
-     <layout class="QFormLayout" name="layoutConsultas">
+     <layout class="QFormLayout" name="formLayout">
       <item row="0" column="0">
-       <widget class="QPushButton" name="btnConsultarHumano">
+       <widget class="QPushButton" name="pushButton_12">
         <property name="text">
          <string>Consultar humano</string>
         </property>
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QPushButton" name="btnConsultarAmigos">
+       <widget class="QPushButton" name="pushButton_13">
         <property name="text">
          <string>Consultar amigos</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="txfConsultarHumano"/>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="txfConsultarFamilia"/>
-      </item>
-      <item row="2" column="1">
-       <widget class="QLineEdit" name="txfConsultarAmigos"/>
-      </item>
-      <item row="3" column="1">
-       <widget class="QLineEdit" name="txfConsultarDeporte"/>
-      </item>
-      <item row="1" column="0">
-       <widget class="QPushButton" name="btnConsultarFamilia">
+      <item row="3" column="0">
+       <widget class="QPushButton" name="pushButton_16">
         <property name="text">
-         <string>Consultar familia</string>
+         <string>Consultar deporte</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
-       <widget class="QPushButton" name="btnConsultarDeporte">
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEdit"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEdit_2"/>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="lineEdit_3"/>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="lineEdit_4"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QPushButton" name="pushButton_14">
         <property name="text">
-         <string>Consultar deporte</string>
+         <string>Consultar familia</string>
         </property>
        </widget>
       </item>
@@ -265,35 +265,35 @@
      <property name="geometry">
       <rect>
        <x>160</x>
-       <y>430</y>
+       <y>420</y>
        <width>160</width>
-       <height>123</height>
+       <height>112</height>
       </rect>
      </property>
-     <layout class="QVBoxLayout" name="layoutEstadisticas">
+     <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
-       <widget class="QPushButton" name="btnHumanosVivos">
+       <widget class="QPushButton" name="pushButton_15">
         <property name="text">
          <string>Humanos vivos</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btnHumanosMuertos">
+       <widget class="QPushButton" name="pushButton_17">
         <property name="text">
          <string>Humanos eliminados</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btnHumanosSalvados">
+       <widget class="QPushButton" name="pushButton_18">
         <property name="text">
          <string>Humanos salvados</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btnImprimirArbol">
+       <widget class="QPushButton" name="pushButton_19">
         <property name="text">
          <string>Imprimir arbol</string>
         </property>
@@ -301,11 +301,11 @@
       </item>
      </layout>
     </widget>
-    <widget class="QLabel" name="lblConsultas">
+    <widget class="QLabel" name="label_3">
      <property name="geometry">
       <rect>
-       <x>160</x>
-       <y>250</y>
+       <x>170</x>
+       <y>230</y>
        <width>101</width>
        <height>21</height>
       </rect>
@@ -321,12 +321,12 @@
       <string>Consultas</string>
      </property>
     </widget>
-    <widget class="QLabel" name="lblEstadisticas">
+    <widget class="QLabel" name="label_4">
      <property name="geometry">
       <rect>
-       <x>160</x>
-       <y>400</y>
-       <width>121</width>
+       <x>170</x>
+       <y>380</y>
+       <width>101</width>
        <height>31</height>
       </rect>
      </property>
@@ -349,7 +349,7 @@
      <x>0</x>
      <y>0</y>
      <width>1242</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

@@ -34,6 +34,7 @@ void Mundo::crearPersonas(int num){
     putPadres();
     putAmigos();
     crearHeap();
+    getLogs();
 }
 
 
@@ -418,4 +419,7 @@ void Mundo::llenarHeap(Heap *heapNuevo) {
 }
 
 
-
+void Mundo::getLogs(){
+    fileManager->leer2("LogAniquilacion", logMuertes->historico);
+    fileManager->leer2("LogSalvacion", logSalvacion->historico);
+}
