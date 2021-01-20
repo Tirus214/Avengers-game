@@ -1,6 +1,7 @@
 #ifndef CONSULTAS_H
 #define CONSULTAS_H
 #include "mundo.h"
+#include <QPlainTextEdit>
 
 struct Consultas {
     Mundo* mundo;
@@ -10,12 +11,14 @@ struct Consultas {
     }
 
     // Metodos
-    void consultarPersona(int _id);
-    void consultarFamilia(int _id);
-    void consultarAmigos(int _id);
-    void consultarDeporte(QString _deporte);
-    void consultarEstadisticas();
-    void imprimirArbol();
+    void consultarPersona(int _id,QPlainTextEdit*);
+    void consultarFamilia(int _id,QPlainTextEdit*);
+    void consultarAmigos(int _id,QPlainTextEdit*);
+    void consultarDeporte(QString _deporte,QPlainTextEdit*);
+    void consultarHumanosVivos(QPlainTextEdit*);
+    void consultarHumanosMuertos(QPlainTextEdit*);
+    void consultarHumanosSalvados(QPlainTextEdit*);
+    void imprimirArbol(QPlainTextEdit*);
 };
 
 #endif // CONSULTAS_H

@@ -1,6 +1,6 @@
 #include "consultas.h"
 
-void Consultas::consultarPersona(int _id) {
+void Consultas::consultarPersona(int _id,QPlainTextEdit* refPantalla) {
     NodoDoble* persona = mundo->listaPersonas->buscarPorId(_id);
     if (persona) {
         persona->imprimirEspecial();
@@ -8,7 +8,7 @@ void Consultas::consultarPersona(int _id) {
     return;
 }
 
-void Consultas::consultarFamilia(int _id) {
+void Consultas::consultarFamilia(int _id,QPlainTextEdit* refPantalla) {
     NodoDoble* persona = mundo->listaPersonas->buscarPorId(_id);
     if (persona) {
         persona->imprimirFamilia();
@@ -16,14 +16,23 @@ void Consultas::consultarFamilia(int _id) {
     return;
 }
 
-void Consultas::consultarAmigos(int _id) {
+void Consultas::consultarAmigos(int _id,QPlainTextEdit* refPantalla) {
+    // Falta arreglar amigos
     return;
 }
 
-void Consultas::consultarEstadisticas() {
+void Consultas::consultarHumanosVivos(QPlainTextEdit* refPantalla) {
     return;
 }
 
-void Consultas::consultarDeporte(QString _deporte) {
+void Consultas::consultarHumanosMuertos(QPlainTextEdit* refPantalla) {
+    return;
+}
+
+void Consultas::consultarHumanosSalvados(QPlainTextEdit* refPantalla) {
+    return;
+}
+
+void Consultas::consultarDeporte(QString _deporte,QPlainTextEdit* refPantalla) {
     return;
 }
