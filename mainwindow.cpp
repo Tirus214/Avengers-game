@@ -20,11 +20,11 @@ MainWindow::~MainWindow()
 void MainWindow::on_btnCrearPersonas_clicked(){
     int num = ui->txfCrearPersonas->text().toInt();
     mundo->crearPersonas(num);
-        Nebula * nebula = new Nebula(mundo);
-        nebula->randNodoArbol();
-        nebula->matarPersonas(nebula->nodoSeleccionado, nebula->nodoSeleccionado->persona->id);
-        mundo->imprimir();
-        mundo->imprimirPantalla(ui->txtPantalla);
+    structCorvus = new CorvusGlaive(mundo);
+    Nebula * nebula = new Nebula(mundo);
+
+    mundo->imprimir();
+    mundo->imprimirPantalla(ui->txtPantalla);
 //        qDebug() << "After salvar";
 //        Antman * antmanPrueba = new Antman(mundo);
 //        antmanPrueba->cantidadHormigas = 15;
@@ -38,6 +38,7 @@ void MainWindow::on_btnCrearPersonas_clicked(){
 // Aniquilacion
 void MainWindow::on_btnCorvusGlaive_clicked()
 {
+    structCorvus->matarPersonas();
     return;
 }
 
@@ -50,6 +51,8 @@ void MainWindow::on_btnMidnight_clicked()
 
 void MainWindow::on_btnNebula_clicked()
 {
+    nebula->randNodoArbol();
+    nebula->matarPersonas(nebula->nodoSeleccionado, nebula->nodoSeleccionado->persona->id);
     return;
 }
 
@@ -75,18 +78,15 @@ void MainWindow::on_btnAntMan_clicked()
     return;
 }
 
-
 void MainWindow::on_btnIronman_clicked()
 {
     return;
 }
 
-
 void MainWindow::on_btnThor_clicked()
 {
     return;
 }
-
 
 void MainWindow::on_btnSpiderman_clicked()
 {
@@ -124,3 +124,20 @@ void MainWindow::on_btnHumanosVivos_clicked()
     return;
 }
 
+
+void MainWindow::on_btnHumanosMuertos_clicked()
+{
+    return;
+}
+
+
+void MainWindow::on_btnHumanosSalvados_clicked()
+{
+    return;
+}
+
+
+void MainWindow::on_btnImprimirArbol_clicked()
+{
+    return;
+}

@@ -14,7 +14,17 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
     Mundo * mundo;
+    // aniquilacion
     CorvusGlaive* structCorvus;
+    Nebula* nebula;
+    Dwarf* dwarf;
+    Thanos* thanos;
+    Midnight* midnight;
+    //  salvacion
+    Antman* antman;
+    Ironman* ironman;
+    Thor* thor;
+    Spiderman* spiderman;
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -53,6 +63,12 @@ private slots:
     void on_btnConsultarDeporte_clicked();
 
     void on_btnHumanosVivos_clicked();
+
+    void on_btnHumanosMuertos_clicked();
+
+    void on_btnHumanosSalvados_clicked();
+
+    void on_btnImprimirArbol_clicked();
 
 private:
     Ui::MainWindow *ui;
