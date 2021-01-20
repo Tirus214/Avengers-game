@@ -35,6 +35,7 @@ public:
 
 private slots:
     void on_btnCrearPersonas_clicked();
+
     void on_btnLog_clicked();
 
     void on_btnCorvusGlaive_clicked();
@@ -72,6 +73,8 @@ private slots:
     void on_btnHumanosSalvados_clicked();
 
     void on_btnImprimirArbol_clicked();
+
+    void on_btnTerminar_clicked();
 
 private:
     Ui::MainWindow *ui;

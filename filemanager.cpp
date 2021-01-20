@@ -3,7 +3,7 @@
 void FileManager::escribir(QString name, QStringList arreglo){
     QFile file("C:/Archivos/" + name + ".txt");
     if (!file.open(QFile::WriteOnly | QFile::Text)){
-        qDebug() << "No se pudo abrir el archivo";
+        qDebug() << "No se pudo abrir el archivo " << name;
         return;
     }
     QTextStream out(&file);
@@ -20,7 +20,7 @@ void FileManager::escribir(QString name, QStringList arreglo){
 void FileManager::leer(QString name, QString arreglo[]){
     QFile file("C:/Archivos/" + name + ".txt");
     if (!file.open(QFile::ReadOnly | QFile::Text)){
-        qDebug() << "No se pudo abrir el archivo";
+        qDebug() << "No se pudo abrir el archivo" << name;
         return;
     }
     int index = 0;
@@ -41,7 +41,7 @@ void FileManager::leer(QString name, QString arreglo[]){
 void FileManager::leer2(QString name, QStringList arreglo){
     QFile file("C:/Archivos/" + name + ".txt");
     if (!file.open(QFile::ReadOnly | QFile::Text)){
-        qDebug() << "No se pudo abrir el archivo";
+        qDebug() << "No se pudo abrir el archivo" << name;
         return;
     }
     QTextStream in(&file);

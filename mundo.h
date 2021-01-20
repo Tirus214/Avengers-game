@@ -22,6 +22,9 @@ struct Mundo{
     Log * logMuertes;
     Log * logSalvacion;
 
+    int totalMatados;
+    int totalSalvados;
+
     Mundo(){
         listaPersonas = new ListaDoble();
         index = 0;
@@ -38,6 +41,9 @@ struct Mundo{
         logMuertes = new Log();
         logSalvacion = new Log();
         llenarHeap(arbolHeap);
+
+        totalMatados = 0;
+        totalSalvados = 0;
     }
 
     void crearPersonas(int num);

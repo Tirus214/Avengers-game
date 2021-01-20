@@ -69,6 +69,7 @@ void CorvusGlaive::matarPersonas(){
                 contadorUltimaCorrida++;
                 tmp->nodoDoble->persona->vivo = false;
                 // Hago un record de quien lo mato
+                mundo->totalMatados++;
                 tmp->nodoDoble->persona->situacion = "Eliminado por Corvus Glaive";
                 tmp->nodoDoble->persona->cantEliminaciones = tmp->nodoDoble->persona->cantEliminaciones+1;
                 contador++;
@@ -136,6 +137,7 @@ void Midnight::matarPersonas(){
         for (int i = 0; i < cantidadAEliminar; i++){
             if(tmp->nodoDoble->persona->vivo == true){
                 tmp->nodoDoble->persona->vivo = false;
+                mundo->totalMatados++;
                 tmp->nodoDoble->persona->situacion = "Eliminado por Midnight";
                 tmp->nodoDoble->persona->cantEliminaciones = tmp->nodoDoble->persona->cantEliminaciones+1;
                 contadorUltimaCorrida++;
@@ -194,6 +196,7 @@ void Nebula::matarPersonas(NodoDoble * raiz, int idAnterior){
         idAnterior = raiz->persona->id;
         if (raiz->persona->vivo == true){
             raiz->persona->vivo = false;
+            mundo->totalMatados++;
             raiz->persona->situacion = "Eliminado por Nebula";
             raiz->persona->cantEliminaciones = raiz->persona->cantEliminaciones+1;
             contadorUltimaCorrida++;
@@ -242,6 +245,7 @@ void Dwarf::matarPersonas(){
                 if (tmp->persona->vivo == true){
                     contadorUltimaCorrida++;
                     tmp->persona->vivo = false;
+                    mundo->totalMatados++;
                     tmp->persona->situacion = "Eliminado por Dwarf";
                     tmp->persona->cantEliminaciones = tmp->persona->cantEliminaciones+1;
                     contador++;
@@ -315,6 +319,7 @@ void Thanos::eliminarCasilla(ListaDoble * casillaEliminada, int ano, int nivel){
                 eliminados++;
                 contadorUltimaCorrida++;
                 tmp->persona->vivo = false;
+                mundo->totalMatados++;
                 tmp->persona->situacion = "Eliminado por Thanos";
                 tmp->persona->cantEliminaciones = tmp->persona->cantEliminaciones+1;
                 tmp = tmp->siguiente;
