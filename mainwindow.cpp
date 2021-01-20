@@ -207,7 +207,7 @@ void MainWindow::on_btnHumanosSalvados_clicked()
 
 void MainWindow::on_btnImprimirArbol_clicked()
 {
-    ui->txtPantalla->clear();
+
     return;
 }
 
@@ -226,7 +226,7 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_btnVisualizar_clicked(){
     if(!mundo->listaPersonas->isEmpty())
-        ui->txtPantalla->setPlainText(mundo->getStringArbol());
+        ui->txtPantalla->appendPlainText(mundo->getStringArbol());
     return;
 }
 

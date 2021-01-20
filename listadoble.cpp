@@ -290,6 +290,7 @@ void NodoDoble::imprimir(){
 }
 
 void NodoDoble::imprimirEspecial(QPlainTextEdit* refPantalla) {
+    refPantalla->appendPlainText("\n\nIMPRIMIR ESPECIAL\n");
     refPantalla->appendPlainText("\nID [ " + QString::number(persona->id)+ " ]");
     refPantalla->appendPlainText("Nombre: " + persona->nombre);
     refPantalla->appendPlainText("Apellido: " + persona->apellido);
@@ -307,15 +308,27 @@ void NodoDoble::imprimirEspecial(QPlainTextEdit* refPantalla) {
     refPantalla->appendPlainText("Madre: ");
     persona->mama->imprimir(refPantalla);
     refPantalla->appendPlainText("Hijos: ");
-    NodoDoble* hijo = persona->hijos->primerNodo;
-    while (hijo != NULL) {
-        refPantalla->appendPlainText("  ID: " + QString::number(hijo->persona->id) + " Nombre: " + hijo->persona->nombre);
-        hijo = hijo->siguiente;
+    if(!persona->hijos->isEmpty()){
+        NodoDoble* hijo = persona->hijos->primerNodo;
+        do {
+            hijo->persona->imprimir2(refPantalla);
+            hijo = hijo->siguiente;
+        } while(hijo != persona->hijos->primerNodo);
     }
+    refPantalla->appendPlainText("\n");
+
     for (int i = 0; i < 7; i++) {
         refPantalla->appendPlainText("Pecado [" + QString::number(i) + "] = " + QString::number(persona->accionesMalas[i]));
     }
+    refPantalla->appendPlainText("\n");
+
+    for (int i = 0; i < 7; i++) {
+        refPantalla->appendPlainText("Accion Buena [" + QString::number(i) + "] = " + QString::number(persona->accionesBuenas[i]));
+    }
+    refPantalla->appendPlainText("\n");
     refPantalla->appendPlainText("Cantidad de pecados: " + QString::number(persona->cantPecados) + " Cantidad de acciones buenas: " + QString::number(persona->cantAccionesBuenas) );
+
+
     refPantalla->moveCursor(QTextCursor::End);
 
 //    qDebug() << "ID [ " << persona->id << " ]";
@@ -350,7 +363,7 @@ void NodoDoble::imprimirEspecial(QPlainTextEdit* refPantalla) {
 }
 
 void NodoDoble::imprimirFamilia(QPlainTextEdit* refPantalla) {
-
+    refPantalla->appendPlainText("\n\nCONSULTA DE FAMILIA\n");
     refPantalla->appendPlainText("\nID [ " + QString::number(persona->id)+ " ]");
     refPantalla->appendPlainText("Nombre: " + persona->nombre);
     refPantalla->appendPlainText("Apellido: " + persona->apellido);
@@ -363,15 +376,17 @@ void NodoDoble::imprimirFamilia(QPlainTextEdit* refPantalla) {
     refPantalla->appendPlainText("Situacion actual: " + persona->situacion);
     refPantalla->appendPlainText("Cantidad de veces eliminad@: " + QString::number(persona->cantEliminaciones));
     refPantalla->appendPlainText("Cantidad de veces salvad@: " + QString::number(persona->cantSalvaciones));
-    refPantalla->appendPlainText("  Padre:\n");
+    refPantalla->appendPlainText("\n  Padre:");
     persona->papa->imprimir2(refPantalla);
-    refPantalla->appendPlainText("  Madre:\n");
+    refPantalla->appendPlainText("\n  Madre:");
     persona->mama->imprimir2(refPantalla);
-    refPantalla->appendPlainText("  Hijos:\n");
-    NodoDoble* hijo = persona->hijos->primerNodo;
-    while (hijo != NULL) {
-        hijo->persona->imprimir2(refPantalla);
-        hijo = hijo->siguiente;
+    refPantalla->appendPlainText("\n  Hijos:");
+    if(!persona->hijos->isEmpty()){
+        NodoDoble* hijo = persona->hijos->primerNodo;
+        do {
+            hijo->persona->imprimir2(refPantalla);
+            hijo = hijo->siguiente;
+        } while(hijo != persona->hijos->primerNodo);
     }
     refPantalla->moveCursor(QTextCursor::End);
 
@@ -424,6 +439,7 @@ void Persona::imprimir2(QPlainTextEdit* refPantalla) {
 }
 
 void NodoDoble::imprimirAmigos(QPlainTextEdit* refPantalla) {
+    refPantalla->appendPlainText("\n\nCONSULTA DE AMIGOS\n");
     refPantalla->appendPlainText("\nID [ " + QString::number(persona->id)+ " ]");
     refPantalla->appendPlainText("Nombre: " + persona->nombre);
     refPantalla->appendPlainText("Apellido: " + persona->apellido);
@@ -436,11 +452,13 @@ void NodoDoble::imprimirAmigos(QPlainTextEdit* refPantalla) {
     refPantalla->appendPlainText("Situacion actual: " + persona->situacion);
     refPantalla->appendPlainText("Cantidad de veces eliminad@: " + QString::number(persona->cantEliminaciones));
     refPantalla->appendPlainText("Cantidad de veces salvad@: " + QString::number(persona->cantSalvaciones));
-    refPantalla->appendPlainText("  Amigos:\n");
-    NodoDoble* amigo = persona->amigos->primerNodo;
-    while (amigo != NULL) {
-        amigo->persona->imprimir2(refPantalla);
-        amigo = amigo->siguiente;
+    refPantalla->appendPlainText("\n  Amigos:\n");
+    if(!persona->amigos->isEmpty()){
+        NodoDoble* amigo = persona->amigos->primerNodo;
+        do{
+            amigo->persona->imprimir2(refPantalla);
+            amigo = amigo->siguiente;
+        } while(amigo != persona->amigos->primerNodo);
     }
     refPantalla->moveCursor(QTextCursor::End);
     return;
