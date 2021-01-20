@@ -244,10 +244,10 @@
        <widget class="QLineEdit" name="txfConsultarHumano"/>
       </item>
       <item row="1" column="1">
-       <widget class="QLineEdit" name="tfxConsultarFamilia"/>
+       <widget class="QLineEdit" name="txfConsultarFamilia"/>
       </item>
       <item row="2" column="1">
-       <widget class="QLineEdit" name="tfxConsultarAmigos"/>
+       <widget class="QLineEdit" name="txfConsultarAmigos"/>
       </item>
       <item row="3" column="1">
        <widget class="QLineEdit" name="txfConsultarDeporte"/>

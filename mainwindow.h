@@ -24,6 +24,36 @@ private slots:
     void on_btnCrearPersonas_clicked();
 
 
+    void on_btnCorvusGlaive_clicked();
+
+    void on_btnMidnight_clicked();
+
+    void on_btnNebula_clicked();
+
+    void on_btnEbonyMaw_clicked();
+
+    void on_btnBlackDwarf_clicked();
+
+    void on_btnThanos_clicked();
+
+    void on_btnAntMan_clicked();
+
+    void on_btnIronman_clicked();
+
+    void on_btnThor_clicked();
+
+    void on_btnSpiderman_clicked();
+
+    void on_btnConsultarHumano_clicked();
+
+    void on_btnConsultarFamilia_clicked();
+
+    void on_btnConsultarAmigos_clicked();
+
+    void on_btnConsultarDeporte_clicked();
+
+    void on_btnHumanosVivos_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
