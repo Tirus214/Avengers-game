@@ -17,7 +17,7 @@ class MainWindow : public QMainWindow
     Mundo * mundo;
     // aniquilacion
     CorvusGlaive* structCorvus;
-    Nebula* nebula;
+    Nebula* _nebula;
     Dwarf* dwarf;
     Thanos* thanos;
     Midnight* midnight;
@@ -72,6 +72,8 @@ private slots:
     void on_btnHumanosSalvados_clicked();
 
     void on_btnImprimirArbol_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;

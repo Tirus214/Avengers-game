@@ -21,9 +21,9 @@ void MainWindow::on_btnCrearPersonas_clicked(){
     int num = ui->txfCrearPersonas->text().toInt();
     mundo->crearPersonas(num);
     structCorvus = new CorvusGlaive(mundo);
-    Nebula * nebula = new Nebula(mundo);
+    _nebula = new Nebula(mundo);
     consultas = new Consultas(mundo);
-    mundo->imprimir();
+    //mundo->imprimir();
     mundo->imprimirPantalla(ui->txtPantalla);
 //        qDebug() << "After salvar";
 //        Antman * antmanPrueba = new Antman(mundo);
@@ -51,8 +51,10 @@ void MainWindow::on_btnMidnight_clicked()
 
 void MainWindow::on_btnNebula_clicked()
 {
-    nebula->randNodoArbol();
-    nebula->matarPersonas(nebula->nodoSeleccionado, nebula->nodoSeleccionado->persona->id);
+    _nebula->tamanoArbol = mundo->arbolOrdenado->contadorNodos(mundo->arbolOrdenado->raiz);
+    _nebula->nodoSeleccionado = _nebula->randNodoArbol();
+    _nebula->matarPersonas(_nebula->nodoSeleccionado,_nebula->listaEliminados, _nebula->nodoSeleccionado->persona->id);
+    ui->txtPantalla->appendPlainText("Cantidad de muertos: " + QString::number(mundo->contarMuertos()));
     return;
 }
 
@@ -147,4 +149,9 @@ void MainWindow::on_btnImprimirArbol_clicked()
 void MainWindow::on_btnLog_clicked()
 {
     return;
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    ui->txtPantalla->appendPlainText("\nCantidad de nodos: " + QString::number(mundo->arbolOrdenado->contadorNodos(mundo->arbolOrdenado->raiz)));
 }
