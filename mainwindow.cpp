@@ -172,3 +172,19 @@ void MainWindow::on_btnTerminar_clicked(){
                                  "\nHumanos salvados: " + QString::number(mundo->totalSalvados) +
                                  "\n\nEs un empate!");
 }
+
+
+void MainWindow::on_btnVisualizar_clicked(){
+    ui->txtPantalla->clear();
+    if(!mundo->listaPersonas->isEmpty())
+        ui->txtPantalla->setPlainText(mundo->getStringArbol());
+}
+
+
+
+
+
+
+
+
+

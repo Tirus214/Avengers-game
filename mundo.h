@@ -49,7 +49,7 @@ struct Mundo{
     void crearPersonas(int num);
     int getId(void); //retorna un id unico
     int getNumPaises(); //retorna el numero de paises segun probabilidades
-    void getPaises(int num, QStringList paises);  //retorna lista de paises aleatorios segun la cantidad ingresada
+    QStringList getPaises(int num);  //retorna lista de paises aleatorios segun la cantidad ingresada
     bool ranGenero();   //obtiene un genero random
     int aleatorio(int min, int max);  //crea un aleatorio
     void obtenerArray(QString nombre, QString array[]); //obtiene un array de un archivo
@@ -85,6 +85,9 @@ struct Mundo{
     void getLogs();
     // pantalla
     void imprimirPantalla(QPlainTextEdit*);
+    QString getStringArbol();
+    QString printElementos(QString salida, QString nombre, NodoArbol * raiz, int num);
+    QString getHumanoString(QString salida, Persona* persona, int num);
 };
 
 #endif // MUNDO_H

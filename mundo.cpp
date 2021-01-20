@@ -22,8 +22,7 @@ void Mundo::crearPersonas(int num){
         QString _pais = listaPaises[aleatorio(0, listaPaises->length()-1)];
 
         int rand = getNumPaises();
-        QStringList arrayPaises;
-        getPaises(rand, arrayPaises);
+        QStringList arrayPaises = getPaises(rand);
         NodoDoble * nodoCreado = listaPersonas->insertarSorted(listaPersonas->primerNodo,new Persona(id, _nombre, _apellido, _creencia, _profesion, _pais, arrayPaises, _gender));
         insertDeportes(nodoCreado);
     }
@@ -60,10 +59,12 @@ int Mundo::getNumPaises(){
 }
 
 
-void Mundo::getPaises(int num, QStringList paises){
+QStringList Mundo::getPaises(int num){
+    QStringList paises2;
     for(int i=0; i<num; i++){
-        paises.append(listaPaises[aleatorio(0, listaPaises->length()-1)]);
+        paises2.append(listaPaises[aleatorio(0, listaPaises->length()-1)]);
     }
+    return paises2;
 }
 
 
@@ -423,3 +424,116 @@ void Mundo::getLogs(){
     fileManager->leer2("LogAniquilacion", logMuertes->historico);
     fileManager->leer2("LogSalvacion", logSalvacion->historico);
 }
+
+
+
+
+
+QString Mundo::getStringArbol(){
+    QString salida = "";
+    NodoArbol * raiz = arbolOrdenado->raiz;
+    return printElementos(salida, "\t" + QString::number(0) + "Raiz: ", raiz, 0);
+}
+
+
+QString Mundo::printElementos(QString salida, QString nombre, NodoArbol * raiz, int num){
+    salida += nombre + "\n";
+    salida = getHumanoString(salida, raiz->nodoPersona->persona, num);
+    num++;
+    if(raiz->hijoDerecho == NULL & raiz->hijoIzquierdo == NULL)
+        return salida;
+    else if(raiz->hijoDerecho == NULL)
+        return printElementos(salida, "\t" + QString::number(num) + " Hijo Izquierdo: ", raiz->hijoIzquierdo, num);
+    else if(raiz->hijoIzquierdo == NULL)
+        return printElementos(salida, "\t" + QString::number(num) + " Hijo Derecho: ", raiz->hijoDerecho, num);
+    else
+        return printElementos(salida, "\t" + QString::number(num) + " Hijo Izquierdo: ", raiz->hijoIzquierdo, num) +
+                printElementos(salida, "" + QString::number(num) + " Hijo Derecho: ", raiz->hijoDerecho, num);
+}
+
+
+QString Mundo::getHumanoString(QString salida, Persona* persona, int num){
+    salida += "ID: " + QString::number(persona->id) + "\n";
+    salida += "Nombre: " + persona->nombre + "\n";
+    salida += "Apellido: " + persona->apellido + "\n";
+
+    if(persona->vivo) salida += "Estado actual: Vivo\n";
+    else salida += "Estado actual: Muerto\n";
+
+    salida += "Genero: " + persona->genero + "\n";
+    salida += "Edad: " + QString::number(persona->longevidad) + "\n";
+    salida += "Fecha de nacimiento: " + QString::number(persona->fechaNacimiento[0]) +"-"+ QString::number(persona->fechaNacimiento[1]) +
+               "-" + QString::number(persona->fechaNacimiento[2]) +"\n";
+    salida += "Profesion: " + persona->profesion + "\n";
+    salida += "Creencia: " + persona->creencia + "\n";
+    salida += "Pais: " + persona->pais + "\n";
+    salida += "Deporte: " + persona->deportes + "\n";
+    salida += "Ejercicio por semana: " + QString::number(persona->salud) + "\n";
+
+    salida += "Acciones buenas: ";
+    for (int i=0; i<7; i++) {
+        salida += QString::number(persona->accionesBuenas[i]) + " ";
+    }
+    salida += "\n";
+
+    salida += "Pecados: ";
+    for (int i=0; i<7; i++) {
+        salida += QString::number(persona->accionesMalas[i]) + " ";
+    }
+    salida += "\n";
+
+    salida += "Estado marital: " + persona->estadoMarital + "\n";
+
+    if(persona->estadoMarital == "Casado"){
+        salida += "Conyugue: \n";
+        salida += "\tID: " + QString::number(persona->conyugue->id) + " ";
+        salida += "Nombre: " + persona->conyugue->nombre + " ";
+        salida += "Apellido: " + persona->conyugue->apellido + "\n";
+    }
+
+    salida += "Papa: \n";
+    salida += "\tID: " + QString::number(persona->papa->id) + " ";
+    salida += "Nombre: " + persona->papa->nombre + " ";
+    salida += "Apellido: " + persona->papa->apellido + "\n";
+
+    salida += "Mama: \n";
+    salida += "\tID: " + QString::number(persona->mama->id) + " ";
+    salida += "Nombre: " + persona->mama->nombre + " ";
+    salida += "Apellido: " + persona->mama->apellido + "\n";
+
+    if(!persona->hijos->isEmpty()){
+        NodoDoble * tmp = persona->hijos->primerNodo;
+        salida += "Hijos: \n";
+        for (int j=0; j<persona->hijos->largo(); j++) {
+            salida += "\tID: " + QString::number(tmp->persona->id) + " ";
+            salida += "Nombre: " + tmp->persona->nombre + " ";
+            salida += "Apellido: " + tmp->persona->apellido + "\n";
+            tmp = tmp->siguiente;
+        }
+    }
+
+    if(!persona->amigos->isEmpty()){
+        NodoDoble * tmp = persona->amigos->primerNodo;
+        salida += "Amigos: \n";
+        for (int j=0; j<persona->amigos->largo(); j++) {
+            salida += "\tID: " + QString::number(tmp->persona->id) + " ";
+            salida += "Nombre: " + tmp->persona->nombre + " ";
+            salida += "Apellido: " + tmp->persona->apellido + "\n";
+            tmp = tmp->siguiente;
+        }
+    }
+
+    if(!persona->paises.isEmpty()){
+        salida += "Paises que ha visitado: \n\t";
+        for (int j=0; j<persona->paises.length(); j++) {
+            salida += persona->paises[j] + " ";
+        }
+    }
+    salida += "\n\n";
+
+    return salida;
+}
+
+
+
+

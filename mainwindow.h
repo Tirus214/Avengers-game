@@ -76,6 +76,8 @@ private slots:
 
     void on_btnTerminar_clicked();
 
+    void on_btnVisualizar_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -361,6 +361,19 @@
       <string>Terminar Partida</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="btnVisualizar">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>170</y>
+       <width>101</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Visualizar Arbol</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
