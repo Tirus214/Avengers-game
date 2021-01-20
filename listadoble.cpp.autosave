@@ -322,6 +322,8 @@ void NodoDoble::imprimirEspecial(QPlainTextEdit* refPantalla) {
 }
 
 void NodoDoble::imprimirFamilia(QPlainTextEdit* refPantalla) {
+    
+    refPantalla->appendPlainText("ID [ " + persona->id + " ]")
     qDebug() << "ID [ " << persona->id << " ]";
     qDebug() << "Nombre: " << persona->nombre;
     qDebug() << "Apellido: " << persona->apellido;

@@ -3,6 +3,7 @@
 #include <QApplication>
 #include <QDebug>
 #include "QRandomGenerator64"
+#include <QPlainTextEdit>
 
 struct Persona;
 struct NodoDoble;
@@ -44,8 +45,8 @@ struct NodoDoble{
 
     // metodos
     void imprimir();
-    void imprimirEspecial();
-    void imprimirFamilia();
+    void imprimirEspecial(QPlainTextEdit*);
+    void imprimirFamilia(QPlainTextEdit*);
 };
 
 
