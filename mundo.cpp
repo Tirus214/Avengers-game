@@ -266,7 +266,6 @@ bool Mundo::isHijo(Persona* tmp, Persona* cuestionable){
         do{
             if(hijo->persona == cuestionable) return true;
             else if(isHijo(tmp->hijos->primerNodo->persona, cuestionable)) return true;
-            else if(isHijo(tmp->hijos->primerNodo->persona->hijos->primerNodo->persona, cuestionable)) return true;
             hijo = hijo->siguiente;
         } while(hijo != tmp->hijos->primerNodo);
     }
