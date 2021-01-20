@@ -75,6 +75,7 @@ struct Mundo{
     void crearArbol();
     int contarVivos();
     int contarMuertos();
+    NodoDoble* conseguirNodoAleatorio();
 
     void getLogs();
     // pantalla

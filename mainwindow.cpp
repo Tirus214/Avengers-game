@@ -143,3 +143,8 @@ void MainWindow::on_btnImprimirArbol_clicked()
 {
     return;
 }
+
+void MainWindow::on_btnLog_clicked()
+{
+    return;
+}

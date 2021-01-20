@@ -282,10 +282,10 @@ void Mundo::putAmigos(){
     }
 }
 
-
 void Mundo::searchAmigos(NodoDoble * actual, int numAmigos){
-    if(!listaPersonas->isEmpty() || numAmigos != 0){
-        NodoDoble * tmp = listaPersonas->primerNodo;
+    if(!listaPersonas->isEmpty() && numAmigos > 0){
+        NodoDoble * tmp = conseguirNodoAleatorio();
+        NodoDoble * inicio = tmp;
         do{
                 if(actual->persona->amigos->esta(tmp->persona->id)){
                     tmp = tmp->siguiente;
@@ -304,9 +304,34 @@ void Mundo::searchAmigos(NodoDoble * actual, int numAmigos){
                     numAmigos--;
                 }
             tmp = tmp->siguiente;
-        } while(tmp != listaPersonas->primerNodo && numAmigos > 0);
+        } while(tmp != inicio && numAmigos > 0);
     }
 }
+
+//void Mundo::searchAmigos(NodoDoble * actual, int numAmigos){
+//    if(!listaPersonas->isEmpty() || numAmigos != 0){
+//        NodoDoble * tmp = listaPersonas->primerNodo;
+//        do{
+//                if(actual->persona->amigos->esta(tmp->persona->id)){
+//                    tmp = tmp->siguiente;
+//                    continue;
+//                }
+//                if(tmp->persona->pais == actual->persona->pais){
+//                    actual->persona->amigos->insertarAlFinal(tmp->persona);
+//                    numAmigos--;
+//                }
+//                else if(aleatorio(0,100) <= 40){
+//                    actual->persona->amigos->insertarAlFinal(tmp->persona);
+//                    numAmigos--;
+//                }
+//                else if(searchAmigosComun(actual->persona->amigos, tmp->persona->amigos)){
+//                    actual->persona->amigos->insertarAlFinal(tmp->persona);
+//                    numAmigos--;
+//                }
+//            tmp = tmp->siguiente;
+//        } while(tmp != listaPersonas->primerNodo && numAmigos > 0);
+//    }
+//}
 
 
 bool Mundo::searchAmigosComun(ListaDoble * amigos, ListaDoble * amigosPosibles){
@@ -423,3 +448,10 @@ void Mundo::getLogs(){
     fileManager->leer2("LogAniquilacion", logMuertes->historico);
     fileManager->leer2("LogSalvacion", logSalvacion->historico);
 }
+
+NodoDoble * Mundo::conseguirNodoAleatorio(){
+    int aleatorioNumero = aleatorio(0,listaPersonas->largo()-1);
+    NodoDoble * nodoEncontrado = listaPersonas->buscarEnPosicion(aleatorioNumero);
+    return nodoEncontrado;
+}
+
