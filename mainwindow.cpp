@@ -39,7 +39,7 @@ void MainWindow::on_btnCrearPersonas_clicked(){
 // Aniquilacion
 void MainWindow::on_btnCorvusGlaive_clicked()
 {
-    ui->txtPantalla->clear();
+
     structCorvus->matarPersonas();
     mundo->fileManager->escribir("LogMuertes", mundo->logMuertes->historico);
     mundo->fileManager->leer2("LogMuertes", mundo->logMuertes->historico);
@@ -49,7 +49,7 @@ void MainWindow::on_btnCorvusGlaive_clicked()
 
 void MainWindow::on_btnMidnight_clicked()
 {
-    ui->txtPantalla->clear();
+
     //aqui va la aniquilacion
 
     mundo->fileManager->escribir("LogMuertes", mundo->logMuertes->historico);
@@ -60,7 +60,7 @@ void MainWindow::on_btnMidnight_clicked()
 
 void MainWindow::on_btnNebula_clicked()
 {
-    ui->txtPantalla->clear();
+
     _nebula->tamanoArbol = mundo->arbolOrdenado->contadorNodos(mundo->arbolOrdenado->raiz);
     _nebula->nodoSeleccionado = _nebula->randNodoArbol();
     _nebula->matarPersonas(_nebula->nodoSeleccionado,_nebula->listaEliminados, _nebula->nodoSeleccionado->persona->id);
@@ -72,7 +72,7 @@ void MainWindow::on_btnNebula_clicked()
 
 void MainWindow::on_btnEbonyMaw_clicked()
 {
-    ui->txtPantalla->clear();
+
     //aqui va la aniquilacion
 
     mundo->fileManager->escribir("LogMuertes", mundo->logMuertes->historico);
@@ -141,7 +141,7 @@ void MainWindow::on_btnThor_clicked()
 
 void MainWindow::on_btnSpiderman_clicked()
 {
-    ui->txtPantalla->clear();
+
     //aqui va la salvacion
 
     mundo->fileManager->escribir("LogSalvacion", mundo->logSalvacion->historico);
@@ -152,7 +152,6 @@ void MainWindow::on_btnSpiderman_clicked()
 // Consultas
 void MainWindow::on_btnConsultarHumano_clicked()
 {
-    ui->txtPantalla->clear();
     int _id = ui->txfConsultarHumano->text().toInt();
     consultas->consultarPersona(_id,ui->txtPantalla);
     return;
@@ -161,7 +160,6 @@ void MainWindow::on_btnConsultarHumano_clicked()
 
 void MainWindow::on_btnConsultarFamilia_clicked()
 {
-
     int _id = ui->txfConsultarFamilia->text().toInt();
     consultas->consultarFamilia(_id,ui->txtPantalla);
     return;
@@ -222,12 +220,14 @@ void MainWindow::on_btnLog_clicked()
 void MainWindow::on_pushButton_clicked()
 {
     ui->txtPantalla->appendPlainText("\nCantidad de nodos: " + QString::number(mundo->arbolOrdenado->contadorNodos(mundo->arbolOrdenado->raiz)));
+    return;
 }
 
 
 void MainWindow::on_btnVisualizar_clicked(){
     if(!mundo->listaPersonas->isEmpty())
         ui->txtPantalla->setPlainText(mundo->getStringArbol());
+    return;
 }
 
 
