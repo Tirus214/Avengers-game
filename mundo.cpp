@@ -460,6 +460,8 @@ QString Mundo::getHumanoString(QString salida, Persona* persona, int num){
     if(persona->vivo) salida += "Estado actual: Vivo\n";
     else salida += "Estado actual: Muerto\n";
 
+    salida += "Situacion actual: " + persona->situacion + "\n";
+
     salida += "Genero: " + persona->genero + "\n";
     salida += "Edad: " + QString::number(persona->longevidad) + "\n";
     salida += "Fecha de nacimiento: " + QString::number(persona->fechaNacimiento[0]) +"-"+ QString::number(persona->fechaNacimiento[1]) +
