@@ -3,7 +3,7 @@
 #include "heap.h"
 #include "arbol.h"
 #include "log.h"
-
+#include <QPlainTextEdit>
 
 struct Mundo{
     ListaDoble * listaPersonas;
@@ -75,6 +75,8 @@ struct Mundo{
     void crearArbol();
     int contarVivos();
     int contarMuertos();
+    // pantalla
+    void imprimirPantalla(QPlainTextEdit*);
 };
 
 #endif // MUNDO_H

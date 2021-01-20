@@ -24,6 +24,7 @@ void MainWindow::on_btnCrearPersonas_clicked(){
         nebula->randNodoArbol();
         nebula->matarPersonas(nebula->nodoSeleccionado, nebula->nodoSeleccionado->persona->id);
         mundo->imprimir();
+        mundo->imprimirPantalla(ui->txtPantalla);
 //        qDebug() << "After salvar";
 //        Antman * antmanPrueba = new Antman(mundo);
 //        antmanPrueba->cantidadHormigas = 15;

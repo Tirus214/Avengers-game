@@ -361,13 +361,17 @@ void Mundo::imprimir(){
 
 // =====================================    PANTALLAS   =====================================================
 
-void Mundo::imprimirPantalla() {
+void Mundo::imprimirPantalla(QPlainTextEdit* refPantallaTexto) {
     if (!listaPersonas->isEmpty()) {
         NodoDoble* tmp = listaPersonas->primerNodo;
         do {
+            refPantallaTexto->appendPlainText("ID: " + QString::number(tmp->persona->id) + " Nombre: " + tmp->persona->nombre + " Apellido: " + tmp->persona->apellido);
+            refPantallaTexto->moveCursor(QTextCursor::End);
 
-        }
+            tmp = tmp->siguiente;
+        } while (tmp != listaPersonas->primerNodo);
     }
+    return;
 }
 
 // ==========================================================================================================
