@@ -18,14 +18,13 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::on_btnCrearPersonas_clicked(){
-    ui->txtPantalla->clear();
     int num = ui->txfCrearPersonas->text().toInt();
     mundo->crearPersonas(num);
-    //structCorvus = new CorvusGlaive(mundo);
-    /*Nebula * nebula = new Nebula(mundo);
+    structCorvus = new CorvusGlaive(mundo);
+    _nebula = new Nebula(mundo);
     consultas = new Consultas(mundo);
-    mundo->imprimir();
-    mundo->imprimirPantalla(ui->txtPantalla);*/
+    //mundo->imprimir();
+    mundo->imprimirPantalla(ui->txtPantalla);
 //        qDebug() << "After salvar";
 //        Antman * antmanPrueba = new Antman(mundo);
 //        antmanPrueba->cantidadHormigas = 15;
@@ -34,18 +33,6 @@ void MainWindow::on_btnCrearPersonas_clicked(){
 //        qDebug() << "Vivos:" << mundo->contarVivos();
 
 
-}
-
-void MainWindow::on_btnLog_clicked(){
-    ui->txtPantalla->clear();
-    if(!mundo->listaPersonas->isEmpty()){
-        ui->txtPantalla->setPlainText("Humanos matados: " + QString::number(mundo->totalMatados) +
-                                 "\nHumanos salvados: " + QString::number(mundo->totalSalvados));
-        if(!mundo->logMuertes->historico.isEmpty())
-            mundo->fileManager->escribir("LogMuertes", mundo->logMuertes->historico);
-        if(!mundo->logSalvacion->historico.isEmpty())
-            mundo->fileManager->escribir("LogSalvacion", mundo->logSalvacion->historico);
-    }
 }
 
 // Aniquilacion
@@ -64,8 +51,10 @@ void MainWindow::on_btnMidnight_clicked()
 
 void MainWindow::on_btnNebula_clicked()
 {
-    nebula->randNodoArbol();
-    nebula->matarPersonas(nebula->nodoSeleccionado, nebula->nodoSeleccionado->persona->id);
+    _nebula->tamanoArbol = mundo->arbolOrdenado->contadorNodos(mundo->arbolOrdenado->raiz);
+    _nebula->nodoSeleccionado = _nebula->randNodoArbol();
+    _nebula->matarPersonas(_nebula->nodoSeleccionado,_nebula->listaEliminados, _nebula->nodoSeleccionado->persona->id);
+    ui->txtPantalla->appendPlainText("Cantidad de muertos: " + QString::number(mundo->contarMuertos()));
     return;
 }
 
@@ -157,20 +146,14 @@ void MainWindow::on_btnImprimirArbol_clicked()
     return;
 }
 
+void MainWindow::on_btnLog_clicked()
+{
+    return;
+}
 
-void MainWindow::on_btnTerminar_clicked(){
-    if(mundo->totalMatados > mundo->totalSalvados)
-        ui->txtPantalla->setPlainText("Humanos matados: " + QString::number(mundo->totalMatados) +
-                                 "\nHumanos salvados: " + QString::number(mundo->totalSalvados) +
-                                 "\n\nLos villanos han ganado!");
-    else if(mundo->totalMatados < mundo->totalSalvados)
-        ui->txtPantalla->setPlainText("Humanos matados: " + QString::number(mundo->totalMatados) +
-                                 "\nHumanos salvados: " + QString::number(mundo->totalSalvados) +
-                                 "\n\nLos heroes han ganado!");
-    else
-        ui->txtPantalla->setPlainText("Humanos matados: " + QString::number(mundo->totalMatados) +
-                                 "\nHumanos salvados: " + QString::number(mundo->totalSalvados) +
-                                 "\n\nEs un empate!");
+void MainWindow::on_pushButton_clicked()
+{
+    ui->txtPantalla->appendPlainText("\nCantidad de nodos: " + QString::number(mundo->arbolOrdenado->contadorNodos(mundo->arbolOrdenado->raiz)));
 }
 
 

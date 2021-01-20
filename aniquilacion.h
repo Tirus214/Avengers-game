@@ -89,22 +89,24 @@ struct Nebula{
     NodoDoble * nodoSeleccionado;
     int contador;
     int contadorUltimaCorrida;
+    ListaDoble* listaEliminados;
 
     Nebula (Mundo * _mundo) {
         mundo = _mundo;
         listaPersona = mundo->listaPersonas;
         arbolEntrada = mundo->arbolHeap;
         tamanoArbol = arbolEntrada->contarNodos();
-        nodoSeleccionado = randNodoArbol();
+        listaEliminados = new ListaDoble();
+        //nodoSeleccionado = randNodoArbol();
         contador = 0;
         contadorUltimaCorrida = 0;
     }
 
 
-    void matarPersonas(NodoDoble *, int);
+    void matarPersonas(NodoDoble *, ListaDoble *&, int);
     bool revisarLista(ListaDoble *);
     NodoDoble * randNodoArbol();
-
+    bool estaLista(ListaDoble*,int);
 };
 
 struct Dwarf{

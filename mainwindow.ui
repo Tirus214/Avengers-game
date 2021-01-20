@@ -341,24 +341,17 @@
       <string>Estadisticas</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="btnTerminar">
+    <widget class="QPushButton" name="pushButton">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>570</y>
-       <width>191</width>
-       <height>41</height>
+       <x>24</x>
+       <y>180</y>
+       <width>81</width>
+       <height>23</height>
       </rect>
      </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-       <weight>50</weight>
-       <bold>false</bold>
-      </font>
-     </property>
      <property name="text">
-      <string>Terminar Partida</string>
+      <string>nodosArbol1%</string>
      </property>
     </widget>
     <widget class="QPushButton" name="btnVisualizar">
@@ -382,7 +375,7 @@
      <x>0</x>
      <y>0</y>
      <width>1242</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
