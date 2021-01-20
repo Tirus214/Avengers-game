@@ -3,7 +3,6 @@
 #include "mundo.h"
 #include "aniquilacion.h"
 #include "salvacion.h"
-#include "log.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
