@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1242</width>
+    <width>1450</width>
     <height>669</height>
    </rect>
   </property>
@@ -19,7 +19,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1221</width>
+      <width>1441</width>
       <height>621</height>
      </rect>
     </property>
@@ -55,9 +55,9 @@
     <widget class="QPlainTextEdit" name="txtPantalla">
      <property name="geometry">
       <rect>
-       <x>540</x>
+       <x>650</x>
        <y>10</y>
-       <width>671</width>
+       <width>781</width>
        <height>601</height>
       </rect>
      </property>
@@ -361,7 +361,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1242</width>
+     <width>1450</width>
      <height>21</height>
     </rect>
    </property>

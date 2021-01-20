@@ -400,6 +400,65 @@ void Mundo::imprimirPantalla(QPlainTextEdit* refPantallaTexto) {
     return;
 }
 
+void Mundo::imprimirHumanosVivos(QPlainTextEdit* refPantallaTexto) {
+    if (!listaPersonas->isEmpty()) {
+        NodoDoble* tmp = listaPersonas->primerNodo;
+        refPantallaTexto->appendPlainText("\n   Humanos Vivos");
+        do {
+            if (tmp->persona->vivo) {
+                refPantallaTexto->appendPlainText("ID: " + QString::number(tmp->persona->id) + " Nombre: " + tmp->persona->nombre + " Apellido: " + tmp->persona->apellido);
+                refPantallaTexto->moveCursor(QTextCursor::End);
+            }
+            tmp = tmp->siguiente;
+        } while (tmp != listaPersonas->primerNodo);
+    }
+    return;
+}
+
+void Mundo::imprimirHumanosMuertos(QPlainTextEdit* refPantallaTexto) {
+    if (!listaPersonas->isEmpty()) {
+        NodoDoble* tmp = listaPersonas->primerNodo;
+        refPantallaTexto->appendPlainText("\n   Humanos Muertos");
+        do {
+            if (tmp->persona->vivo == false) {
+                refPantallaTexto->appendPlainText("ID: " + QString::number(tmp->persona->id) + " Nombre: " + tmp->persona->nombre + " Apellido: " + tmp->persona->apellido);
+                refPantallaTexto->moveCursor(QTextCursor::End);
+            }
+            tmp = tmp->siguiente;
+        } while (tmp != listaPersonas->primerNodo);
+    }
+    return;
+}
+
+void Mundo::imprimirHumanosSalvados(QPlainTextEdit* refPantallaTexto) {
+    if (!listaPersonas->isEmpty()) {
+        NodoDoble* tmp = listaPersonas->primerNodo;
+        refPantallaTexto->appendPlainText("\n   Humanos Salvados");
+        do {
+            if (tmp->persona->salvado) {
+                refPantallaTexto->appendPlainText("ID: " + QString::number(tmp->persona->id) + " Nombre: " + tmp->persona->nombre + " Apellido: " + tmp->persona->apellido);
+                refPantallaTexto->moveCursor(QTextCursor::End);
+            }
+            tmp = tmp->siguiente;
+        } while (tmp != listaPersonas->primerNodo);
+    }
+    return;
+}
+
+void Mundo::imprimirPorDeporte(QString _deporte, QPlainTextEdit* refPantallaTexto) {
+    if (!listaPersonas->isEmpty()) {
+        NodoDoble* tmp = listaPersonas->primerNodo;
+        refPantallaTexto->appendPlainText("\n   Humanos que practican: " + _deporte);
+        do {
+            if (tmp->persona->deportes == _deporte) {
+                refPantallaTexto->appendPlainText("ID: " + QString::number(tmp->persona->id) + " Nombre: " + tmp->persona->nombre + " Apellido: " + tmp->persona->apellido + " Deporte: " + tmp->persona->deportes);
+                refPantallaTexto->moveCursor(QTextCursor::End);
+            }
+            tmp = tmp->siguiente;
+        } while (tmp != listaPersonas->primerNodo);
+    }
+    return;
+}
 // ==========================================================================================================
 int Mundo::contarMuertos(){
     NodoDoble * tmp = listaPersonas->primerNodo;

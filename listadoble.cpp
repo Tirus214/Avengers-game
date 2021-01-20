@@ -422,3 +422,26 @@ void Persona::imprimir2(QPlainTextEdit* refPantalla) {
 //    qDebug() << "Cantidad de veces eliminad@: " << cantEliminaciones;
 //    qDebug() << "Cantidad de veces salvad@: " << cantSalvaciones;
 }
+
+void NodoDoble::imprimirAmigos(QPlainTextEdit* refPantalla) {
+    refPantalla->appendPlainText("\nID [ " + QString::number(persona->id)+ " ]");
+    refPantalla->appendPlainText("Nombre: " + persona->nombre);
+    refPantalla->appendPlainText("Apellido: " + persona->apellido);
+    refPantalla->appendPlainText("Edad: " + QString::number(persona->longevidad));
+    if (persona->vivo) {
+        refPantalla->appendPlainText("Estado: Vivo");
+    } else {
+        refPantalla->appendPlainText("Estado: Muerto");
+    }
+    refPantalla->appendPlainText("Situacion actual: " + persona->situacion);
+    refPantalla->appendPlainText("Cantidad de veces eliminad@: " + QString::number(persona->cantEliminaciones));
+    refPantalla->appendPlainText("Cantidad de veces salvad@: " + QString::number(persona->cantSalvaciones));
+    refPantalla->appendPlainText("  Amigos:\n");
+    NodoDoble* amigo = persona->amigos->primerNodo;
+    while (amigo != NULL) {
+        amigo->persona->imprimir2(refPantalla);
+        amigo = amigo->siguiente;
+    }
+    refPantalla->moveCursor(QTextCursor::End);
+    return;
+}

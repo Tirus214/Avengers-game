@@ -86,6 +86,11 @@ struct Mundo{
     void getLogs();
     // pantalla
     void imprimirPantalla(QPlainTextEdit*);
+    // estadisticas
+    void imprimirHumanosVivos(QPlainTextEdit*);
+    void imprimirHumanosMuertos(QPlainTextEdit*);
+    void imprimirHumanosSalvados(QPlainTextEdit*);
+    void imprimirPorDeporte(QString,QPlainTextEdit*);
 };
 
 #endif // MUNDO_H

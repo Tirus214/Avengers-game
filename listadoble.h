@@ -47,6 +47,7 @@ struct NodoDoble{
     void imprimir();
     void imprimirEspecial(QPlainTextEdit*);
     void imprimirFamilia(QPlainTextEdit*);
+    void imprimirAmigos(QPlainTextEdit*);
 };
 
 
@@ -80,6 +81,7 @@ struct Persona {
     QString situacion;
     int cantEliminaciones = 0;
     int cantSalvaciones = 0;
+    bool salvado;
 
     Persona(int _id, QString _nombre, QString _apellido, QString _creencia, QString _profesion, QString _pais, QStringList _paises, QString gender){
         id = _id;
@@ -105,6 +107,7 @@ struct Persona {
         setCantAccionesBuenas();
         paises = _paises;
         categoria = 0;
+        salvado = false;
     }
 
     void ranFechaNacimiento();
