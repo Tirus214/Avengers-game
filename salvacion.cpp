@@ -68,6 +68,7 @@ void Antman::salvarPersonas(){
     NodoDoble * finalDoble = listaPersonas->buscarPorId(final->nodoPersona->persona->id);
     do{
         if(inicioDoble->persona->vivo == false){
+            mundo->totalSalvados++;
             contadorUltimaCorrida++;
             contador++;
             inicioDoble->persona->vivo = true;
@@ -119,6 +120,7 @@ void Ironman::detonarBombas(){
 void Ironman::salvarAscendientes(Persona * personaAnalizada){
     if (personaAnalizada == NULL) return;
     if (personaAnalizada->vivo == false){
+        mundo->totalSalvados++;
         contadorUltimaCorrida++;
         contador++;
         personaAnalizada->vivo = true;
@@ -136,6 +138,7 @@ void Ironman::salvarDescendientes(Persona * raiz){
     if(raiz == NULL) return;
     else{
         if (raiz->vivo == false){
+            mundo->totalSalvados++;
             contadorUltimaCorrida++;
             contador++;
             raiz->vivo = true;
@@ -181,6 +184,7 @@ void Thor::salvarPersonas(Persona * personaSalvada){
         else{
             do{
                 if (amigoTmp->persona->vivo == false){
+                    mundo->totalSalvados++;
                     contadorUltimaCorrida++;
                     amigoTmp->persona->vivo = true;
                     amigoTmp->persona->situacion = "Salvado por Thor";
@@ -224,6 +228,7 @@ void Spiderman::salvarPersonas(NodoHeap * hoja){
         for(int i = 0; i <= contadorTelas; i++){
             if (inicio == nullptr) return;
             if(inicio->persona->vivo == false){
+                mundo->totalSalvados++;
                 contadorUltimaCorrida++;
                 inicio->persona->vivo = true;
                 inicio->persona->situacion = "Salvado por Spiderman";
