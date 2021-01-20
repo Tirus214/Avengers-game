@@ -1,9 +1,18 @@
 #include "salvacion.h"
 
+void Antman::getHormigas(){
+    mundo->fileManager->leer2("Hormigas", hormigas);
+}
+
+void Antman::setHormigas(int num){
+    cantidadHormigas = num;
+}
+
 void Antman::dejarFeromonas(){
     if (arbolEntrada->isEmpty(arbolEntrada->raiz)) return;
     else {
         clearFeromonas(arbolEntrada->raiz);
+        getHormigas();
         NodoArbol * tmp = NULL;
         for(int i = 0;i < 2; i++){
             int aleatorio = 0;
@@ -15,9 +24,14 @@ void Antman::dejarFeromonas(){
                     tmp->feromonas = tmp->feromonas + 1;
                     if (0 <= aleatorio && aleatorio > 50 && tmp->hijoIzquierdo != NULL) tmp = tmp->hijoIzquierdo;
                     else tmp = tmp->hijoDerecho;
+                    hormigas.append("Humano" + QString::number(tmp->nodoPersona->persona->id) + " " +
+                                    tmp->nodoPersona->persona->nombre + tmp->nodoPersona->persona->apellido +
+                                    " alcanzado por la hormiga: " + QString::number(i));
                 }
             }
         }
+        hormigas.append("=========================================================================================");
+        mundo->fileManager->escribir("Hormigas", hormigas);
         inicio = escogerNodo(arbolEntrada->raiz->hijoIzquierdo);
         final = escogerNodo(arbolEntrada->raiz->hijoDerecho);
         salvarPersonas();

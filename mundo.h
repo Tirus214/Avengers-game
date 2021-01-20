@@ -75,6 +75,8 @@ struct Mundo{
     void crearArbol();
     int contarVivos();
     int contarMuertos();
+
+    void getLogs();
     // pantalla
     void imprimirPantalla(QPlainTextEdit*);
 };

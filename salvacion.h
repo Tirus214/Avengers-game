@@ -13,10 +13,11 @@ struct Antman{
     NodoArbol * final;
     Arbol * arbolEntrada;
     int contadorUltimaCorrida;
+    QStringList hormigas;
 
     //constructor
     Antman (Mundo * _mundo) {
-        cantidadHormigas = 200;
+        cantidadHormigas = 0;
         mundo = _mundo;
         arbolEntrada = mundo->arbolOrdenado;
         listaPersonas = mundo->listaPersonas;
@@ -24,10 +25,13 @@ struct Antman{
         contadorUltimaCorrida = 0;
         inicio = NULL;
         final = NULL;
+        getHormigas();
     }
 
 
     //métodos
+    void getHormigas();
+    void setHormigas(int num);
     void dejarFeromonas();
     int maximo(int, int);
     NodoArbol * escogerNodo(NodoArbol *);
