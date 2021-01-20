@@ -223,25 +223,6 @@ void Mundo::randomPareja(Persona * actual, QString gender){
 }
 
 
-bool Mundo::validarPadre(Persona* tmp, Persona* cuestionable){
-    if(tmp->papa == cuestionable) return true;
-    else if(tmp->mama == cuestionable) return true;
-    else return false;
-}
-
-
-bool Mundo::isHijo(Persona* tmp, Persona* cuestionable){
-    if(!tmp->hijos->isEmpty()){
-        NodoDoble* hijo = tmp->hijos->primerNodo;
-        do{
-            if(hijo->persona == cuestionable) return true;
-            else if(isHijo(tmp->hijos->primerNodo->persona, cuestionable)) return true;
-            hijo = hijo->siguiente;
-        } while(hijo != tmp->hijos->primerNodo);
-    }
-    return false;
-}
-
 
 void Mundo::putPadres(){
     if(!listaPersonas->isEmpty()){
@@ -269,6 +250,27 @@ void Mundo::randomPadre(Persona* actual, QString gender){
 
 bool Mundo::validarConyugue(Persona* actual, Persona* tmp){
     return actual->conyugue == tmp;
+}
+
+
+bool Mundo::validarPadre(Persona* tmp, Persona* cuestionable){
+    if(tmp->papa == cuestionable) return true;
+    else if(tmp->mama == cuestionable) return true;
+    else return false;
+}
+
+
+bool Mundo::isHijo(Persona* tmp, Persona* cuestionable){
+    if(!tmp->hijos->isEmpty()){
+        NodoDoble* hijo = tmp->hijos->primerNodo;
+        do{
+            if(hijo->persona == cuestionable) return true;
+            else if(isHijo(tmp->hijos->primerNodo->persona, cuestionable)) return true;
+            else if(isHijo(tmp->hijos->primerNodo->persona->hijos->primerNodo->persona, cuestionable)) return true;
+            hijo = hijo->siguiente;
+        } while(hijo != tmp->hijos->primerNodo);
+    }
+    return false;
 }
 
 
