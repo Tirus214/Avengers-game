@@ -17,7 +17,6 @@ int main(int argc, char *argv[])
     l->insertarAlFinal(new Persona(122,"juan", "perez", "cristiano", "profesor", paises));
     l->imprimir();*/
 
-
     QApplication a(argc, argv);
     MainWindow w;
     w.show();

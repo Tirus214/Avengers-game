@@ -75,6 +75,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_btnVisualizar_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

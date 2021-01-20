@@ -22,8 +22,7 @@ void Mundo::crearPersonas(int num){
         QString _pais = listaPaises[aleatorio(0, listaPaises->length()-1)];
 
         int rand = getNumPaises();
-        QStringList arrayPaises;
-        getPaises(rand, arrayPaises);
+        QStringList arrayPaises = getPaises(rand);
         NodoDoble * nodoCreado = listaPersonas->insertarSorted(listaPersonas->primerNodo,new Persona(id, _nombre, _apellido, _creencia, _profesion, _pais, arrayPaises, _gender));
         insertDeportes(nodoCreado);
     }
@@ -60,10 +59,12 @@ int Mundo::getNumPaises(){
 }
 
 
-void Mundo::getPaises(int num, QStringList paises){
+QStringList Mundo::getPaises(int num){
+    QStringList paises2;
     for(int i=0; i<num; i++){
-        paises.append(listaPaises[aleatorio(0, listaPaises->length()-1)]);
+        paises2.append(listaPaises[aleatorio(0, listaPaises->length()-1)]);
     }
+    return paises2;
 }
 
 
@@ -222,25 +223,6 @@ void Mundo::randomPareja(Persona * actual, QString gender){
 }
 
 
-bool Mundo::validarPadre(Persona* tmp, Persona* cuestionable){
-    if(tmp->papa == cuestionable) return true;
-    else if(tmp->mama == cuestionable) return true;
-    else return false;
-}
-
-
-bool Mundo::isHijo(Persona* tmp, Persona* cuestionable){
-    if(!tmp->hijos->isEmpty()){
-        NodoDoble* hijo = tmp->hijos->primerNodo;
-        do{
-            if(hijo->persona == cuestionable) return true;
-            else if(isHijo(tmp->hijos->primerNodo->persona, cuestionable)) return true;
-            hijo = hijo->siguiente;
-        } while(hijo != tmp->hijos->primerNodo);
-    }
-    return false;
-}
-
 
 void Mundo::putPadres(){
     if(!listaPersonas->isEmpty()){
@@ -271,6 +253,26 @@ bool Mundo::validarConyugue(Persona* actual, Persona* tmp){
 }
 
 
+bool Mundo::validarPadre(Persona* tmp, Persona* cuestionable){
+    if(tmp->papa == cuestionable) return true;
+    else if(tmp->mama == cuestionable) return true;
+    else return false;
+}
+
+
+bool Mundo::isHijo(Persona* tmp, Persona* cuestionable){
+    if(!tmp->hijos->isEmpty()){
+        NodoDoble* hijo = tmp->hijos->primerNodo;
+        do{
+            if(hijo->persona == cuestionable) return true;
+            else if(isHijo(tmp->hijos->primerNodo->persona, cuestionable)) return true;
+            hijo = hijo->siguiente;
+        } while(hijo != tmp->hijos->primerNodo);
+    }
+    return false;
+}
+
+
 void Mundo::putAmigos(){
     if(!listaPersonas->isEmpty()){
         NodoDoble * tmp = listaPersonas->primerNodo;
@@ -282,10 +284,10 @@ void Mundo::putAmigos(){
     }
 }
 
+
 void Mundo::searchAmigos(NodoDoble * actual, int numAmigos){
-    if(!listaPersonas->isEmpty() && numAmigos > 0){
-        NodoDoble * tmp = conseguirNodoAleatorio();
-        NodoDoble * inicio = tmp;
+    if(!listaPersonas->isEmpty() || numAmigos != 0){
+        NodoDoble * tmp = listaPersonas->primerNodo;
         do{
                 if(actual->persona->amigos->esta(tmp->persona->id)){
                     tmp = tmp->siguiente;
@@ -304,34 +306,9 @@ void Mundo::searchAmigos(NodoDoble * actual, int numAmigos){
                     numAmigos--;
                 }
             tmp = tmp->siguiente;
-        } while(tmp != inicio && numAmigos > 0);
+        } while(tmp != listaPersonas->primerNodo && numAmigos > 0);
     }
 }
-
-//void Mundo::searchAmigos(NodoDoble * actual, int numAmigos){
-//    if(!listaPersonas->isEmpty() || numAmigos != 0){
-//        NodoDoble * tmp = listaPersonas->primerNodo;
-//        do{
-//                if(actual->persona->amigos->esta(tmp->persona->id)){
-//                    tmp = tmp->siguiente;
-//                    continue;
-//                }
-//                if(tmp->persona->pais == actual->persona->pais){
-//                    actual->persona->amigos->insertarAlFinal(tmp->persona);
-//                    numAmigos--;
-//                }
-//                else if(aleatorio(0,100) <= 40){
-//                    actual->persona->amigos->insertarAlFinal(tmp->persona);
-//                    numAmigos--;
-//                }
-//                else if(searchAmigosComun(actual->persona->amigos, tmp->persona->amigos)){
-//                    actual->persona->amigos->insertarAlFinal(tmp->persona);
-//                    numAmigos--;
-//                }
-//            tmp = tmp->siguiente;
-//        } while(tmp != listaPersonas->primerNodo && numAmigos > 0);
-//    }
-//}
 
 
 bool Mundo::searchAmigosComun(ListaDoble * amigos, ListaDoble * amigosPosibles){
@@ -508,9 +485,117 @@ void Mundo::getLogs(){
     fileManager->leer2("LogSalvacion", logSalvacion->historico);
 }
 
-NodoDoble * Mundo::conseguirNodoAleatorio(){
-    int aleatorioNumero = aleatorio(0,listaPersonas->largo()-1);
-    NodoDoble * nodoEncontrado = listaPersonas->buscarEnPosicion(aleatorioNumero);
-    return nodoEncontrado;
+
+
+
+
+QString Mundo::getStringArbol(){
+    QString salida = "";
+    NodoArbol * raiz = arbolOrdenado->raiz;
+    return printElementos(salida, "\t" + QString::number(0) + "Raiz: ", raiz, 0);
 }
+
+
+QString Mundo::printElementos(QString salida, QString nombre, NodoArbol * raiz, int num){
+    salida += nombre + "\n";
+    salida = getHumanoString(salida, raiz->nodoPersona->persona, num);
+    num++;
+    if(raiz->hijoDerecho == NULL & raiz->hijoIzquierdo == NULL)
+        return salida;
+    else if(raiz->hijoDerecho == NULL)
+        return printElementos(salida, "\t" + QString::number(num) + " Hijo Izquierdo: ", raiz->hijoIzquierdo, num);
+    else if(raiz->hijoIzquierdo == NULL)
+        return printElementos(salida, "\t" + QString::number(num) + " Hijo Derecho: ", raiz->hijoDerecho, num);
+    else
+        return printElementos(salida, "\t" + QString::number(num) + " Hijo Izquierdo: ", raiz->hijoIzquierdo, num) +
+                printElementos(salida, "" + QString::number(num) + " Hijo Derecho: ", raiz->hijoDerecho, num);
+}
+
+
+QString Mundo::getHumanoString(QString salida, Persona* persona, int num){
+    salida += "ID: " + QString::number(persona->id) + "\n";
+    salida += "Nombre: " + persona->nombre + "\n";
+    salida += "Apellido: " + persona->apellido + "\n";
+
+    if(persona->vivo) salida += "Estado actual: Vivo\n";
+    else salida += "Estado actual: Muerto\n";
+
+    salida += "Situacion actual: " + persona->situacion + "\n";
+
+    salida += "Genero: " + persona->genero + "\n";
+    salida += "Edad: " + QString::number(persona->longevidad) + "\n";
+    salida += "Fecha de nacimiento: " + QString::number(persona->fechaNacimiento[0]) +"-"+ QString::number(persona->fechaNacimiento[1]) +
+               "-" + QString::number(persona->fechaNacimiento[2]) +"\n";
+    salida += "Profesion: " + persona->profesion + "\n";
+    salida += "Creencia: " + persona->creencia + "\n";
+    salida += "Pais: " + persona->pais + "\n";
+    salida += "Deporte: " + persona->deportes + "\n";
+    salida += "Ejercicio por semana: " + QString::number(persona->salud) + "\n";
+
+    salida += "Acciones buenas: ";
+    for (int i=0; i<7; i++) {
+        salida += QString::number(persona->accionesBuenas[i]) + " ";
+    }
+    salida += "\n";
+
+    salida += "Pecados: ";
+    for (int i=0; i<7; i++) {
+        salida += QString::number(persona->accionesMalas[i]) + " ";
+    }
+    salida += "\n";
+
+    salida += "Estado marital: " + persona->estadoMarital + "\n";
+
+    if(persona->estadoMarital == "Casado"){
+        salida += "Conyugue: \n";
+        salida += "\tID: " + QString::number(persona->conyugue->id) + " ";
+        salida += "Nombre: " + persona->conyugue->nombre + " ";
+        salida += "Apellido: " + persona->conyugue->apellido + "\n";
+    }
+
+    salida += "Papa: \n";
+    salida += "\tID: " + QString::number(persona->papa->id) + " ";
+    salida += "Nombre: " + persona->papa->nombre + " ";
+    salida += "Apellido: " + persona->papa->apellido + "\n";
+
+    salida += "Mama: \n";
+    salida += "\tID: " + QString::number(persona->mama->id) + " ";
+    salida += "Nombre: " + persona->mama->nombre + " ";
+    salida += "Apellido: " + persona->mama->apellido + "\n";
+
+    if(!persona->hijos->isEmpty()){
+        NodoDoble * tmp = persona->hijos->primerNodo;
+        salida += "Hijos: \n";
+        for (int j=0; j<persona->hijos->largo(); j++) {
+            salida += "\tID: " + QString::number(tmp->persona->id) + " ";
+            salida += "Nombre: " + tmp->persona->nombre + " ";
+            salida += "Apellido: " + tmp->persona->apellido + "\n";
+            tmp = tmp->siguiente;
+        }
+    }
+
+    if(!persona->amigos->isEmpty()){
+        NodoDoble * tmp = persona->amigos->primerNodo;
+        salida += "Amigos: \n";
+        for (int j=0; j<persona->amigos->largo(); j++) {
+            salida += "\tID: " + QString::number(tmp->persona->id) + " ";
+            salida += "Nombre: " + tmp->persona->nombre + " ";
+            salida += "Apellido: " + tmp->persona->apellido + "\n";
+            tmp = tmp->siguiente;
+        }
+    }
+
+    if(!persona->paises.isEmpty()){
+        salida += "Paises que ha visitado: \n\t";
+        for (int j=0; j<persona->paises.length(); j++) {
+            salida += persona->paises[j] + " ";
+        }
+    }
+    salida += "\n\n";
+
+    return salida;
+}
+
+
+
 

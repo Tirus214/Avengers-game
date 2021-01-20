@@ -21,7 +21,8 @@ SOURCES += \
     mundo.cpp \
     nodoarbol.cpp \
     nodoheap.cpp \
-    salvacion.cpp
+    salvacion.cpp \
+    treeview.cpp
 
 HEADERS += \
     aniquilacion.h \
@@ -35,10 +36,12 @@ HEADERS += \
     mundo.h \
     nodoarbol.h \
     nodoheap.h \
-    salvacion.h
+    salvacion.h \
+    treeview.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    treeview.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
