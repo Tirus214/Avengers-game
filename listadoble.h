@@ -120,8 +120,8 @@ struct Persona {
 
     int aleatorio(int min, int max);
     //
-    void imprimir();
-    void imprimir2();
+    void imprimir(QPlainTextEdit*);
+    void imprimir2(QPlainTextEdit*);
 };
 
 #endif // ListaPersonas_H

@@ -5,6 +5,7 @@
 #include "salvacion.h"
 #include "log.h"
 #include <QMainWindow>
+#include "consultas.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,6 +26,8 @@ class MainWindow : public QMainWindow
     Ironman* ironman;
     Thor* thor;
     Spiderman* spiderman;
+    // consultas
+    Consultas* consultas;
 
 public:
     MainWindow(QWidget *parent = nullptr);

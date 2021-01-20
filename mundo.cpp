@@ -367,10 +367,10 @@ void Mundo::imprimirPantalla(QPlainTextEdit* refPantallaTexto) {
         do {
             refPantallaTexto->appendPlainText("ID: " + QString::number(tmp->persona->id) + " Nombre: " + tmp->persona->nombre + " Apellido: " + tmp->persona->apellido);
             refPantallaTexto->moveCursor(QTextCursor::End);
-
             tmp = tmp->siguiente;
         } while (tmp != listaPersonas->primerNodo);
     }
+
     return;
 }
 

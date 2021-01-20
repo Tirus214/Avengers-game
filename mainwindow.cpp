@@ -22,7 +22,7 @@ void MainWindow::on_btnCrearPersonas_clicked(){
     mundo->crearPersonas(num);
     structCorvus = new CorvusGlaive(mundo);
     Nebula * nebula = new Nebula(mundo);
-
+    consultas = new Consultas(mundo);
     mundo->imprimir();
     mundo->imprimirPantalla(ui->txtPantalla);
 //        qDebug() << "After salvar";
@@ -97,12 +97,14 @@ void MainWindow::on_btnSpiderman_clicked()
 void MainWindow::on_btnConsultarHumano_clicked()
 {
     int _id = ui->txfConsultarHumano->text().toInt();
+    consultas->consultarPersona(_id,ui->txtPantalla);
 }
 
 
 void MainWindow::on_btnConsultarFamilia_clicked()
 {
     int _id = ui->txfConsultarFamilia->text().toInt();
+    consultas->consultarFamilia(_id,ui->txtPantalla);
 }
 
 

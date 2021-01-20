@@ -290,69 +290,135 @@ void NodoDoble::imprimir(){
 }
 
 void NodoDoble::imprimirEspecial(QPlainTextEdit* refPantalla) {
-    qDebug() << "ID [ " << persona->id << " ]";
-    qDebug() << "Nombre: " << persona->nombre;
-    qDebug() << "Apellido: " << persona->apellido;
-    qDebug() << "Edad: " << persona->longevidad;
-    qDebug() << "Vivo: " << persona->vivo;
-
-    qDebug() << "Situacion actual: " << persona->situacion;
-    qDebug() << "Cantidad de veces eliminad@: " << persona->cantEliminaciones;
-    qDebug() << "Cantidad de veces salvad@: " << persona->cantSalvaciones;
-    qDebug() << "Creencia: " << persona->creencia;
-    qDebug() << "Papa: ";
-    persona->papa->imprimir();
-    qDebug() << "Madre: ";
-    persona->mama->imprimir();
-    qDebug() << "Hijos: { ";
+    refPantalla->appendPlainText("\nID [ " + QString::number(persona->id)+ " ]");
+    refPantalla->appendPlainText("Nombre: " + persona->nombre);
+    refPantalla->appendPlainText("Apellido: " + persona->apellido);
+    refPantalla->appendPlainText("Edad: " + QString::number(persona->longevidad));
+    if (persona->vivo) {
+        refPantalla->appendPlainText("Estado: Vivo");
+    } else {
+        refPantalla->appendPlainText("Estado: Muerto");
+    }
+    refPantalla->appendPlainText("Situacion actual: " + persona->situacion);
+    refPantalla->appendPlainText("Cantidad de veces eliminad@: " + QString::number(persona->cantEliminaciones));
+    refPantalla->appendPlainText("Cantidad de veces salvad@: " + QString::number(persona->cantSalvaciones));
+    refPantalla->appendPlainText("Papa: ");
+    persona->papa->imprimir(refPantalla);
+    refPantalla->appendPlainText("Madre: ");
+    persona->mama->imprimir(refPantalla);
+    refPantalla->appendPlainText("Hijos: ");
     NodoDoble* hijo = persona->hijos->primerNodo;
-    for (int i=0; i < persona->hijos->largo(); i++) {
-        qDebug() << "    ID: " << hijo->persona->id;
-        qDebug() << "    Nombre: " << hijo->persona->nombre;
+    while (hijo != NULL) {
+        refPantalla->appendPlainText("  ID: " + QString::number(hijo->persona->id) + " Nombre: " + hijo->persona->nombre);
         hijo = hijo->siguiente;
     }
-    // Imprimir los pecados (temporal)
     for (int i = 0; i < 7; i++) {
-        qDebug() << "Pecado [" << i << "] = " << persona->accionesMalas[i];
+        refPantalla->appendPlainText("Pecado [" + QString::number(i) + "] = " + QString::number(persona->accionesMalas[i]));
     }
-    // Imprimir nuevo atributo 'cantPecados'
-    qDebug() << "Cantidad de pecados : [ " << persona->cantPecados << " ]";
-    qDebug() << "";
+    refPantalla->appendPlainText("Cantidad de pecados: " + QString::number(persona->cantPecados) + " Cantidad de acciones buenas: " + QString::number(persona->cantAccionesBuenas) );
+    refPantalla->moveCursor(QTextCursor::End);
+
+//    qDebug() << "ID [ " << persona->id << " ]";
+//    qDebug() << "Nombre: " << persona->nombre;
+//    qDebug() << "Apellido: " << persona->apellido;
+//    qDebug() << "Edad: " << persona->longevidad;
+//    qDebug() << "Vivo: " << persona->vivo;
+
+//    qDebug() << "Situacion actual: " << persona->situacion;
+//    qDebug() << "Cantidad de veces eliminad@: " << persona->cantEliminaciones;
+//    qDebug() << "Cantidad de veces salvad@: " << persona->cantSalvaciones;
+//    qDebug() << "Creencia: " << persona->creencia;
+//    qDebug() << "Papa: ";
+//    persona->papa->imprimir();
+//    qDebug() << "Madre: ";
+//    persona->mama->imprimir();
+//    qDebug() << "Hijos: { ";
+//    NodoDoble* hijo = persona->hijos->primerNodo;
+//    for (int i=0; i < persona->hijos->largo(); i++) {
+//        qDebug() << "    ID: " << hijo->persona->id;
+//        qDebug() << "    Nombre: " << hijo->persona->nombre;
+//        hijo = hijo->siguiente;
+//    }
+    // Imprimir los pecados (temporal)
+//    for (int i = 0; i < 7; i++) {
+//        qDebug() << "Pecado [" << i << "] = " << persona->accionesMalas[i];
+//    }
+//    // Imprimir nuevo atributo 'cantPecados'
+//    qDebug() << "Cantidad de pecados : [ " << persona->cantPecados << " ]";
+//    qDebug() << "";
 
 }
 
 void NodoDoble::imprimirFamilia(QPlainTextEdit* refPantalla) {
-    qDebug() << "ID [ " << persona->id << " ]";
-    qDebug() << "Nombre: " << persona->nombre;
-    qDebug() << "Apellido: " << persona->apellido;
-    qDebug() << "Edad: " << persona->longevidad;
-    qDebug() << "vivo: " << persona->vivo;
 
-    qDebug() << "Situacion actual: " << persona->situacion;
-    qDebug() << "Cantidad de veces eliminad@: " << persona->cantEliminaciones;
-    qDebug() << "Cantidad de veces salvad@: " << persona->cantSalvaciones;
-    // Padre
-    qDebug() << " Padre: ";
-    persona->papa->imprimir2();
-    qDebug() << " Madre: ";
-    persona->mama->imprimir2();
-    qDebug() << " Hijos: ";
+    refPantalla->appendPlainText("\nID [ " + QString::number(persona->id)+ " ]");
+    refPantalla->appendPlainText("Nombre: " + persona->nombre);
+    refPantalla->appendPlainText("Apellido: " + persona->apellido);
+    refPantalla->appendPlainText("Edad: " + QString::number(persona->longevidad));
+    if (persona->vivo) {
+        refPantalla->appendPlainText("Estado: Vivo");
+    } else {
+        refPantalla->appendPlainText("Estado: Muerto");
+    }
+    refPantalla->appendPlainText("Situacion actual: " + persona->situacion);
+    refPantalla->appendPlainText("Cantidad de veces eliminad@: " + QString::number(persona->cantEliminaciones));
+    refPantalla->appendPlainText("Cantidad de veces salvad@: " + QString::number(persona->cantSalvaciones));
+    refPantalla->appendPlainText("  Padre:\n");
+    persona->papa->imprimir2(refPantalla);
+    refPantalla->appendPlainText("  Madre:\n");
+    persona->mama->imprimir2(refPantalla);
+    refPantalla->appendPlainText("  Hijos:\n");
     NodoDoble* hijo = persona->hijos->primerNodo;
     while (hijo != NULL) {
-        hijo->persona->imprimir2();
+        hijo->persona->imprimir2(refPantalla);
+        hijo = hijo->siguiente;
     }
-}
-void Persona::imprimir() {
-    qDebug() << "ID [ " << id << " ]";
-    qDebug() << "Nombre: " << nombre << " Apellido: " << apellido;
+    refPantalla->moveCursor(QTextCursor::End);
+
+//    qDebug() << "ID [ " << persona->id << " ]";
+//    qDebug() << "Nombre: " << persona->nombre;
+//    qDebug() << "Apellido: " << persona->apellido;
+//    qDebug() << "Edad: " << persona->longevidad;
+//    qDebug() << "vivo: " << persona->vivo;
+//    qDebug() << "Situacion actual: " << persona->situacion;
+//    qDebug() << "Cantidad de veces eliminad@: " << persona->cantEliminaciones;
+//    qDebug() << "Cantidad de veces salvad@: " << persona->cantSalvaciones;
+//    // Padre
+//    qDebug() << " Padre: ";
+//    persona->papa->imprimir2();
+//    qDebug() << " Madre: ";
+//    persona->mama->imprimir2();
+//    qDebug() << " Hijos: ";
+//    NodoDoble* hijo = persona->hijos->primerNodo;
+//    while (hijo != NULL) {
+//        hijo->persona->imprimir2();
+//    }
+
 }
 
-void Persona::imprimir2() {
-    qDebug() << "ID [ " << id << " ]";
-    qDebug() << "Nombre: " << nombre << " Apellido: " << apellido;
-    qDebug() << "Edad: " << longevidad;
-    qDebug() << "Vivo: " << vivo;
-    qDebug() << "Situacion actual: " << situacion;
-    qDebug() << "Cantidad de veces eliminad@: " << cantEliminaciones;
-    qDebug() << "Cantidad de veces salvad@: " << cantSalvaciones;
+void Persona::imprimir(QPlainTextEdit* refPantalla) {
+//    qDebug() << "ID [ " << id << " ]";
+//    qDebug() << "Nombre: " << nombre << " Apellido: " << apellido;
+    refPantalla->appendPlainText("\nID [" + QString::number(id) + "] Nombre: " + nombre + " Apellido: " + apellido);
+    refPantalla->moveCursor(QTextCursor::End);
+}
+
+void Persona::imprimir2(QPlainTextEdit* refPantalla) {
+    refPantalla->appendPlainText("\nID [ " + QString::number(id) + " ]");
+    refPantalla->appendPlainText("Nombre: " + nombre + " Apellido: " + apellido + " Edad: " + QString::number(longevidad));
+    if (vivo) {
+        refPantalla->appendPlainText("Estado: Vivo");
+    } else {
+        refPantalla->appendPlainText("Estado: Muerto");
+    }
+    refPantalla->appendPlainText("Cantidad de veces eliminad@: " + QString::number(cantEliminaciones) + " Cantidad de veces salvad@: " + QString::number(cantSalvaciones));
+    refPantalla->moveCursor(QTextCursor::End);
+
+//    qDebug() << "ID [ " << id << " ]";
+//    qDebug() << "Nombre: " << nombre << " Apellido: " << apellido;
+//    qDebug() << "Edad: " << longevidad;
+//    qDebug() << "Vivo: " << vivo;
+//    qDebug() << "Situacion actual: " << situacion;
+//    qDebug() << "Cantidad de veces eliminad@: " << cantEliminaciones;
+//    qDebug() << "Cantidad de veces salvad@: " << cantSalvaciones;
 }

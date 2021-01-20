@@ -3,7 +3,7 @@
 void Consultas::consultarPersona(int _id,QPlainTextEdit* refPantalla) {
     NodoDoble* persona = mundo->listaPersonas->buscarPorId(_id);
     if (persona) {
-        persona->imprimirEspecial();
+        persona->imprimirEspecial(refPantalla);
     }
     return;
 }
@@ -11,7 +11,7 @@ void Consultas::consultarPersona(int _id,QPlainTextEdit* refPantalla) {
 void Consultas::consultarFamilia(int _id,QPlainTextEdit* refPantalla) {
     NodoDoble* persona = mundo->listaPersonas->buscarPorId(_id);
     if (persona) {
-        persona->imprimirFamilia();
+        persona->imprimirFamilia(refPantalla);
     }
     return;
 }
