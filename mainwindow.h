@@ -18,14 +18,15 @@ class MainWindow : public QMainWindow
     // aniquilacion
     CorvusGlaive* structCorvus;
     Nebula* _nebula;
-    Dwarf* dwarf;
-    Thanos* thanos;
-    Midnight* midnight;
+    Dwarf* _dwarf;
+    Thanos* _thanos;
+    Midnight* _midnight;
+    EbonyMaw* ebony;
     //  salvacion
-    Antman* antman;
-    Ironman* ironman;
-    Thor* thor;
-    Spiderman* spiderman;
+    Antman* _antman;
+    Ironman* _ironman;
+    Thor* _thor;
+    Spiderman* _spiderman;
     // consultas
     Consultas* consultas;
 

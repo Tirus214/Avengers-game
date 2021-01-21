@@ -16,10 +16,10 @@ void Mundo::crearPersonas(int num){
             _gender = "Hombre";
             _nombre = listaNombresHombre[aleatorio(0, 500)];
         }
-        QString _apellido = listaApellidos[aleatorio(0,listaApellidos->length()-1)];
+        QString _apellido = listaApellidos[aleatorio(0,19)];
         QString _creencia = listaCreencias[aleatorio(0, listaCreencias->length()-1)];
         QString _profesion = listaProfesiones[aleatorio(0,listaProfesiones->length()-1)];
-        QString _pais = listaPaises[aleatorio(0, listaPaises->length()-1)];
+        QString _pais = listaPaises[aleatorio(0,99)];
 
         int rand = getNumPaises();
         QStringList arrayPaises = getPaises(rand);

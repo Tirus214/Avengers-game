@@ -32,11 +32,11 @@ struct Antman{
     //métodos
     void getHormigas();
     void setHormigas(int num);
-    void dejarFeromonas();
+    void dejarFeromonas(NodoArbol*& raiz);
     int maximo(int, int);
     NodoArbol * escogerNodo(NodoArbol *);
     void salvarPersonas();
-    void clearFeromonas(NodoArbol *);
+    void clearFeromonas(NodoArbol*&);
     NodoArbol * desempate(NodoArbol *,NodoArbol *);
 };
 
@@ -46,6 +46,7 @@ struct Ironman{
     Heap * heapEntrada;
     Mundo * mundo;
     int contadorUltimaCorrida;
+    QList<int> listaId;
 
     //constructor
     Ironman (Mundo * _mundo){

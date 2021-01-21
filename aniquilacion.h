@@ -130,6 +130,25 @@ struct Dwarf{
     void matarPersonas();
 };
 
+struct EbonyMaw{
+    QList<int> listaIDAniquilados;
+    Mundo* mundo;
+    int contador;
+    int contadorUltimaCorrida;
+    ListaDoble* listaPersonas;
+
+    EbonyMaw(Mundo* _mundo) {
+        mundo = _mundo;
+        listaPersonas = mundo->listaPersonas;
+        contador = 0;
+        contadorUltimaCorrida = 0;
+    }
+
+    //metodos
+    void matarAscendentes(Persona*);
+    void matarDescendentes(Persona*);
+    void imprimirProceso();
+};
 
 
 #endif // ANIQUILACION_H

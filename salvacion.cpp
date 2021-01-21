@@ -2,50 +2,58 @@
 
 void Antman::getHormigas(){
     mundo->fileManager->leer2("Hormigas", hormigas);
+    return;
 }
 
 void Antman::setHormigas(int num){
     cantidadHormigas = num;
+    return;
 }
 
-void Antman::dejarFeromonas(){
-    if (arbolEntrada->isEmpty(arbolEntrada->raiz)) return;
+void Antman::dejarFeromonas(NodoArbol*& raiz){
+    if (mundo->arbolOrdenado->altura(mundo->arbolOrdenado->raiz) < 2) {
+        return;
+    }
+    if ( raiz == NULL ) return;
     else {
-        clearFeromonas(arbolEntrada->raiz);
+        clearFeromonas(raiz);
         getHormigas();
         NodoArbol * tmp = NULL;
         for(int i = 0;i < 2; i++){
             int aleatorio = 0;
-            if (i == 0) tmp = arbolEntrada->raiz->hijoIzquierdo;
-            else if (i == 1) tmp = arbolEntrada->raiz->hijoDerecho;
+            if (i == 0) tmp = raiz->hijoIzquierdo;
+            else if (i == 1) tmp = raiz->hijoDerecho;
             for (int i = 0; i <= cantidadHormigas; i++){
                 while(tmp != NULL){
                     aleatorio = mundo->aleatorio(0,100);
                     tmp->feromonas = tmp->feromonas + 1;
                     if (0 <= aleatorio && aleatorio > 50 && tmp->hijoIzquierdo != NULL) tmp = tmp->hijoIzquierdo;
                     else tmp = tmp->hijoDerecho;
-                    hormigas.append("Humano" + QString::number(tmp->nodoPersona->persona->id) + " " +
-                                    tmp->nodoPersona->persona->nombre + tmp->nodoPersona->persona->apellido +
-                                    " alcanzado por la hormiga: " + QString::number(i));
+//                    if (tmp != NULL) {
+//                        hormigas.append("Humano" + QString::number(tmp->nodoPersona->persona->id) + " " +
+//                                    tmp->nodoPersona->persona->nombre + tmp->nodoPersona->persona->apellido +
+//                                    " alcanzado por la hormiga: " + QString::number(i));
+//                    }
                 }
             }
         }
         hormigas.append("=========================================================================================");
         mundo->fileManager->escribir("Hormigas", hormigas);
-        inicio = escogerNodo(arbolEntrada->raiz->hijoIzquierdo);
-        final = escogerNodo(arbolEntrada->raiz->hijoDerecho);
+        inicio = escogerNodo(raiz->hijoIzquierdo);
+        final = escogerNodo(raiz->hijoDerecho);
         salvarPersonas();
     }
     return;
 }
 
-void Antman::clearFeromonas(NodoArbol * raiz){
+void Antman::clearFeromonas(NodoArbol*& raiz){
     if (raiz->feromonas == 0 || raiz == NULL) return;
     else{
         raiz->feromonas = 0;
         clearFeromonas(raiz->hijoDerecho);
         clearFeromonas(raiz->hijoIzquierdo);
     }
+    return;
 }
 
 NodoArbol * Antman::escogerNodo(NodoArbol * raiz){
@@ -119,46 +127,44 @@ void Ironman::detonarBombas(){
 }
 
 void Ironman::salvarAscendientes(Persona * personaAnalizada){
-    if (personaAnalizada == NULL) return;
-    if (personaAnalizada->vivo == false){
-        mundo->totalSalvados++;
-        contadorUltimaCorrida++;
-        contador++;
-        personaAnalizada->vivo = true;
-        personaAnalizada->salvado = true;
-        personaAnalizada->situacion = "Salvado por Ironman";
-        personaAnalizada->cantSalvaciones = personaAnalizada->cantSalvaciones+1;
-        mundo->logSalvacion->insertarSalvacion(personaAnalizada, "Ironman por ser pariente de la persona: " + QString::number(personaAnalizada->id)
-                                               + " a la que le detono la bomba");
+    if (!listaId.contains(personaAnalizada->id)){
+        listaId.append(personaAnalizada->id);
+        if (personaAnalizada->vivo == false){
+            contadorUltimaCorrida++;
+            contador++;
+            personaAnalizada->vivo = true;
+            personaAnalizada->situacion = "Salvado por Ironman";
+            personaAnalizada->cantSalvaciones = personaAnalizada->cantSalvaciones+1;
+            mundo->logSalvacion->insertarSalvacion(personaAnalizada, "Ironman por ser pariente de la persona: " + QString::number(personaAnalizada->id)
+                                                   + " a la que le detono la bomba");
+        }
+        if (personaAnalizada->papa != NULL) salvarAscendientes(personaAnalizada->papa);
+        if (personaAnalizada->mama != NULL) salvarAscendientes(personaAnalizada->mama);
     }
-    if (personaAnalizada->papa != nullptr) salvarAscendientes(personaAnalizada->papa);
-    if (personaAnalizada->mama != nullptr) salvarAscendientes(personaAnalizada->mama);
     return;
 }
 
 void Ironman::salvarDescendientes(Persona * raiz){
-    if(raiz == NULL) return;
-    else{
+    if (!listaId.contains(raiz->id)){
+        listaId.append(raiz->id);
         if (raiz->vivo == false){
-            mundo->totalSalvados++;
             contadorUltimaCorrida++;
             contador++;
             raiz->vivo = true;
-            raiz->salvado = true;
             raiz->situacion = "Salvado por Ironman";
             raiz->cantSalvaciones = raiz->cantSalvaciones+1;
             mundo->logSalvacion->insertarSalvacion(raiz, "Ironman por ser pariente de la persona: " + QString::number(raiz->id)
                                                    + " a la que le detono la bomba");
         }
-        NodoDoble * tmp = raiz->amigos->primerNodo;
-        for(int i = 0; i < raiz->amigos->largo(); i++){
+        NodoDoble * tmp = raiz->hijos->primerNodo;
+        if (tmp == NULL) return;
+        do{
             salvarDescendientes(tmp->persona);
             tmp = tmp->siguiente;
-        }
+        }while(tmp != raiz->hijos->primerNodo);
+        return;
     }
 }
-
-
 
 void Thor::obtenerNodoPorNivel(NodoArbol *raiz, int nivelActual, int nivelBuscado){
     if(raiz == NULL) {
