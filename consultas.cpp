@@ -16,11 +16,11 @@ void Consultas::consultarFamilia(int _id,QPlainTextEdit* refPantalla) {
     return;
 }
 
-void Consultas::consultarAmigos(int _id,QPlainTextEdit* refPantalla) {
+void Consultas::consultarAmigos(int _id, QPlainTextEdit* refPantalla) {
     // Falta arreglar amigos
-    NodoDoble* persona = mundo->listaPersonas->buscarPorId(_id);
-    if (persona) {
-        persona->imprimirAmigos(refPantalla);
+    NodoDoble* tmp = mundo->listaPersonas->buscarPorId(_id);
+    if (tmp != NULL) {
+        tmp->imprimirAmigos(refPantalla);
     }
     return;
 }
